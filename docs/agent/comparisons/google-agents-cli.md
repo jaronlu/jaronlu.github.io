@@ -1,4 +1,4 @@
-# google/agents-cli 调研与对比
+# agents-cli 调研与对比
 
 > 调研日期：2026-07-01  
 > 仓库：https://github.com/google/agents-cli  
@@ -8,7 +8,7 @@
 
 ## What：这是什么？
 
-`google/agents-cli` 是 Google 官方推出的 **CLI + skills 套件**，目标不是替代 Claude Code、Codex 或 Antigravity CLI 这类 coding agent 本体，而是让这些 coding agent 变得更擅长在 Google Cloud 上创建、评估、测试和部署 AI agent。
+`agents-cli` 是 Google 官方推出的 **CLI + skills 套件**，目标不是替代 Claude Code、Codex 或 Antigravity CLI 这类 coding agent 本体，而是让这些 coding agent 变得更擅长在 Google Cloud 上创建、评估、测试和部署 AI agent。
 
 核心思想是：**你继续用自己喜欢的 coding agent 写代码，但让 agents-cli 给它注入"Agent 工程能力"**，包括脚手架、ADK 编码模式、评估体系、部署管道、发布注册和可观测性。
 
