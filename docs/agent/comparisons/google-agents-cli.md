@@ -20,6 +20,7 @@
 
 ### 1. Google 在押注"coding agent + 企业级 agent 生命周期"组合
 这个项目出现在 2026-04，距今不到 3 个月，已经发布到 v0.6.1，迭代节奏非常快：
+
 - v0.1.3：2026-05-06
 - v0.2.0：2026-05-19
 - v0.3.0：2026-06-01
@@ -33,7 +34,8 @@
 
 ### 2. 它不是又一个 agent 框架，而是 agent 框架的"工程化外挂"
 市面上已经有 LangChain、LlamaIndex、CrewAI、AutoGen 等框架。agents-cli 的差异化在于：
-- **不重新发明 agent 运行时**，而是基于 Google ADK
+
+- **不重新发明 agent 运行时**
 - **不重新发明 coding agent**，而是给 Claude Code / Codex / Antigravity 加 skills
 - **专注企业级生命周期**：scaffold → build → eval → deploy → publish → observe
 
@@ -47,6 +49,7 @@
 
 ### 4. 安全与治理是关注重点
 项目已经出现了安全相关 issue（#50，path traversal in remote-template scaffolding），说明：
+
 - 社区开始认真审视其攻击面
 - 项目处于 Pre-GA 阶段，安全模型还在演化
 
@@ -99,6 +102,7 @@ src/google/agents/cli/
 ```
 
 代码结构清晰，按功能域拆分：
+
 - `scaffold`：项目创建和模板处理
 - `eval`：评估数据集生成、grading、对比、分析、优化
 - `deploy`：部署到 Cloud Run / GKE / Agent Runtime
@@ -160,7 +164,8 @@ agents-cli install
 ```
 
 结果：
-- 生成包含 `app/agent.py`、测试、eval 数据集和 `agents-cli-manifest.yaml` 的项目骨架
+
+- 生成包含
 - 你可以直接让 coding agent 修改 `app/agent.py` 里的 system prompt 和工具逻辑
 
 官方教程：https://google.github.io/agents-cli/guide/quickstart-tutorial/
@@ -205,7 +210,8 @@ agents-cli eval optimize
 ```
 
 eval 还支持：
-- `agents-cli eval dataset synthesize`：合成多轮对话场景
+
+- `agents-cli eval dataset synthesize`
 - `agents-cli eval metric list`：查看可用 metrics
 
 ---
@@ -220,7 +226,8 @@ eval 还支持：
 | Agent Runtime + ADK | `agents-cli publish gemini-enterprise` | 注册到 Gemini Enterprise，由平台按 ADK 接口调用 |
 
 注意事项：
-- Agent Runtime 的 deploy 用 API，不用 Terraform；`infra single-project` 在 deploy 之后运行会创建重复 Reasoning Engine 实例
+
+- Agent Runtime 的 deploy 用 API
 - v0.5.0 起 deploy 使用 CLI 自身的 Python 版本构建，依赖兼容性可能出问题
 - 当前 deploy 不支持显式指定 Python 版本
 
@@ -229,10 +236,12 @@ eval 还支持：
 ### 案例5：可观测性与生产运维
 
 默认行为：
-- Cloud Trace 在部署后即自动启用，无需额外配置
+
+- Cloud Trace 在部署后即自动启用
 - 可在 Google Cloud Console 的 Trace Explorer 中查看每个 LLM call 和 tool execution 的 span
 
 增强配置：
+
 ```bash
 # 配置可观测基础设施
 agents-cli infra single-project
@@ -276,6 +285,7 @@ coding agent 会自动激活对应 skill，这种用法把 agents-cli 从"又一
 
 ### vs 直接使用 ADK
 ADK 是 agent 框架，提供 Python API。agents-cli 在 ADK 之上增加了：
+
 - 项目脚手架和模板
 - 评估数据集管理和 grading
 - 部署基础设施 provisioning

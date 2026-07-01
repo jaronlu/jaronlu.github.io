@@ -29,12 +29,14 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### LangChain
 
 **优势**：
+
 - 生态完整，集成广泛
 - 学习曲线平缓
 - 社区活跃，文档丰富
 - 快速原型验证
 
 **劣势**：
+
 - 复杂流程控制有限
 - 状态管理基础
 - 生产级特性需配合 LangGraph
@@ -44,12 +46,14 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### LangGraph
 
 **优势**：
+
 - 图结构灵活编排
 - 原生支持循环/并行/分支
 - 完整的检查点/恢复机制
 - 原生支持人机协同
 
 **劣势**：
+
 - 学习曲线较陡
 - 代码量较多
 - 需要理解状态机概念
@@ -59,12 +63,14 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### AutoGen
 
 **优势**：
+
 - 多角色对话成熟
 - 支持代码执行
 - 消息驱动协同
 - 微软生态支持
 
 **劣势**：
+
 - 更偏研究性质
 - 生产部署复杂
 - 文档不够完善
@@ -74,12 +80,14 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### CrewAI
 
 **优势**：
+
 - 角色分工清晰
 - 任务链表达强
 - 工程落地感强
 - 学习曲线适中
 
 **劣势**：
+
 - 灵活性不如 LangGraph
 - 生态较小
 - 高级特性有限
@@ -89,11 +97,13 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### MetaGPT
 
 **优势**：
+
 - 模拟软件公司 SOP
 - 角色化协作
 - 软件工程流程
 
 **劣势**：
+
 - 更偏软件工程叙事
 - 通用业务不首选
 - 生态较小
@@ -103,12 +113,14 @@ LangChain、LangGraph、AutoGen、CrewAI、MetaGPT、OpenAI Agents SDK 选型建
 ### OpenAI Agents SDK
 
 **优势**：
+
 - 轻量生产级
 - 内置 handoff/guardrails
 - OpenAI 生态支持
 - 生产可用
 
 **劣势**：
+
 - 依赖 OpenAI 生态
 - 灵活性有限
 - 高级特性需付费
