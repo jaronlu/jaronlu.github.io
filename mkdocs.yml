@@ -1,0 +1,85 @@
+site_name: Jaron 的 AI 学习笔记
+site_description: 从 iOS 到 AI Agent 的学习记录 — LangChain、LangGraph、RAG、Agent 原理与实践
+site_author: Jaron Lu
+site_url: https://jaronlu.github.io
+
+repo_url: https://github.com/jaronlu/jaronlu.github.io
+repo_name: jaronlu/jaronlu.github.io
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换为深色模式
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换为浅色模式
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jaronlu
+  generator: false
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+copyright: Copyright &copy; 2026 Jaron Lu
+
+nav:
+  - 首页: index.md
+  - AI Agent 开发:
+    - agent/index.md
+    - 概念:
+      - agent/concepts/agent-principles.md
+      - agent/concepts/rag-principles.md
+      - agent/concepts/mcp-protocol.md
+      - agent/concepts/multi-agent-patterns.md
+      - agent/concepts/loop-engineering.md
+      - agent/concepts/agent-runtime.md
+    - 学习路径:
+      - agent/queries/ai-agent-learning-path.md
+      - agent/queries/agent-interview-questions.md
+    - 框架对比:
+      - agent/comparisons/agent-frameworks.md
+      - agent/comparisons/langchain-vs-langgraph.md
+    - 入门实战:
+      - agent/queries/langchain-agent-hello-world.md
+      - agent/queries/langgraph-workflow-patterns.md
+  - 认知与表达:
+    - cognitive/index.md
+    - cognitive/concepts/cognitive-training-system.md
+    - cognitive/concepts/workplace-ability.md
+    - cognitive/queries/cognitive-question-bank.md
+  - 关于: about.md

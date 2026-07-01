@@ -1,0 +1,6 @@
+# MkDocs 构建产物，由 gh-deploy 自动推送到 gh-pages 分支
+site/
+# Python / OS 临时文件
+__pycache__/
+*.pyc
+.DS_Store
