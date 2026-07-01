@@ -13,11 +13,11 @@ Agent 原理、LangChain/LangGraph、RAG、MCP 协议、多 Agent 协作
 
 [→ 开始学习](agent/index.md)
 
-### 🧠 认知与表达
+### 🐦 X / Twitter 平台
 
-认知训练系统、职场能力、社交技巧、表达训练积累
+X API、xurl CLI、Grok、AI 与 X 平台集成
 
-[→ 开始训练](cognitive/index.md)
+[→ 查看笔记](x/index.md)
 
 ---
 

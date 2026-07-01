@@ -77,9 +77,6 @@ nav:
     - 入门实战:
       - agent/queries/langchain-agent-hello-world.md
       - agent/queries/langgraph-workflow-patterns.md
-  - 认知与表达:
-    - cognitive/index.md
-    - cognitive/concepts/cognitive-training-system.md
-    - cognitive/concepts/workplace-ability.md
-    - cognitive/queries/cognitive-question-bank.md
+  - X / Twitter:
+    - x/index.md
   - 关于: about.md
