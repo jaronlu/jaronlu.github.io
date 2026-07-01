@@ -1,0 +1,10 @@
+/* 标题加粗、加深颜色 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+  color: var(--md-default-fg-color) !important;
+}
+
+/* h1 更大一些 */
+h1 {
+  font-size: 2.2em !important;
+}
