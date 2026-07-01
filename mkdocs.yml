@@ -74,9 +74,13 @@ nav:
     - 框架对比:
       - agent/comparisons/agent-frameworks.md
       - agent/comparisons/langchain-vs-langgraph.md
+      - agent/comparisons/google-agents-cli.md
     - 入门实战:
       - agent/queries/langchain-agent-hello-world.md
       - agent/queries/langgraph-workflow-patterns.md
-  - X / Twitter:
-    - x/index.md
+    - Karpathy:
+      - agent/karpathy/index.md
+      - agent/karpathy/claude-spec.md
+      - agent/karpathy/llm-wiki.md
+      - agent/karpathy/loop-engineering.md
   - 关于: about.md
