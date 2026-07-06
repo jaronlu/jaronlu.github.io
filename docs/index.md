@@ -1,23 +1,23 @@
 # Jaron 的 AI 学习笔记
 
-> 从 iOS/iOS SDK 开发到 AI Agent 的转型之路。
-> 这里记录我学习 LangChain、LangGraph、RAG、MCP、Agent 原理与实践的笔记和思考。
+> 10年证券行业客户端开发经验（iOS/HarmonyOS），独立设计实现了 Agentic RAG 系统。
+> 这里记录我从客户端工程师向 AI Agent 方向拓展的实践与思考。
 
 ---
 
 ## 内容导航
 
-### 🤖 AI Agent 开发
+### 🚀 项目实践
+
+独立设计实现的 SecRAG——面向证券行业投研场景的 Agentic RAG 系统
+
+[→ 查看项目](projects/index.md)
+
+### 🤖 AI Agent 工程笔记
 
 Agent 原理、LangChain/LangGraph、RAG、MCP 协议、多 Agent 协作
 
-[→ 开始学习](agent/index.md)
-
-### 🐦 X / Twitter 平台
-
-X API、xurl CLI、Grok、AI 与 X 平台集成
-
-[→ 查看笔记](x/index.md)
+[→ 查看笔记](agent/index.md)
 
 ---
 

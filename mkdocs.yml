@@ -62,7 +62,10 @@ copyright: Copyright &copy; 2026 Jaron Lu
 
 nav:
   - 首页: index.md
-  - AI Agent 开发:
+  - 项目实践:
+    - projects/index.md
+    - projects/secrag.md
+  - AI Agent 工程笔记:
     - agent/index.md
     - 概念:
       - agent/concepts/agent-principles.md
