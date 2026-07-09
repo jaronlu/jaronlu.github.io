@@ -1,36 +1,37 @@
 # 关于我
 
-**Jaron Lu (陆建荣)** — 10年+ 客户端开发工程师，正在向 AI Agent 工程方向拓展。
+**Jaron Lu（陆建荣）** — 10 年+ 证券金融行业客户端开发工程师，正在向 AI Agent 工程方向拓展。
 
 ## 一句话画像
 
-10年证券金融行业客户端开发经验（iOS/HarmonyOS），近期独立设计实现了 Agentic RAG 系统，正把客户端工程经验延伸到 AI Agent 方向。
+我做过长期证券客户端工程交付，现在把这部分业务理解和工程治理经验，迁移到 Agentic RAG、LangGraph 工作流、MCP 工具化和知识库工程中。
 
 ## 核心经历
 
 ### 客户端开发（iOS / HarmonyOS）
-- 独立维护 3 个证券 iOS 项目，支撑 3 个以上券商客户的平台化基座，覆盖 11 个核心业务模块
-- 参与多家头部券商客户的 HarmonyOS 证券项目交付（3个），独立负责闪电交易模块全流程开发（需求分析 → UI → 逻辑实现 → SDK 联调），支持 A 股、科创板、创业板、债券、融资融券等多类交易场景
-- 推进模块化拆分与配置化管理，公共代码复用率从 30% 提升到 70%
-- 重构自动化发布链路（打包/加固/重签名/dSYM上传），发版时间从 4 小时降到 1.5 小时，累计发版 100+ 次无重大事故
+
+- 长期参与证券客户端项目交付，覆盖行情、交易、账户、安全、路由、发布等核心模块。
+- 参与 HarmonyOS 证券项目开发，负责过闪电交易等高交互、高校验业务链路。
+- 有模块化、配置化、构建发布、自动化脚本和线上稳定性治理经验。
 
 ### AI Agent 工程实践
-- 基于证券行业背景，独立设计并实现 **SecRAG**——面向券商内部投研场景的 Agentic RAG 系统
-  - 用 LangGraph StateGraph 编排六节点工作流：Planner → Retriever → Reasoner → Verifier → Composer → Auditor
-  - 实现基于角色的检索权限过滤（RBAC），覆盖投顾/机构销售/合规/运营/技术 5 种角色的分级数据访问
-  - 集成 ChromaDB 向量检索 + BGE Reranker 语义重排，FastAPI 提供问答接口
-  - 36+ 单元测试覆盖节点、路由与图构建逻辑
-- 日常用 AI 辅助旧代码理解、问题定位和脚本处理，千行级历史 Objective-C 代码理解耗时从半天缩短到 1-2 小时
+
+- 独立设计并实现 **SecRAG**：面向证券投研场景的 Agentic RAG 个人项目。
+  - 使用 LangGraph StateGraph 编排 Planner → Retriever → Reasoner → Verifier → Composer → Auditor 六节点工作流。
+  - 将角色权限过滤前置到 Retriever 节点，避免答案生成后再做表层过滤。
+  - 将数字校验、来源校验独立为 Verifier 节点，降低金融问答中的幻觉和引用风险。
+  - 使用 ChromaDB、BGE Reranker、FastAPI 等组件完成最小系统闭环。
+- 维护个人 `llm-wiki` 知识库，把学习材料、源码阅读、项目复盘沉淀成可检索、可复用的工程知识。
 
 ## 技术栈
 
-- **客户端**：Objective-C / iOS，HarmonyOS (ArkTS/ArkUI)，Flutter
-- **AI / Agent**：LangGraph、LangChain、RAG、ChromaDB、FastAPI
-- **工程化**：CocoaPods 模块化、CI/CD 自动化发布、Python/uv
+- **客户端**：Objective-C / iOS，HarmonyOS（ArkTS / ArkUI），Flutter
+- **AI / Agent**：LangGraph，LangChain，RAG，MCP，ChromaDB，FastAPI
+- **工程化**：Python / uv，自动化脚本，模块化治理，CI/CD，知识库工程
 
 ## 这个站点
 
-记录我从客户端工程师向 AI Agent 方向拓展过程中的学习笔记与实践思考，基于实践和源码验证，不搬运文档。
+这个站点用于公开展示我转向 AI Agent 工程过程中的作品、笔记和工程判断。内容会持续从个人知识库中筛选、脱敏和重写，不追求数量，优先保证可读、可信、能体现工程能力。
 
 ## 联系
 

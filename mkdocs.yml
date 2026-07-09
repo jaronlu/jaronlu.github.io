@@ -1,5 +1,5 @@
-site_name: Jaron 的 AI 学习笔记
-site_description: 从 iOS 到 AI Agent 的学习记录 — LangChain、LangGraph、RAG、Agent 原理与实践
+site_name: Jaron 的 AI Agent 工程作品集
+site_description: Jaron Lu 的 AI Agent 工程作品集：SecRAG、LangGraph、RAG、MCP、Agent 工程笔记与项目复盘
 site_author: Jaron Lu
 site_url: https://jaronlu.github.io
 
@@ -41,6 +41,10 @@ extra:
 plugins:
   - search
 
+# 本地发布规划文件，不进入站点构建
+exclude_docs: |
+  public-site.md
+
 extra_css:
   - stylesheets/extra.css
 
@@ -64,29 +68,35 @@ nav:
   - 首页: index.md
   - 项目实践:
     - projects/index.md
-    - projects/secrag.md
+    - SecRAG: projects/secrag.md
   - AI Agent 工程笔记:
     - agent/index.md
-    - 概念:
-      - agent/concepts/agent-principles.md
-      - agent/concepts/rag-principles.md
-      - agent/concepts/mcp-protocol.md
-      - agent/concepts/multi-agent-patterns.md
-      - agent/concepts/loop-engineering.md
-      - agent/concepts/agent-runtime.md
-    - 学习路径:
-      - agent/queries/ai-agent-learning-path.md
-      - agent/queries/agent-interview-questions.md
-    - 框架对比:
-      - agent/comparisons/agent-frameworks.md
-      - agent/comparisons/langchain-vs-langgraph.md
-      - agent/comparisons/google-agents-cli.md
-    - 入门实战:
-      - agent/queries/langchain-agent-hello-world.md
-      - agent/queries/langgraph-workflow-patterns.md
+    - 入门与选型:
+      - AI 工具矩阵: agent/concepts/ai-tools-matrix.md
+      - AI Agent 学习路径: agent/queries/ai-agent-learning-path.md
+      - Agent 框架对比: agent/comparisons/agent-frameworks.md
+    - 核心概念:
+      - Agent 原理: agent/concepts/agent-principles.md
+      - Agent Runtime: agent/concepts/agent-runtime.md
+      - LangChain 核心组件: agent/concepts/langchain-core-components.md
+      - LangGraph 基础: agent/concepts/langgraph-basics.md
+      - LangChain vs LangGraph: agent/comparisons/langchain-vs-langgraph.md
+    - RAG 与知识库:
+      - RAG 原理: agent/concepts/rag-principles.md
+      - RAG 变体对比: agent/comparisons/rag-variants.md
+    - MCP、多 Agent 与工程方法:
+      - MCP 协议: agent/concepts/mcp-protocol.md
+      - 多 Agent 协作模式: agent/concepts/multi-agent-patterns.md
+      - Loop Engineering: agent/concepts/loop-engineering.md
+    - 实战与问答:
+      - LangChain Agent 入门实战: agent/queries/langchain-agent-hello-world.md
+      - LangGraph 工作流模式: agent/queries/langgraph-workflow-patterns.md
+      - Agent 面试高频问题: agent/queries/agent-interview-questions.md
     - Karpathy:
       - agent/karpathy/index.md
-      - agent/karpathy/claude-spec.md
-      - agent/karpathy/llm-wiki.md
-      - agent/karpathy/loop-engineering.md
+      - CLAUDE 规范: agent/karpathy/claude-spec.md
+      - LLM-WIKI 方法论: agent/karpathy/llm-wiki.md
+      - 循环工程: agent/karpathy/loop-engineering.md
+    - 其他调研:
+      - Google Agents CLI: agent/comparisons/google-agents-cli.md
   - 关于: about.md

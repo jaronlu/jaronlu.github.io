@@ -6,3 +6,4 @@ __pycache__/
 .DS_Store
 # 本地专用备忘，不进入历史、不部署
 TODO.md
+docs/public-site.md
