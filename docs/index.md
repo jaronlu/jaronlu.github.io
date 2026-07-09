@@ -5,13 +5,24 @@
 
 ---
 
-## 当前可看内容
+## 我在证明什么
 
-### 🚀 项目实践
+这个站点围绕一个主线展开：把证券客户端长期积累的业务边界、状态管理、权限治理和工程交付经验，迁移到 AI Agent 系统设计里。
+
+| 能力 | 公开材料 |
+|------|----------|
+| Agent 工作流设计 | [SecRAG](projects/secrag.md) 的 Planner → Retriever → Reasoner → Verifier → Composer → Auditor 六节点图 |
+| RAG 知识工程 | [RAG 原理](agent/concepts/rag-principles.md)、[RAG 变体对比](agent/comparisons/rag-variants.md)、SecRAG 的混合检索与引用验证 |
+| LangGraph 编排 | [LangGraph 基础](agent/concepts/langgraph-basics.md)、[工作流模式](agent/queries/langgraph-workflow-patterns.md)、条件路由和 State 传递案例 |
+| 工程判断 | [Agent 框架对比](agent/comparisons/agent-frameworks.md)、[AI 工具矩阵](agent/concepts/ai-tools-matrix.md)、项目边界说明 |
+
+## 推荐阅读路径
+
+### 1. 先看项目
 
 - [SecRAG — 券商投研知识问答 Agent](projects/secrag.md)：一个面向证券投研场景的 Agentic RAG 个人项目，重点展示 RBAC 检索权限、Verifier 校验节点和 LangGraph 六节点工作流设计。
 
-### 🤖 AI Agent 工程笔记
+### 2. 再看基础概念
 
 - [AI 工具矩阵](agent/concepts/ai-tools-matrix.md)：LangChain、LangGraph、LlamaIndex、Dify、AutoGen、CrewAI 等工具按工程层次归类。
 - [Agent 原理](agent/concepts/agent-principles.md)：Agent 的执行循环、风险和适用边界。
@@ -19,7 +30,7 @@
 - [LangGraph 基础](agent/concepts/langgraph-basics.md)：Node、Edge、State 和有状态工作流。
 - [RAG 原理](agent/concepts/rag-principles.md) / [RAG 变体对比](agent/comparisons/rag-variants.md)：从 2-Step RAG 到 Agentic RAG、Graph RAG、CRAG、Self-RAG。
 
-### 🧭 学习与面试表达
+### 3. 最后看学习与表达
 
 - [AI Agent 学习路径](agent/queries/ai-agent-learning-path.md)：从客户端工程转向 AI Agent 岗位的学习主线。
 - [Agent 面试高频题](agent/queries/agent-interview-questions.md)：把学习内容整理成可复述的问答。
