@@ -14,6 +14,7 @@
 | Agent 工作流设计 | [SecRAG](projects/secrag.md) 的 Planner → Retriever → Reasoner → Verifier → Composer → Auditor 六节点图 |
 | RAG 知识工程 | [RAG 原理](agent/concepts/rag-principles.md)、[RAG 变体对比](agent/comparisons/rag-variants.md)、SecRAG 的混合检索与引用验证 |
 | LangGraph 编排 | [LangGraph 基础](agent/concepts/langgraph-basics.md)、[工作流模式](agent/queries/langgraph-workflow-patterns.md)、条件路由和 State 传递案例 |
+| MCP 工具化 | [llm-wiki-mcp](projects/llm-wiki-mcp.md) 的知识库操作层、candidate-first 和跨 Agent 工具契约 |
 | 工程判断 | [Agent 框架对比](agent/comparisons/agent-frameworks.md)、[AI 工具矩阵](agent/concepts/ai-tools-matrix.md)、项目边界说明 |
 
 ## 推荐阅读路径
@@ -21,6 +22,7 @@
 ### 1. 先看项目
 
 - [SecRAG — 券商投研知识问答 Agent](projects/secrag.md)：一个面向证券投研场景的 Agentic RAG 个人项目，重点展示 RBAC 检索权限、Verifier 校验节点和 LangGraph 六节点工作流设计。
+- [llm-wiki-mcp — 个人知识库 MCP 操作层](projects/llm-wiki-mcp.md)：把个人 Markdown 知识库维护流程封装成可被多个 Agent 复用的 MCP 工具契约。
 
 ### 2. 再看基础概念
 

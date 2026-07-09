@@ -69,6 +69,7 @@ nav:
   - 项目实践:
     - projects/index.md
     - SecRAG: projects/secrag.md
+    - llm-wiki-mcp: projects/llm-wiki-mcp.md
   - AI Agent 工程笔记:
     - agent/index.md
     - 入门与选型:
