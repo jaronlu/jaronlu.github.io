@@ -47,7 +47,7 @@ Loop Engineering 分为两个层次：
 | 工作树（Work Tree） | 多智能体隔离的 Git 分支目录 | git worktree |
 | 技能（Skill） | 项目规则写一次，每个 Agent 每次都读 | SKILL.md |
 | 连接器（Connector） | 通过 MCP 接到真实工具 | [MCP 协议](mcp-protocol.md) |
-| 子智能体（Sub-agents） | 写代码和审代码拆开 | [多 Agent 协作模式](multi-agent-patterns.md) |
+| 子智能体（Sub-agents） | 写代码和审代码拆开 | 职责隔离、独立上下文 |
 | **记忆（Memory）** | 持久化状态：做过什么、试过什么、还差什么 | [Agent Runtime](agent-runtime.md) |
 
 ## 五步循环（Loop）
@@ -117,7 +117,5 @@ Loop Engineering 分为两个层次：
 ## 相关笔记
 
 - [Agent 原理](agent-principles.md)
-- [多 Agent 协作模式](multi-agent-patterns.md)
 - [Agent Runtime](agent-runtime.md)
 - [MCP 协议](mcp-protocol.md)
-- Karpathy 视角下的另一种循环工程案例（prompt 自动优化循环）：[Karpathy: Loop Engineering](../karpathy/loop-engineering.md)

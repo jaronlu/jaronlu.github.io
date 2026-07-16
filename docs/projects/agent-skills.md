@@ -53,5 +53,4 @@ Skills 的价值不只在说明文件本身，而在“说明、脚本、参考�
 ## 相关页面
 
 - [Agent Runtime](../agent/concepts/agent-runtime.md)
-- [多 Agent 协作模式](../agent/concepts/multi-agent-patterns.md)
 - [llm-wiki-mcp](llm-wiki-mcp.md)

@@ -96,4 +96,3 @@ RAG = 先找资料，再组织回答
 ## 相关笔记
 
 - [Agent 原理](agent-principles.md)
-- [多 Agent 协作模式](multi-agent-patterns.md)

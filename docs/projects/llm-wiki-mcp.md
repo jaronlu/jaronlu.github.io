@@ -92,5 +92,4 @@ Storage Layer
 ## 相关页面
 
 - [MCP 协议](../agent/concepts/mcp-protocol.md)
-- [LLM-WIKI 方法论](../agent/karpathy/llm-wiki.md)
 - [Loop Engineering](../agent/concepts/loop-engineering.md)

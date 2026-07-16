@@ -114,4 +114,3 @@ Agentic AI 由吴恩达（Andrew Ng）提出，核心公式：**Agent = Model + 
 ## 相关笔记
 
 - [RAG 原理](rag-principles.md) — 检索增强生成
-- [多 Agent 协作模式](multi-agent-patterns.md)
