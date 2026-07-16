@@ -23,7 +23,7 @@ hide:
 <section class="work-section">
   <div class="section-heading">
     <span>SELECTED WORK / 01</span>
-    <h2>不是 Demo 列表，是三层工程闭环</h2>
+    <h2>从场景应用到 Agent 工程基础设施</h2>
     <p>从垂直场景应用，到知识操作协议，再到跨 Agent 的能力分发。</p>
   </div>
 

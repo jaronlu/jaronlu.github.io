@@ -9,3 +9,15 @@
 | [agent-skills](agent-skills.md) | 自研 Skills 如何跨 Codex、Claude、Hermes 保持单一来源 | 配置驱动分发、冲突保护、幂等同步、4 个公开 Skills |
 
 所有数字均来自当前项目源码或 Wiki 中的已核对记录；设计目标与已完成能力分开表达。
+
+## TODO
+
+### KnowledgeOS — AI Knowledge Workspace
+
+**状态：设计阶段（Draft，待 Review → Freeze）**
+
+受 NotebookLM 启发的开源知识工作台，计划以 Document Knowledge Agent 为第一阶段：支持文档管理、多文档联合问答、Citation、AI 总结与学习资料生成。
+
+- MVP 仅覆盖 PDF、DOCX、Markdown、TXT，暂不包含多模态、网页、MCP、Deep Research 或协作功能。
+- 技术基线为 Python 3.12、FastAPI、LangGraph、ChromaDB、SQLite / PostgreSQL。
+- 当前已建立 8 个 SSOT 设计文档与 6 篇分阶段实现文档；在设计 Review、Freeze 和实现验证完成前，不作为已交付项目展示。
