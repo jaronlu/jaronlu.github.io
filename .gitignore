@@ -1,4 +1,4 @@
-# MkDocs 构建产物，由 gh-deploy 自动推送到 gh-pages 分支
+# MkDocs 构建产物；本站通过 GitHub Actions 从 master 发布
 site/
 # Python / OS 临时文件
 __pycache__/

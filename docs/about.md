@@ -1,47 +1,31 @@
 # 关于我
 
-**Jaron Lu（陆建荣）** — 10 年+ 证券金融行业客户端开发工程师，正在向 AI Agent 工程方向拓展。
+我是 Jaron Lu（陆建荣），有 10 年以上证券金融行业客户端工程经验，目前专注 AI Agent 与 LLM 应用工程。
 
-## 一句话画像
+我的关注点不是把聊天界面接到模型上，而是把长期处理过的状态、权限、安全、错误恢复和发布约束，迁移到可验证的 Agent 系统中。
 
-我长期做证券客户端工程交付，现在把交易链路、权限边界、安全合规、状态管理和发布治理经验，迁移到 Agentic RAG、LangGraph 工作流、MCP 工具化和知识库工程中。
+## 经历主线
 
-## 核心经历
+| 阶段 | 工程实践 | 沉淀 |
+|---|---|---|
+| 2015—2024 | iOS 证券客户端与核心 SDK | 交易链路、行情推送、安全体系、模块化与多券商适配 |
+| 2024—2026 | HarmonyOS 证券项目 | ArkTS 状态编排、闪电交易、公共能力层与路由体系 |
+| 2026—至今 | AI Agent / RAG / MCP | 可信工作流、知识治理、工具契约与多客户端能力分发 |
 
-### 客户端开发（iOS / HarmonyOS）
+## 当前项目
 
-- 长期参与证券客户端项目交付，覆盖行情、交易、账户、安全、路由、发布等核心模块。
-- 参与交易 SDK、Hybrid SDK、基础能力 SDK 和多券商平台化基座建设，关注依赖边界、配置差异和跨项目复用。
-- 参与 HarmonyOS 证券项目开发，负责过闪电交易等高交互、高校验业务链路。
-- 有金融级安全防护、模块化治理、配置化交付、自动化打包发布和线上稳定性治理经验。
-
-### AI Agent 工程实践
-
-- 独立设计并实现 **SecRAG**：面向证券投研场景的 Agentic RAG 个人项目。
-  - 使用 LangGraph StateGraph 编排 Planner → Retriever → Reasoner → Verifier → Composer → Auditor 六节点工作流。
-  - 将角色权限过滤前置到 Retriever 节点，避免答案生成后再做表层过滤。
-  - 将数字校验、来源校验独立为 Verifier 节点，降低金融问答中的幻觉和引用风险。
-  - 使用 ChromaDB、BGE Reranker、FastAPI 等组件完成最小系统闭环。
-- 维护个人 `llm-wiki` 知识库，把学习材料、源码阅读、项目复盘沉淀成可检索、可复用的工程知识。
+- [SecRAG](projects/secrag.md)：面向机构投研的 Agentic RAG，重点解决检索权限、数字与引用验证、审计追踪。
+- [llm-wiki-mcp](projects/llm-wiki-mcp.md)：受治理的知识操作层，用候选评审代替 Agent 对正式知识页的直接写入。
+- [agent-skills](projects/agent-skills.md)：自研 Skills 的单一源码与跨 Codex、Claude、Hermes 分发基座。
 
 ## 技术栈
 
-- **客户端**：Objective-C / iOS，HarmonyOS（ArkTS / ArkUI），Flutter
-- **AI / Agent**：LangGraph，LangChain，RAG，MCP，ChromaDB，FastAPI
-- **工程化**：Python / uv，自动化脚本，模块化治理，CI/CD，知识库工程
-
-## 这个站点
-
-这个站点用于公开展示我转向 AI Agent 工程过程中的作品、笔记和工程判断。内容会持续从个人知识库中筛选、脱敏和重写，不追求数量，优先保证可读、可信、能体现工程能力。
-
-公开内容遵循三个边界：
-
-- 不发布客户内部信息、未脱敏材料或公司项目细节。
-- 不把学习笔记原样搬运成文章，必须改写成外部读者能理解的结构。
-- 不把未验证的目标指标写成已完成成果。
+- **AI / Agent**：LangGraph、LangChain、RAG、MCP、ChromaDB、FastAPI
+- **客户端**：Objective-C / iOS、ArkTS / ArkUI、Flutter
+- **工程化**：Python / uv、CI/CD、自动化脚本、模块化治理、知识库工程
 
 ## 联系
 
-- GitHub: [github.com/jaronlu](https://github.com/jaronlu)
-- 邮箱: jr.lu.jobs@gmail.com
-- LinkedIn: [个人主页](https://www.linkedin.com/in/建荣-陆-a5a10a400/)
+- GitHub：[github.com/jaronlu](https://github.com/jaronlu)
+- Email：[jr.lu.jobs@gmail.com](mailto:jr.lu.jobs@gmail.com)
+- LinkedIn：[个人主页](https://www.linkedin.com/in/建荣-陆-a5a10a400/)

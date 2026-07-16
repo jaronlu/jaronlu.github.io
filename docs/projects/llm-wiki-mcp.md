@@ -2,6 +2,8 @@
 
 > 个人实战项目，用于把 `llm-wiki` 的知识库维护流程封装成可复用、可审计的 MCP 工具层。
 
+[查看 GitHub 源码 ↗](https://github.com/jaronlu/llm-wiki-mcp)
+
 ## 项目一句话
 
 `llm-wiki-mcp` 不是一个普通文件系统 MCP，也不是把 `read_file(path)` 包一层协议。它的目标是给个人 Markdown 知识库提供一层面向 Agent 的知识操作接口，让不同 Agent 能用同一套工具完成搜索、读取、raw source 收集、候选页生成、lint 和健康检查。

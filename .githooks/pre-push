@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+while read local_ref _ remote_ref _
+do
+  case "$local_ref:$remote_ref" in
+    refs/heads/gh-pages:*|*:refs/heads/gh-pages)
+      echo "Blocked: gh-pages pushes are disabled. Publish by pushing master; GitHub Actions deploys Pages." >&2
+      exit 1
+      ;;
+  esac
+done

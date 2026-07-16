@@ -1,5 +1,5 @@
-site_name: Jaron 的 AI Agent 工程作品集
-site_description: Jaron Lu 的 AI Agent 工程作品集：SecRAG、LangGraph、RAG、MCP、Agent 工程笔记与项目复盘
+site_name: Jaron Lu · AI Agent Engineer
+site_description: Jaron Lu 的 AI Agent 工程作品集：可信 RAG、知识操作层与 Agent Skills 工程实践
 site_author: Jaron Lu
 site_url: https://jaronlu.github.io
 
@@ -9,25 +9,29 @@ repo_name: jaronlu/jaronlu.github.io
 theme:
   name: material
   language: zh
+  icon:
+    logo: material/graph-outline
+    repo: fontawesome/brands/github
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.sections
     - navigation.indexes
     - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
     - search.highlight
     - search.share
     - content.code.copy
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: 切换为深色模式
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: 切换为浅色模式
@@ -66,38 +70,16 @@ copyright: Copyright &copy; 2026 Jaron Lu
 
 nav:
   - 首页: index.md
-  - 项目实践:
+  - 项目:
     - projects/index.md
     - SecRAG: projects/secrag.md
     - llm-wiki-mcp: projects/llm-wiki-mcp.md
-  - AI Agent 工程笔记:
+    - agent-skills: projects/agent-skills.md
+  - 工程笔记:
     - agent/index.md
-    - 入门与选型:
-      - AI 工具矩阵: agent/concepts/ai-tools-matrix.md
-      - AI Agent 学习路径: agent/queries/ai-agent-learning-path.md
-      - Agent 框架对比: agent/comparisons/agent-frameworks.md
-    - 核心概念:
-      - Agent 原理: agent/concepts/agent-principles.md
-      - Agent Runtime: agent/concepts/agent-runtime.md
-      - LangChain 核心组件: agent/concepts/langchain-core-components.md
-      - LangGraph 基础: agent/concepts/langgraph-basics.md
-      - LangChain vs LangGraph: agent/comparisons/langchain-vs-langgraph.md
-    - RAG 与知识库:
-      - RAG 原理: agent/concepts/rag-principles.md
-      - RAG 变体对比: agent/comparisons/rag-variants.md
-    - MCP、多 Agent 与工程方法:
-      - MCP 协议: agent/concepts/mcp-protocol.md
-      - 多 Agent 协作模式: agent/concepts/multi-agent-patterns.md
-      - Loop Engineering: agent/concepts/loop-engineering.md
-    - 实战与问答:
-      - LangChain Agent 入门实战: agent/queries/langchain-agent-hello-world.md
-      - LangGraph 工作流模式: agent/queries/langgraph-workflow-patterns.md
-      - Agent 面试高频问题: agent/queries/agent-interview-questions.md
-    - Karpathy:
-      - agent/karpathy/index.md
-      - CLAUDE 规范: agent/karpathy/claude-spec.md
-      - LLM-WIKI 方法论: agent/karpathy/llm-wiki.md
-      - 循环工程: agent/karpathy/loop-engineering.md
-    - 其他调研:
-      - Google Agents CLI: agent/comparisons/google-agents-cli.md
+    - Agent 原理: agent/concepts/agent-principles.md
+    - Agent Runtime: agent/concepts/agent-runtime.md
+    - RAG 原理: agent/concepts/rag-principles.md
+    - MCP 协议: agent/concepts/mcp-protocol.md
+    - Loop Engineering: agent/concepts/loop-engineering.md
   - 关于: about.md
