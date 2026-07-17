@@ -7,3 +7,6 @@ __pycache__/
 # 本地专用备忘，不进入历史、不部署
 TODO.md
 docs/public-site.md
+# 本地审查报告，不进入历史、不部署
+codex-review.md
+fable5-ret.md
