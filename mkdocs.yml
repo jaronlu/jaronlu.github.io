@@ -3,9 +3,6 @@ site_description: Jaron Lu 的工程作品集：可信 RAG、知识操作层、A
 site_author: Jaron Lu
 site_url: https://jaronlu.github.io
 
-repo_url: https://github.com/jaronlu/jaronlu.github.io
-repo_name: jaronlu/jaronlu.github.io
-
 theme:
   name: material
   language: zh

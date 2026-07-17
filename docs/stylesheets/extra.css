@@ -66,6 +66,7 @@
 }
 
 html {
+  font-size: 125%;
   scroll-behavior: smooth;
 }
 
@@ -267,7 +268,7 @@ body {
   width: 100vw;
   max-width: none;
   margin-left: -50vw;
-  padding: clamp(2.8rem, 5vw, 4.5rem) var(--gutter);
+  padding: 3.2rem var(--gutter);
 }
 
 .kicker {
@@ -304,7 +305,7 @@ body {
   padding: 0;
   border: 0;
   font-family: var(--display);
-  font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+  font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.06;
   letter-spacing: -0.02em;
@@ -322,8 +323,8 @@ body {
    MASTHEAD (hero)
    ============================================================ */
 .masthead {
-  padding-top: clamp(2.2rem, 3vw, 3rem);
-  padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
+  padding-top: 2.2rem;
+  padding-bottom: 2.55rem;
   border-bottom: 1px solid var(--line-strong);
   background: var(--paper);
 }
@@ -347,20 +348,20 @@ body {
 }
 
 .md-typeset .masthead-name {
-  margin: clamp(1.3rem, 2vw, 1.8rem) 0 0;
-  font-family: var(--display);
-  font-size: clamp(3.4rem, 8vw, 6.4rem);
-  font-weight: 600;
+  margin: 1.3rem 0 0;
+  font-family: var(--sans);
+  font-size: 5.1rem;
+  font-weight: 400;
   line-height: 0.92;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
 .masthead-deck {
   max-width: 27ch;
-  margin: clamp(1.2rem, 2vw, 1.7rem) 0 0;
+  margin: 1.3rem 0 0;
   font-family: var(--sans);
-  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-size: 1.65rem;
   font-weight: 500;
   line-height: 1.32;
   letter-spacing: 0;
@@ -378,7 +379,7 @@ body {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: end;
   gap: 2rem 3rem;
-  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  margin-top: 1.6rem;
   padding-top: 1.3rem;
   border-top: 1px solid var(--line);
 }
@@ -453,7 +454,7 @@ body {
    ============================================================ */
 .feature {
   background: var(--paper);
-  padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
+  padding-bottom: 2.55rem;
 }
 
 .work-list {
@@ -508,7 +509,7 @@ body {
 .md-typeset .work-main h3 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: 1.95rem;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -616,7 +617,7 @@ body {
    ============================================================ */
 .notes {
   background: var(--paper);
-  padding-top: clamp(2.4rem, 4vw, 3.4rem);
+  padding-top: 2.55rem;
   border-top: 1px solid var(--line);
 }
 
@@ -731,7 +732,7 @@ body {
   max-width: none;
   margin-left: -50vw;
   margin-bottom: -2rem;
-  padding: clamp(2.4rem, 4vw, 3.4rem) var(--gutter);
+  padding: 2.55rem var(--gutter);
   background: var(--paper-2);
   border-top: 1px solid var(--line-strong);
 }
@@ -740,7 +741,7 @@ body {
   max-width: 40ch;
   margin: 1rem 0 1.4rem;
   font-family: var(--display);
-  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  font-size: 1.55rem;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -1018,7 +1019,23 @@ body {
   }
 
   .md-typeset .masthead-name {
-    font-size: clamp(3rem, 17vw, 5rem);
+    font-size: 3rem;
+  }
+
+  .masthead-deck {
+    font-size: 1.35rem;
+  }
+
+  .md-typeset .feature-head h2 {
+    font-size: 1.9rem;
+  }
+
+  .md-typeset .work-main h3 {
+    font-size: 1.8rem;
+  }
+
+  .contact-lede {
+    font-size: 1.3rem;
   }
 
   .md-typeset .work-item {
