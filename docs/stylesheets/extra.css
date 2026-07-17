@@ -741,8 +741,8 @@ body {
     grid-template-columns: 2.4rem minmax(0, 1fr) 2.2rem;
   }
 
-  .work-proof {
-    display: none;
+  .md-typeset .work-proof {
+    display: none !important;
   }
 
   .lens-grid {

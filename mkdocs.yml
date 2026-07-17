@@ -1,5 +1,5 @@
 site_name: Jaron Lu · AI Agent Engineer
-site_description: Jaron Lu 的 AI Agent 工程作品集：可信 RAG、知识操作层与 Agent Skills 工程实践
+site_description: Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与跨平台客户端实践
 site_author: Jaron Lu
 site_url: https://jaronlu.github.io
 
@@ -78,6 +78,7 @@ nav:
     - SecRAG: projects/secrag.md
     - llm-wiki-mcp: projects/llm-wiki-mcp.md
     - agent-skills: projects/agent-skills.md
+    - ClipFlow: projects/clip-flow.md
   - 工程笔记:
     - agent/index.md
     - Agent 原理: agent/concepts/agent-principles.md

@@ -23,8 +23,8 @@ hide:
 <section class="feature">
   <header class="feature-head">
     <span class="kicker accent">SELECTED WORK / 01</span>
-    <h2>从场景应用到 Agent 工程基础设施</h2>
-    <p>从垂直场景应用，到知识操作协议，再到跨 Agent 的能力分发。</p>
+    <h2>客户端产品与 Agent 工程基础设施</h2>
+    <p>既有跨平台客户端产品，也有从垂直场景应用到跨 Agent 能力分发的工程实践。</p>
   </header>
 
   <div class="work-list">
@@ -69,6 +69,21 @@ hide:
         <li>4 个公开 Skills</li>
         <li>3 个 Agent 客户端</li>
         <li>配置驱动分发</li>
+      </ul>
+      <span class="work-arrow">↗</span>
+    </a>
+
+    <a class="work-item" href="projects/clip-flow/">
+      <span class="work-no">04</span>
+      <div class="work-main">
+        <div class="tags"><span>FLUTTER</span><span>DESKTOP</span><span>LOCAL-FIRST</span></div>
+        <h3>ClipFlow</h3>
+        <p>跨平台剪贴板历史管理工具。覆盖多格式识别、OCR、本地存储、全局快捷键与经典 / 紧凑双模式界面。</p>
+      </div>
+      <ul class="work-proof">
+        <li>macOS 已验证</li>
+        <li>97 个 Dart 源文件</li>
+        <li>25 个测试文件</li>
       </ul>
       <span class="work-arrow">↗</span>
     </a>
