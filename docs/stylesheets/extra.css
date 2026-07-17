@@ -261,7 +261,7 @@ body {
   width: 100vw;
   max-width: none;
   margin-left: -50vw;
-  padding: clamp(3.6rem, 7vw, 6.5rem) var(--gutter);
+  padding: clamp(2.8rem, 5vw, 4.5rem) var(--gutter);
 }
 
 .kicker {
@@ -289,16 +289,16 @@ body {
 
 /* Section heads */
 .feature-head {
-  margin-bottom: 2.8rem;
+  margin-bottom: 2rem;
 }
 
 .md-typeset .feature-head h2 {
-  max-width: 20ch;
+  max-width: none;
   margin: 0.9rem 0 0;
   padding: 0;
   border: 0;
   font-family: var(--display);
-  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.7rem);
   font-weight: 600;
   line-height: 1.06;
   letter-spacing: -0.02em;
@@ -316,8 +316,8 @@ body {
    MASTHEAD (hero)
    ============================================================ */
 .masthead {
-  padding-top: clamp(2.8rem, 4vw, 4rem);
-  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+  padding-top: clamp(2.2rem, 3vw, 3rem);
+  padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
   border-bottom: 1px solid var(--line-strong);
   background: var(--paper);
 }
@@ -341,37 +341,29 @@ body {
 }
 
 .md-typeset .masthead-name {
-  margin: clamp(1.6rem, 3vw, 2.4rem) 0 0;
+  margin: clamp(1.3rem, 2vw, 1.8rem) 0 0;
   font-family: var(--display);
-  font-size: clamp(3.4rem, 10vw, 8rem);
+  font-size: clamp(3.4rem, 8vw, 6.4rem);
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.035em;
   color: var(--ink);
 }
 
-.masthead-name em {
-  font-style: italic;
-  font-weight: 500;
-  font-size: 0.34em;
-  letter-spacing: 0;
-  color: var(--muted);
-  vertical-align: baseline;
-}
-
 .masthead-deck {
-  max-width: 20ch;
-  margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
-  font-family: var(--display);
-  font-size: clamp(1.5rem, 3.4vw, 2.7rem);
+  max-width: 27ch;
+  margin: clamp(1.2rem, 2vw, 1.7rem) 0 0;
+  font-family: var(--sans);
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
   font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
+  line-height: 1.32;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
 .masthead-deck em {
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
   color: var(--accent);
 }
 
@@ -380,8 +372,8 @@ body {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: end;
   gap: 2rem 3rem;
-  margin-top: clamp(2rem, 4vw, 3rem);
-  padding-top: 1.8rem;
+  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  padding-top: 1.3rem;
   border-top: 1px solid var(--line);
 }
 
@@ -390,7 +382,7 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 0.86rem;
-  line-height: 1.85;
+  line-height: 1.7;
 }
 
 .masthead-actions {
@@ -450,41 +442,6 @@ body {
   transform: translateX(3px);
 }
 
-/* stat strip */
-.stat-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: clamp(2.4rem, 4vw, 3.4rem);
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.stat-strip div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  padding: 1.3rem 1.4rem;
-  background: var(--card);
-}
-
-.stat-strip strong {
-  font-family: var(--display);
-  font-size: 2.2rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.stat-strip span {
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-}
-
 /* ============================================================
    SELECTED WORK — editorial contents list
    ============================================================ */
@@ -503,7 +460,7 @@ body {
   grid-template-columns: 3rem minmax(0, 1.5fr) minmax(0, 0.7fr) 2.6rem;
   align-items: start;
   gap: 1.6rem;
-  padding: 2.1rem 0.4rem;
+  padding: 1.65rem 0.4rem;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--line);
@@ -545,7 +502,7 @@ body {
 .md-typeset .work-main h3 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -667,7 +624,7 @@ body {
   grid-template-columns: 3rem minmax(0, 1fr) 2rem;
   align-items: center;
   gap: 1.4rem;
-  padding: 1.4rem 0.4rem;
+  padding: 1.1rem 0.4rem;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--line);
@@ -729,6 +686,24 @@ body {
   background: color-mix(in srgb, var(--ink) 88%, #000);
 }
 
+.md-footer-meta__inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.md-footer-meta__inner .md-copyright {
+  width: auto;
+  margin: 0;
+  text-align: center;
+}
+
+.md-footer-meta__inner .md-social {
+  margin: 0;
+}
+
 .md-footer__inner {
   padding: 1rem 0;
 }
@@ -746,6 +721,12 @@ body {
   }
 }
 
+@media screen and (min-width: 60.015625em) {
+  .md-typeset .feature-head h2 {
+    white-space: nowrap;
+  }
+}
+
 @media screen and (max-width: 60em) {
   .masthead-foot {
     grid-template-columns: 1fr;
@@ -754,10 +735,6 @@ body {
 
   .masthead-actions {
     justify-self: start;
-  }
-
-  .stat-strip {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .md-typeset .work-item {
@@ -787,16 +764,6 @@ body {
 
   .md-typeset .masthead-name {
     font-size: clamp(3rem, 17vw, 5rem);
-  }
-
-  .masthead-name em {
-    display: block;
-    font-size: 0.28em;
-    margin-top: 0.4rem;
-  }
-
-  .stat-strip strong {
-    font-size: 1.7rem;
   }
 
   .md-typeset .work-item {

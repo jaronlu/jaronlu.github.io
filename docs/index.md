@@ -9,7 +9,7 @@ hide:
     <span class="kicker">PORTFOLIO — AI AGENT ENGINEERING</span>
     <span class="masthead-meta">ISSUE 2026 · SHENZHEN / REMOTE</span>
   </div>
-  <h1 class="masthead-name">Jaron Lu <em>陆建荣</em></h1>
+  <h1 class="masthead-name">Jaron Lu</h1>
   <p class="masthead-deck">把金融客户端的工程约束，<br>编译成<em>可信</em>的 AI Agent 系统。</p>
   <div class="masthead-foot">
     <p class="masthead-intro">10 年证券客户端工程经验。现在专注 Agentic RAG、LangGraph、MCP 与知识工程，关注权限、验证和可审计性，而不只是让模型“能回答”。</p>
@@ -17,12 +17,6 @@ hide:
       <a href="projects/" class="btn-primary">查看项目 <span>↗</span></a>
       <a href="about/" class="btn-ghost">了解经历 <span>→</span></a>
     </div>
-  </div>
-  <div class="stat-strip" aria-label="能力概览">
-    <div><strong>10+</strong><span>年客户端工程</span></div>
-    <div><strong>3</strong><span>个可验证项目</span></div>
-    <div><strong>100+</strong><span>SecRAG 单元测试</span></div>
-    <div><strong>OPEN</strong><span>AI Agent 岗位</span></div>
   </div>
 </section>
 
