@@ -9,6 +9,9 @@ repo_name: jaronlu/jaronlu.github.io
 theme:
   name: material
   language: zh
+  font:
+    text: Inter
+    code: JetBrains Mono
   icon:
     logo: material/graph-outline
     repo: fontawesome/brands/github
