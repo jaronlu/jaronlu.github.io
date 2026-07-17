@@ -1,6 +1,6 @@
 # MCP 协议
 
-> confidence: high
+<span class="note-confidence" title="内容置信度：来源已核对的程度">CONFIDENCE — HIGH</span>
 
 Model Context Protocol — AI 世界的 USB 接口协议。
 

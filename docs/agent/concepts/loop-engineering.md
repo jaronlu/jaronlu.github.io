@@ -1,6 +1,6 @@
 # Loop Engineering（循环工程）
 
-> confidence: medium
+<span class="note-confidence" title="内容置信度：来源已核对的程度">CONFIDENCE — MEDIUM</span>
 
 从“用提示词驱动 Agent”到“设计替你写提示词的循环系统”，这是 2026 年由 Addy Osmani 收拢命名的 AI Agent 工程范式。
 

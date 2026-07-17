@@ -43,6 +43,13 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/jaronlu
+      name: GitHub
+    - icon: fontawesome/solid/envelope
+      link: mailto:jr.lu.jobs@gmail.com
+      name: Email
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/%E5%BB%BA%E8%8D%A3-%E9%99%86-a5a10a400/
+      name: LinkedIn
   generator: false
 
 plugins:

@@ -1,6 +1,6 @@
 # Agent 原理
 
-> confidence: high
+<span class="note-confidence" title="内容置信度：来源已核对的程度">CONFIDENCE — HIGH</span>
 
 Agent 核心组成、执行循环、与其他概念的区别、适用场景和风险。
 

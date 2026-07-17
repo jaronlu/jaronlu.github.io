@@ -2,6 +2,8 @@
 
 围绕 Agent Runtime、RAG、MCP 和 Loop Engineering，记录直接支撑项目设计的约束、取舍与验证方法。
 
+每篇笔记标注 CONFIDENCE 等级：**HIGH** 表示结论已对照官方文档或项目代码核对；**MEDIUM** 表示基于实践经验、尚未完整验证。
+
 ## Agent 系统
 
 - [Agent 原理](concepts/agent-principles.md) — 执行循环、适用边界与失败风险

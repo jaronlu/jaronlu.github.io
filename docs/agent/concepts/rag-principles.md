@@ -1,6 +1,6 @@
 # RAG 原理
 
-> confidence: high
+<span class="note-confidence" title="内容置信度：来源已核对的程度">CONFIDENCE — HIGH</span>
 
 RAG 离线/在线链路、核心组件、常见误区和优化点。
 

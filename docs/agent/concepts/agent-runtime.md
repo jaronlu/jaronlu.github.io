@@ -1,6 +1,6 @@
 # Agent Runtime
 
-> confidence: high
+<span class="note-confidence" title="内容置信度：来源已核对的程度">CONFIDENCE — HIGH</span>
 
 State（短期记忆）、Store（长期记忆）、Context（运行时上下文）三者的职责边界与关系。
 

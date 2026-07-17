@@ -82,17 +82,47 @@ hide:
       </div>
       <ul class="work-proof">
         <li>macOS 已验证</li>
-        <li>97 个 Dart 源文件</li>
-        <li>25 个测试文件</li>
+        <li>OCR 三平台适配</li>
+        <li>AES-256-GCM 本地加密</li>
       </ul>
       <span class="work-arrow">↗</span>
     </a>
   </div>
 </section>
 
+<section class="lens">
+  <header class="feature-head">
+    <span class="kicker accent">ENGINEERING LENS / 02</span>
+    <h2>同一组约束，先后做进两种系统</h2>
+    <p>10 年证券客户端处理的不是界面，是权限、验证和可审计性。这三条约束现在直接决定三个项目的结构。</p>
+  </header>
+  <div class="lens-grid">
+    <article>
+      <span class="lens-no">a</span>
+      <h3>权限是结构，不是提示词</h3>
+      <p>客户端里，不同角色从一开始就有不同的信息边界。SecRAG 把 RBAC 做在 Retriever 之前——模型不会先看到越权材料，再靠提示词假装没看过。<a href="projects/secrag/">SecRAG →</a></p>
+    </article>
+    <article>
+      <span class="lens-no">b</span>
+      <h3>写入必须可评审</h3>
+      <p>交易链路里没有"直接改生产数据"这回事。llm-wiki-mcp 用 candidate-first 代替 Agent 对正式知识页的直接写入，原始证据 create-only。<a href="projects/llm-wiki-mcp/">llm-wiki-mcp →</a></p>
+    </article>
+    <article>
+      <span class="lens-no">c</span>
+      <h3>多端一致靠确定性分发</h3>
+      <p>多券商适配教会我的是：一致性靠配置和校验，不靠手工同步。agent-skills 用单一源码、冲突保护和幂等验证向三个 Agent 客户端分发。<a href="projects/agent-skills/">agent-skills →</a></p>
+    </article>
+  </div>
+  <div class="timeline">
+    <span><b>2015—2024</b>iOS 证券客户端与核心 SDK</span>
+    <span><b>2024—2026</b>HarmonyOS 证券项目</span>
+    <span><b>2026—</b>AI Agent / RAG / MCP</span>
+  </div>
+</section>
+
 <section class="notes">
   <header class="feature-head">
-    <span class="kicker accent">FIELD NOTES / 02</span>
+    <span class="kicker accent">FIELD NOTES / 03</span>
     <h2>把学习编译成可复用的工程判断</h2>
   </header>
   <div class="notes-list">
@@ -116,5 +146,17 @@ hide:
       <span class="notes-body"><strong>Loop Engineering</strong><em>从提示词到反馈循环系统</em></span>
       <span class="notes-go">→</span>
     </a>
+  </div>
+</section>
+
+<section class="contact-strip">
+  <div class="contact-inner">
+    <span class="kicker accent">CONTACT / 04</span>
+    <p class="contact-lede">在招 AI Agent / LLM 应用工程方向，或想聊某个项目的设计取舍——</p>
+    <div class="contact-links">
+      <a href="mailto:jr.lu.jobs@gmail.com">jr.lu.jobs@gmail.com</a>
+      <a href="https://github.com/jaronlu">github.com/jaronlu</a>
+      <a href="https://www.linkedin.com/in/%E5%BB%BA%E8%8D%A3-%E9%99%86-a5a10a400/">LinkedIn</a>
+    </div>
   </div>
 </section>

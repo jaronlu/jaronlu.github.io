@@ -1,8 +1,13 @@
 # agent-skills — 跨 Agent 的能力分发基座
 
-> 自研 Agent Skills 的单一源码仓库，用确定性工具分发到 Codex、Claude 与 Hermes。
+<div class="project-meta">
+  <span><b>角色</b>个人工具仓库</span>
+  <span><b>状态</b>日常使用中</span>
+  <span><b>技术栈</b>Python · TOML 配置</span>
+  <a href="https://github.com/jaronlu/awesome-opc-skills"><b>源码</b>GitHub ↗</a>
+</div>
 
-[查看 GitHub 源码 ↗](https://github.com/jaronlu/awesome-opc-skills)
+> 自研 Agent Skills 的单一源码仓库，用确定性工具分发到 Codex、Claude 与 Hermes。
 
 ## 项目一句话
 
@@ -54,3 +59,8 @@ Skills 的价值不只在说明文件本身，而在“说明、脚本、参考�
 
 - [Agent Runtime](../agent/concepts/agent-runtime.md)
 - [llm-wiki-mcp](llm-wiki-mcp.md)
+
+
+---
+
+**联系**：对这个项目的设计取舍有想法，或在招相关方向 → [jr.lu.jobs@gmail.com](mailto:jr.lu.jobs@gmail.com) · [GitHub](https://github.com/jaronlu)

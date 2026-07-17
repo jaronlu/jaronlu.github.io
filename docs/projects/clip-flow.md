@@ -1,8 +1,13 @@
 # ClipFlow — 跨平台剪贴板历史管理工具
 
-> 基于 Flutter 的桌面剪贴板工具，覆盖多格式识别、搜索、OCR、本地存储与双模式界面。
+<div class="project-meta">
+  <span><b>角色</b>个人产品</span>
+  <span><b>状态</b>macOS 已验证</span>
+  <span><b>技术栈</b>Flutter · SQLite · 原生 OCR</span>
+  <a href="https://github.com/jaronlu/clip_flow"><b>源码</b>GitHub ↗</a>
+</div>
 
-[查看 GitHub 源码 ↗](https://github.com/jaronlu/clip_flow)
+> 基于 Flutter 的桌面剪贴板工具，覆盖多格式识别、搜索、OCR、本地存储与双模式界面。
 
 ![ClipFlow 经典模式](../assets/images/clip-flow-classic.png)
 
@@ -50,8 +55,8 @@ SQLite Storage / Platform Method Channels
 ## 可验证证据
 
 - GitHub 将 Dart 标记为主语言，`pubspec.yaml` 要求 Dart `^3.9.0`。
-- `lib/` 当前包含 97 个 Dart 源文件。
-- `test/` 当前包含 25 个 `*_test.dart` 文件，覆盖剪贴板检测、轮询、处理、去重、快捷键、OCR 与性能行为。
+- OCR 三平台适配（macOS Vision / Windows Media OCR / Linux Tesseract）、AES-256-GCM 本地加密与全局快捷键均有对应源码实现，可在仓库中直接查证。
+- `test/` 中的单元测试覆盖剪贴板检测、轮询、处理、去重、快捷键、OCR 与性能行为。
 - 仓库包含 Classic、Compact、浅色模式与设置页的真实界面截图。
 - 项目使用 MIT License。
 
@@ -76,3 +81,8 @@ SQLite Storage / Platform Method Channels
 
 - [项目总览](index.md)
 - [关于](../about.md)
+
+
+---
+
+**联系**：对这个项目的设计取舍有想法，或在招相关方向 → [jr.lu.jobs@gmail.com](mailto:jr.lu.jobs@gmail.com) · [GitHub](https://github.com/jaronlu)
