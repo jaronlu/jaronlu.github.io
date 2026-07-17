@@ -259,7 +259,6 @@ body {
    Shared: full-bleed section + kicker
    ============================================================ */
 .masthead,
-.feature,
 .lens,
 .notes {
   position: relative;
@@ -450,125 +449,6 @@ body {
 }
 
 /* ============================================================
-   SELECTED WORK — editorial contents list
-   ============================================================ */
-.feature {
-  background: var(--paper);
-  padding-bottom: 2.55rem;
-}
-
-.work-list {
-  border-top: 1px solid var(--line-strong);
-}
-
-.md-typeset .work-item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1.5fr) minmax(0, 0.7fr) 2.6rem;
-  align-items: start;
-  gap: 1.6rem;
-  padding: 1.65rem 0.4rem;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  transition: padding 200ms ease, background-color 200ms ease;
-}
-
-.md-typeset .work-item:hover {
-  padding-left: 1.2rem;
-  padding-right: 1.2rem;
-  background: var(--card);
-}
-
-.work-no {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--accent);
-  padding-top: 0.4rem;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.85rem;
-}
-
-.tags span {
-  padding: 0.2rem 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-}
-
-.md-typeset .work-main h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: 1.95rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.work-main p {
-  max-width: 52ch;
-  margin: 0.75rem 0 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.7;
-}
-
-.work-proof {
-  margin: 0.3rem 0 0 !important;
-  padding: 0;
-  list-style: none;
-}
-
-.md-typeset .work-proof li {
-  position: relative;
-  margin: 0 0 0.5rem;
-  padding-left: 1rem;
-  font-size: 0.74rem;
-  color: var(--muted);
-  list-style: none;
-}
-
-.md-typeset .work-proof li:before {
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: 700;
-  content: "+";
-}
-
-.work-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  font-size: 1rem;
-  color: var(--ink);
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  transition: background-color 180ms ease, color 180ms ease,
-    transform 180ms ease;
-}
-
-.md-typeset .work-item:hover .work-arrow {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  transform: rotate(45deg);
-}
-
-/* ============================================================
    ENGINEERING LENS — feature columns
    ============================================================ */
 .lens {
@@ -584,32 +464,72 @@ body {
 }
 
 .lens-grid article {
+  display: flex;
+  flex-direction: column;
   padding-top: 1.4rem;
   border-top: 2px solid var(--line-strong);
 }
 
-.lens-no {
+.lens-label {
   display: block;
-  font-family: var(--display);
-  font-size: 2.4rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
   font-weight: 600;
-  line-height: 1;
+  letter-spacing: 0;
   color: var(--accent);
 }
 
 .md-typeset .lens-grid h3 {
-  margin: 1.1rem 0 0.6rem;
+  margin: 0.85rem 0 0.55rem;
   font-family: var(--display);
   font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
 .lens-grid p {
+  flex-grow: 1;
   margin: 0;
   color: var(--muted);
   font-size: 0.82rem;
-  line-height: 1.8;
+  line-height: 1.7;
+}
+
+.md-typeset .lens-proof {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-top: 1px solid var(--line);
+}
+
+.lens-proof b {
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.lens-proof span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lens-proof i {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-style: normal;
+  transition: transform 180ms ease;
+}
+
+.md-typeset .lens-proof:hover i {
+  transform: translate(2px, -2px);
 }
 
 /* ============================================================
@@ -681,44 +601,25 @@ body {
   transform: translateX(4px);
 }
 
-/* ============================================================
-   Timeline (homepage lens section)
-   ============================================================ */
-.timeline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 3rem;
-  margin-top: 2.6rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--line);
-}
-
-.timeline span {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.timeline b {
+.md-typeset .notes-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-
-.lens-grid p a {
-  color: var(--accent);
-  font-family: var(--mono);
-  font-size: 0.7rem;
   text-decoration: none;
-  white-space: nowrap;
 }
 
-.lens-grid p a:hover {
-  text-decoration: underline;
+.notes-all span {
+  color: var(--accent);
+  transition: transform 180ms ease;
+}
+
+.md-typeset .notes-all:hover span {
+  transform: translateX(4px);
 }
 
 /* ============================================================
@@ -965,7 +866,6 @@ body {
    ============================================================ */
 @media screen and (max-width: 76.234375em) {
   .masthead,
-  .feature,
   .lens,
   .notes {
     padding-left: 1.6rem;
@@ -981,24 +881,6 @@ body {
 
   .masthead-actions {
     justify-self: start;
-  }
-
-  .md-typeset .work-item {
-    grid-template-columns: 2.4rem minmax(0, 1fr) 2.2rem;
-  }
-
-  .md-typeset .work-proof {
-    grid-column: 2;
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 0.15rem 0.9rem;
-    margin-top: 0.6rem !important;
-  }
-
-  .md-typeset .work-proof li {
-    margin-bottom: 0;
-    font-size: 0.68rem;
-    white-space: nowrap;
   }
 
   .lens-grid {
@@ -1030,26 +912,19 @@ body {
     font-size: 1.9rem;
   }
 
-  .md-typeset .work-main h3 {
-    font-size: 1.8rem;
+  .md-typeset .notes-list a {
+    grid-template-columns: 2rem minmax(0, 1fr) 1.5rem;
+    gap: 0.8rem;
   }
 
   .contact-lede {
     font-size: 1.3rem;
   }
-
-  .md-typeset .work-item {
-    grid-template-columns: 2rem minmax(0, 1fr);
-    gap: 1rem;
-  }
-
-  .work-arrow {
-    display: none;
-  }
 }
 
-.md-typeset .work-item:focus-visible,
+.md-typeset .lens-proof:focus-visible,
 .md-typeset .notes-list a:focus-visible,
+.md-typeset .notes-all:focus-visible,
 .md-typeset .btn-primary:focus-visible,
 .md-typeset .btn-ghost:focus-visible {
   outline: 2px solid var(--accent);
@@ -1061,8 +936,8 @@ body {
     scroll-behavior: auto;
   }
 
-  .md-typeset .work-item,
-  .work-arrow,
+  .lens-proof i,
+  .notes-all span,
   .notes-go {
     transition: none;
   }
