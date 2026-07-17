@@ -38,3 +38,5 @@ docs/
 ```
 
 脚本会检查当前分支与工作区状态，执行严格构建校验，再将 `master` 推送到 GitHub。推送后，`.github/workflows/deploy.yml` 会自动构建并发布到 GitHub Pages。
+
+部署后访问：[https://jaronlu.github.io](https://jaronlu.github.io)
