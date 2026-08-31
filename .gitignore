@@ -1,5 +1,10 @@
-# MkDocs 构建产物；本站通过 GitHub Actions 从 master 发布
+# 旧版 MkDocs 构建产物（已切换 React 构建）
 site/
+# Vite / React 构建产物与依赖
+dist/
+node_modules/
+# 本地预览截图（不入库）
+.preview-shots/
 # Python / OS 临时文件
 __pycache__/
 *.pyc

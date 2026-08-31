@@ -1,0 +1,398 @@
+@import "tailwindcss";
+
+/* class 切换暗色模式（默认跟随系统，可手动切换） */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   Design tokens — Editorial / Magazine
+   纸墨双色 + 单一编辑红强调色
+   ============================================================ */
+:root {
+  --paper: #fbf9f4;
+  --paper-2: #f3f0e8;
+  --card: #ffffff;
+  --ink: #171510;
+  --ink-soft: #3a3830;
+  --muted: #6b675c;
+  --faint: #75705f;
+  --line: #e5e1d3;
+  --line-strong: #171510;
+  --accent: #c8402f;
+  --accent-soft: rgba(200, 64, 47, 0.08);
+  --footer-bg: #16140e;
+  --footer-fg: #f0ede2;
+}
+
+.dark {
+  --paper: #0f0e0b;
+  --paper-2: #191813;
+  --card: #161510;
+  --ink: #f0ede2;
+  --ink-soft: #cfccc0;
+  --muted: #9d9a8e;
+  --faint: #8a8778;
+  --line: #2c2a21;
+  --line-strong: #f0ede2;
+  --accent: #f26a52;
+  --accent-soft: rgba(242, 106, 82, 0.12);
+  --footer-bg: #191813;
+  --footer-fg: #e8e5da;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-fg: var(--footer-fg);
+}
+
+@theme {
+  --font-display: "Fraunces", "Noto Serif SC", Georgia, "Songti SC", serif;
+  --font-sans: "Inter", "Noto Sans SC", -apple-system, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Menlo",
+    monospace;
+
+  /* 版心与间距节奏 */
+  --spacing-shell: min(1180px, 90vw);
+  --spacing-gutter: max(5vw, calc((100vw - 1180px) / 2));
+}
+
+/* 内联 SVG 架构图引用的字体别名（与旧版 extra.css 兼容） */
+:root {
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+  --line-strong: var(--color-line-strong);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* 键盘可达焦点 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Typography helpers
+   ============================================================ */
+/* kicker / eyebrow — mono 大写元信息层 */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kicker.accent {
+  color: var(--accent);
+}
+
+.kicker.accent::before {
+  width: 1.8rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+/* 可点击行列表的 hover 位移 */
+.hover-row {
+  transition: padding 180ms ease, background-color 180ms ease;
+}
+
+.hover-row:hover {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  background: var(--paper-2);
+}
+
+/* ============================================================
+   Prose — 详情页正文排版（项目 / 笔记）
+   ============================================================ */
+.prose {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.78;
+}
+
+.prose > * + * {
+  margin-top: 1.1rem;
+}
+
+.prose h2 {
+  margin-top: 2.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.prose h3 {
+  margin-top: 1.8rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.prose p {
+  max-width: 66ch;
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.prose a:hover {
+  color: var(--ink);
+}
+
+.prose blockquote {
+  margin: 1.4rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+}
+
+.prose blockquote p {
+  margin: 0;
+}
+
+.prose ul,
+.prose ol {
+  max-width: 66ch;
+  padding-left: 1.2rem;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin: 0.35rem 0;
+}
+
+.prose li::marker {
+  color: var(--accent);
+}
+
+.prose hr {
+  margin: 2.4rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.prose table {
+  width: 100%;
+  margin: 1.4rem 0;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.prose thead th {
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.prose th,
+.prose td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.prose tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+.prose code {
+  padding: 0.08rem 0.35rem;
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+}
+
+.prose :not(pre) > code {
+  white-space: nowrap;
+}
+
+.prose pre {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.2rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper-2);
+}
+
+.prose pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+/* 元信息条（项目档案头） */
+.prose .meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2.2rem;
+  margin: -0.4rem 0 1.6rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
+}
+
+.prose .meta-strip > * {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.prose .meta-strip b {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.prose .meta-strip a {
+  color: var(--accent);
+}
+
+/* 架构图（内联 SVG 线稿） */
+.prose .arch-figure {
+  margin: 1.6rem 0;
+  padding: 1.4rem 1.2rem 0.9rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.prose .arch-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.prose .arch-figure figcaption {
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* confidence 徽章 */
+.prose .note-confidence {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  padding: 0.18rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* ============================================================
+   Motion
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

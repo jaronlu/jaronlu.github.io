@@ -3,14 +3,14 @@ set -eu
 
 cd "$(dirname "$0")"
 
-if ! command -v mkdocs >/dev/null 2>&1; then
-  echo "Error: mkdocs is not installed." >&2
-  echo "Install it with: python3 -m pip install mkdocs mkdocs-material" >&2
+if ! command -v npm >/dev/null 2>&1; then
+  echo "Error: npm is not installed." >&2
+  echo "Install Node.js from https://nodejs.org" >&2
   exit 1
 fi
 
 host="${HOST:-127.0.0.1}"
-port="${PORT:-8000}"
+port="${PORT:-5173}"
 
 if command -v lsof >/dev/null 2>&1; then
   pids="$(lsof -t -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null || true)"
@@ -33,5 +33,10 @@ if command -v lsof >/dev/null 2>&1; then
   fi
 fi
 
+if [ ! -d node_modules ]; then
+  echo "Installing dependencies..."
+  npm install
+fi
+
 echo "Starting local site at http://${host}:${port}/"
-exec mkdocs serve --dev-addr "${host}:${port}"
+exec npm run dev -- --host "${host}" --port "${port}"

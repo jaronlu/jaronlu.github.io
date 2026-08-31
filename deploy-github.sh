@@ -8,9 +8,9 @@ if ! command -v git >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! command -v mkdocs >/dev/null 2>&1; then
-  echo "Error: mkdocs is not installed." >&2
-  echo "Install it with: python3 -m pip install mkdocs mkdocs-material" >&2
+if ! command -v npm >/dev/null 2>&1; then
+  echo "Error: npm is not installed." >&2
+  echo "Install Node.js from https://nodejs.org" >&2
   exit 1
 fi
 
@@ -25,8 +25,11 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
+echo "Installing dependencies..."
+npm ci
+
 echo "Validating site build..."
-mkdocs build --strict
+npm run build
 
 echo "Pushing master to GitHub..."
 git push origin master
