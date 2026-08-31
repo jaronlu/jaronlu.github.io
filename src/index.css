@@ -19,8 +19,8 @@
   --line-strong: #171510;
   --accent: #c8402f;
   --accent-soft: rgba(200, 64, 47, 0.08);
-  --footer-bg: #16140e;
-  --footer-fg: #f0ede2;
+  --footer-bg: #f3f0e8;
+  --footer-fg: #171510;
 }
 
 .dark {
