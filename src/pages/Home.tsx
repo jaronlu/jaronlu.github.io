@@ -33,7 +33,7 @@ function SectionHead({
 /* ---------- Masthead ---------- */
 function Masthead() {
   return (
-    <section className="border-b border-line-strong">
+    <section className="border-b border-line">
       <div className="mx-auto max-w-[1180px] px-6 pt-9 pb-10">
         <Reveal>
           <div className="flex flex-col gap-2 border-b border-line pb-4 sm:flex-row sm:items-center sm:justify-between">
@@ -141,7 +141,7 @@ function WhatISolve() {
           {problems.map((p, i) => (
             <Reveal key={p.label}>
               <article
-                className="flex h-full flex-col border-t-2 border-line-strong pt-5"
+                className="flex h-full flex-col border-t border-line pt-5"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <span className="font-mono text-[0.62rem] font-semibold text-accent">{p.label}</span>
@@ -202,7 +202,7 @@ function EngineeringLens() {
           {lens.map((item, i) => (
             <Reveal key={item.label}>
               <article
-                className="flex h-full flex-col border-t-2 border-line-strong pt-5"
+                className="flex h-full flex-col border-t border-line pt-5"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <span className="font-mono text-[0.62rem] font-semibold text-accent">
@@ -243,7 +243,7 @@ function FeaturedWork() {
           从可信问答、知识操作层到能力分发，三个项目共享同一组工程判断。
         </SectionHead>
         <Reveal>
-          <div className="border-t border-line-strong">
+          <div className="border-t border-line">
             {featured.map((p, i) => (
               <Link
                 key={p.slug}
@@ -289,7 +289,7 @@ function FieldNotes() {
           围绕 Agent Runtime、RAG、MCP、Loop、Harness、Eval 与知识治理，记录直接支撑项目设计的约束与取舍。
         </SectionHead>
         <Reveal>
-          <div className="border-t border-line-strong">
+          <div className="border-t border-line">
             {notes.map((n, i) => (
               <Link
                 key={n.slug}
@@ -331,7 +331,7 @@ function FieldNotes() {
 /* ---------- Contact ---------- */
 function Contact() {
   return (
-    <section className="border-b border-line-strong bg-paper-2">
+    <section className="border-b border-line bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
         <Reveal>
           <span className="kicker accent">CONTACT / 05</span>

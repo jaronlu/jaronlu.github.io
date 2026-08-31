@@ -18,7 +18,7 @@ export function Projects() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1180px] px-6 py-10">
           <Reveal>
-            <div className="border-t border-line-strong">
+            <div className="border-t border-line">
               {projects.map((p) => (
                 <Link
                   key={p.slug}

@@ -33,7 +33,7 @@ export function Notes() {
                   </h2>
                 </Reveal>
                 <Reveal>
-                  <div className="border-t border-line-strong">
+                  <div className="border-t border-line">
                     {catNotes.map((n) => (
                       <Link
                         key={n.slug}

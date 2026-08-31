@@ -77,7 +77,7 @@ export function About() {
           <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
             经历主线
           </h2>
-          <div className="border-t border-line-strong">
+          <div className="border-t border-line">
             {timeline.map((t) => (
               <div
                 key={t.span}
@@ -116,7 +116,7 @@ export function About() {
           <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
             当前项目
           </h2>
-          <ul className="space-y-3 border-t border-line-strong pt-4 text-[0.88rem] leading-relaxed text-muted">
+          <ul className="space-y-3 border-t border-line pt-4 text-[0.88rem] leading-relaxed text-muted">
             {currentProjects.map((p) => (
               <li key={p.name}>
                 <Link to={p.to} className="font-semibold text-accent">
@@ -132,7 +132,7 @@ export function About() {
           <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
             技术栈
           </h2>
-          <div className="border-t border-line-strong">
+          <div className="border-t border-line">
             {stack.map((s) => (
               <div
                 key={s.group}
@@ -151,7 +151,7 @@ export function About() {
           <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
             联系
           </h2>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-line-strong pt-5">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-5">
             <a
               href={site.github}
               target="_blank"
