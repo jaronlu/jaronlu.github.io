@@ -8,6 +8,7 @@
 |---|---|---|
 | SecRAG | `~/Desktop/SecRAG/` | `src/content/projects/secrag.tsx`、`src/data/projects.ts`（ev/q/tagline） |
 | agent-skills | `~/Desktop/00-projects/agent-skills/` | `src/content/projects/agent-skills.tsx`、`src/data/projects.ts`（ev/q/tagline） |
+| ai-engineering-hub | `~/Desktop/ai-engineering-hub/` | `src/content/notes/*.tsx`（工程笔记内容来源）、`src/data/notes.ts` |
 
 ## 同步时需要提取的数据点
 
@@ -92,6 +93,53 @@ grep "^\[targets" config/skill-links.toml
   - Skill 列表是否有新增/删除
   - "能力证据矩阵"是否有新增能力
   - 架构图中的客户端数量是否变化（config/skill-links.toml 中的 [targets]）
+
+### ai-engineering-hub
+
+> 注意：这是 AI 工程学习工作区，不是项目展示。同步的是"工程笔记"内容，不是项目页。
+
+在 `~/Desktop/ai-engineering-hub/` 下执行：
+
+```bash
+# commit 数
+git rev-list --count HEAD
+
+# 已启用生态目录
+ls -d */ | grep -E "langchain|llamaindex|autogpt|comfyui"
+
+# Agent Engineering 教程专题
+ls tutorial/
+
+# 学习文档目录
+ls docs/
+
+# 各生态的 README（看状态和进度）
+cat langchain/README.md 2>/dev/null | head -20
+cat llamaindex/README.md 2>/dev/null | head -20
+cat autogpt/README.md 2>/dev/null | head -20
+cat comfyui/README.md 2>/dev/null | head -20
+
+# 跨框架比较
+ls docs/cross-framework/ 2>/dev/null
+
+# workflow.md（工作流定义）
+head -40 workflow.md
+```
+
+需要同步到网站的内容：
+- `src/data/notes.ts` 中笔记列表是否需要新增（当 tutorial/ 或 docs/ 中有新的成熟专题时）
+- `src/content/notes/*.tsx` 中已有笔记的内容是否需要更新（当对应教程/文档有重大修订时）
+- 网站笔记的 confidence 标签是否需要调整（当教程从"学习中"变为"已验证"时）
+- 如果某个生态完成了最小示例和独立校验，可以考虑在跨框架比较笔记中新增内容
+
+当前网站笔记与 ai-engineering-hub 的对应关系（参考）：
+| 网站笔记 | 可能的来源 |
+|---|---|
+| Agent 原理 | tutorial/ 中 Context/Tool/Graph 专题、docs/langchain/ |
+| Agent Runtime | tutorial/ 中 Memory/Harness 专题、langchain/ 运行时 |
+| Loop Engineering | tutorial/ 中 Loop 专题、workflow.md |
+| MCP 协议 | docs/langchain/ 中 MCP 相关、langchain/ 可运行代码 |
+| RAG 原理 | docs/langchain/ 中 RAG 文档、langchain/ 可运行代码 |
 
 ## 同步流程
 
