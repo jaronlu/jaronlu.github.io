@@ -3,6 +3,9 @@ import { Reveal } from "../components/Reveal";
 import { noteBySlug } from "../data/notes";
 import { AgentPrinciplesContent } from "../content/notes/agent-principles";
 import { AgentRuntimeContent } from "../content/notes/agent-runtime";
+import { EvalEngineeringContent } from "../content/notes/eval-engineering";
+import { HarnessEngineeringContent } from "../content/notes/harness-engineering";
+import { KnowledgeGovernanceSopContent } from "../content/notes/knowledge-governance-sop";
 import { LoopEngineeringContent } from "../content/notes/loop-engineering";
 import { McpProtocolContent } from "../content/notes/mcp-protocol";
 import { RagPrinciplesContent } from "../content/notes/rag-principles";
@@ -13,6 +16,9 @@ const contentMap = {
   "rag-principles": RagPrinciplesContent,
   "mcp-protocol": McpProtocolContent,
   "loop-engineering": LoopEngineeringContent,
+  "knowledge-governance-sop": KnowledgeGovernanceSopContent,
+  "harness-engineering": HarnessEngineeringContent,
+  "eval-engineering": EvalEngineeringContent,
 } as const;
 
 export function NoteDetail() {

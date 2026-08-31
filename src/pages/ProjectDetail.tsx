@@ -3,6 +3,7 @@ import { Reveal } from "../components/Reveal";
 import { projectBySlug } from "../data/projects";
 import { site } from "../data/site";
 import { AgentSkillsContent } from "../content/projects/agent-skills";
+import { AiEngineeringHubContent } from "../content/projects/ai-engineering-hub";
 import { ClipFlowContent } from "../content/projects/clip-flow";
 import { LlmWikiMcpContent } from "../content/projects/llm-wiki-mcp";
 import { SecRAGContent } from "../content/projects/secrag";
@@ -12,6 +13,7 @@ const contentMap = {
   "llm-wiki-mcp": LlmWikiMcpContent,
   "agent-skills": AgentSkillsContent,
   "clip-flow": ClipFlowContent,
+  "ai-engineering-hub": AiEngineeringHubContent,
 } as const;
 
 export function ProjectDetail() {

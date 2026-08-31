@@ -55,6 +55,30 @@ export const notes: Note[] = [
     confidence: "MEDIUM",
     index: 5,
   },
+  {
+    slug: "knowledge-governance-sop",
+    title: "知识治理 SOP",
+    category: "engineering",
+    description: "可追溯的 AI 学习文档工作流与源码校准机制",
+    confidence: "HIGH",
+    index: 6,
+  },
+  {
+    slug: "harness-engineering",
+    title: "Harness Engineering",
+    category: "engineering",
+    description: "Agent 运行环境的工程约束：权限、验证、恢复与观测",
+    confidence: "HIGH",
+    index: 7,
+  },
+  {
+    slug: "eval-engineering",
+    title: "Eval Engineering",
+    category: "engineering",
+    description: "把 Agent 质量变成可回归的工程信号",
+    confidence: "HIGH",
+    index: 8,
+  },
 ];
 
 export const noteBySlug = (slug: string) => notes.find((n) => n.slug === slug);

@@ -286,7 +286,7 @@ function FieldNotes() {
     <section className="border-b border-line bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
         <SectionHead kicker="FIELD NOTES / 04" title="把学习编译成可复用的工程判断">
-          围绕 Agent Runtime、RAG、MCP 与 Loop Engineering，记录直接支撑项目设计的约束与取舍。
+          围绕 Agent Runtime、RAG、MCP、Loop、Harness、Eval 与知识治理，记录直接支撑项目设计的约束与取舍。
         </SectionHead>
         <Reveal>
           <div className="border-t border-line-strong">

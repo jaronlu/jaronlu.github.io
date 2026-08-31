@@ -71,6 +71,19 @@ export const projects: Project[] = [
     featured: false,
     index: 4,
   },
+  {
+    slug: "ai-engineering-hub",
+    name: "ai-engineering-hub",
+    role: "个人知识工程",
+    status: "持续迭代中",
+    stack: "Python · LangChain · LangGraph · Obsidian",
+    repo: "https://github.com/jaronlu/ai-engineering-hub",
+    q: "AI 工程知识治理与学习系统，7 个专题教程 + 56 篇源码校准文档 + 严格 SOP",
+    ev: "116 commits · 4 个生态 · 7 个 Agent Engineering 专题 · 56 篇 LangChain 文档 · 可运行代码 + 验证脚本",
+    tagline: "系统化的 AI 工程学习工作区，覆盖 LangChain/LlamaIndex/AutoGPT/ComfyUI 四个生态，7 个 Agent Engineering 专题教程，56 篇经过源码校准的学习文档，以及严格的知识治理 SOP。",
+    featured: false,
+    index: 5,
+  },
 ];
 
 export const projectBySlug = (slug: string) =>
