@@ -128,10 +128,22 @@ Agent 处理
         </tbody>
       </table>
 
-      <h2>实战案例</h2>
+      <h2>我的实践：SecRAG 的结构化 State 设计</h2>
       <p>
-        <Link to="/projects/secrag">SecRAG</Link> 的 <code>state.py</code>{" "}
-        定义了贯穿六节点的 <code>AssistantState</code>：用户上下文、查询理解、检索计划/结果、推理过程、验证结果、合规信息、最终答案、审计轨迹全部作为 State 字段在节点间传递，是 State 机制在真实业务场景下的落地。
+        <Link to="/projects/secrag">SecRAG</Link> 的 <code>state.py</code> 定义了贯穿六节点的 <code>AssistantState</code>，不是简单的 messages 列表，而是按业务语义拆分的结构化字段：
+      </p>
+      <ul>
+        <li><strong>查询理解层</strong>：用户角色、原始查询、改写后的检索查询</li>
+        <li><strong>检索层</strong>：检索计划、召回结果、权限过滤后的可见材料</li>
+        <li><strong>推理层</strong>：工具调用记录、中间推理结论</li>
+        <li><strong>验证层</strong>：来源校验结果、数字校验结果、失败原因</li>
+        <li><strong>输出层</strong>：带引用的最终答案、审计轨迹</li>
+      </ul>
+      <p>
+        这样拆分的好处是：每个节点只读写自己负责的字段，节点间通过 State 显式传递上下文，而不是靠模型在 messages 里"记住"一切。Verifier 节点可以独立读取 Reasoner 的输出做校验，不需要重新推理；Auditor 节点可以直接从 State 中提取完整轨迹写入审计日志，不需要解析对话历史。
+      </p>
+      <p>
+        这和证券客户端的状态管理是同一个思路：交易状态、行情状态、用户权限状态分开管理，每个模块只订阅自己需要的状态变更，而不是共享一个巨大的全局状态。
       </p>
 
       <h2>相关笔记</h2>

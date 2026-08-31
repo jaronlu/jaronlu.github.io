@@ -16,6 +16,9 @@ export function ClipFlowContent() {
       <p>
         <code>ClipFlow</code> 把剪贴板历史从简单文本列表扩展为本地桌面工作台：识别文本、富文本、图片、代码、URL 和文件等内容，并通过搜索、收藏、OCR 与快捷键降低重复查找和粘贴成本。
       </p>
+      <p>
+        <strong>这个项目和 AI Agent 工程的关联</strong>：它是我客户端工程能力的集中展示——跨平台状态管理、原生能力集成（OCR / 全局快捷键 / 系统托盘）、本地数据安全（AES-256-GCM 加密）、双模式交互设计。这些工程 discipline 直接迁移到 Agent 系统设计：状态隔离对应 Agent 的 State 分层，原生能力集成对应 MCP 工具契约，本地数据安全对应 Agent 的权限边界。
+      </p>
 
       <h2>为什么做这个项目</h2>
       <p>

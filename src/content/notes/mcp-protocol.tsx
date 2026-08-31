@@ -130,6 +130,23 @@ export function McpProtocolContent() {
         <li>动态发现和加载 MCP 工具</li>
       </ol>
 
+      <h2>我的实践：llm-wiki-mcp 的工具契约设计</h2>
+      <p>
+        <Link to="/projects/llm-wiki-mcp">llm-wiki-mcp</Link> 不是把 <code>read_file</code> 包一层协议，而是把知识库维护的完整生命周期固化为 MCP 工具契约。核心设计判断：
+      </p>
+      <ul>
+        <li><strong>工具语义优先于文件操作</strong>：<code>search_wiki</code>、<code>read_page</code>、<code>compile_page</code>、<code>run_lint</code>——Agent 调用的是知识库操作，不是文件系统调用。Agent 不需要知道 <code>raw/</code>、正式页、草稿、索引的目录结构</li>
+        <li><strong>写操作必须经过候选层</strong>：<code>create_update_candidate</code> 生成候选页，不直接写正式区；<code>write_public_draft</code> 必须经过 <code>validate_public_safety</code> 检查。这对应 candidate-first 原则——Agent 产出先进入评审层，不直接覆盖正式知识</li>
+        <li><strong>raw source 是 create-only</strong>：<code>create_raw_source</code> 只能追加，不能修改或删除已有原始证据。原始资料是知识库的证据层，一旦写入不可篡改，正式页可以引用但不能修改 raw</li>
+        <li><strong>路径边界在工具层强制</strong>：所有操作限制在 <code>wiki_root</code> 内，Agent 无法通过路径穿越（如 <code>../../etc/passwd</code>）访问外部文件。这比给 Agent 文件系统权限再靠提示词约束安全得多</li>
+      </ul>
+      <p>
+        通信方式选择 stdio：llm-wiki-mcp 作为本地 MCP Server 运行，通过标准输入输出与 Agent 客户端通信，无网络延迟，适合个人知识库场景。工具列表在连接建立时通过 <code>tools/list</code> 暴露给 Agent，Agent 不需要预先知道有哪些工具。
+      </p>
+      <p>
+        最大的教训：MCP 的价值不在"连接外部系统"这个通用能力，而在你定义的工具契约本身。一个好的 MCP Server 应该让 Agent 只能做你允许的操作，并且每个操作都有明确的语义和边界——这和设计 API 是同一个工程 discipline。
+      </p>
+
       <h2>相关笔记</h2>
       <ul>
         <li>

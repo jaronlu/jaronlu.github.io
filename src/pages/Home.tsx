@@ -106,6 +106,63 @@ function Masthead() {
   );
 }
 
+/* ---------- What I Solve ---------- */
+function WhatISolve() {
+  const problems = [
+    {
+      label: "01",
+      title: "把 RAG 从 Demo 推向生产",
+      body: "权限前置、引用校验、审计追踪——让问答系统的每一步都可复盘，而不是靠模型自觉。",
+      link: "/projects/secrag",
+      linkText: "SecRAG",
+    },
+    {
+      label: "02",
+      title: "为 Agent 建立知识治理层",
+      body: "候选评审、安全边界、跨 Agent 复用——让 Agent 维护知识时不越权、不漂移、可审计。",
+      link: "/projects/llm-wiki-mcp",
+      linkText: "llm-wiki-mcp",
+    },
+    {
+      label: "03",
+      title: "能力分发保持确定性",
+      body: "单一源码、冲突保护、幂等同步——让自研 Skills 跨 Codex / Claude / Hermes 保持同一版本。",
+      link: "/projects/agent-skills",
+      linkText: "agent-skills",
+    },
+  ];
+  return (
+    <section className="border-b border-line bg-paper-2">
+      <div className="mx-auto max-w-[1180px] px-6 py-14">
+        <SectionHead kicker="WHAT I SOLVE / 01" title="不是再做一个 Demo，而是把 Agent 推向生产">
+          三个贯穿项目的工程问题，也是大多数团队从 PoC 到上线时卡住的地方。
+        </SectionHead>
+        <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
+          {problems.map((p, i) => (
+            <Reveal key={p.label}>
+              <article
+                className="flex h-full flex-col border-t-2 border-line-strong pt-5"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                <span className="font-mono text-[0.62rem] font-semibold text-accent">{p.label}</span>
+                <h3 className="mt-3 font-display text-[1.25rem] font-semibold text-ink">{p.title}</h3>
+                <p className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-muted">{p.body}</p>
+                <Link
+                  to={p.link}
+                  className="group mt-4 inline-flex items-center gap-2 border-t border-line pt-4 text-ink no-underline"
+                >
+                  <b className="text-[0.74rem] font-semibold">{p.linkText}</b>
+                  <span className="text-[0.85rem] text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                </Link>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Engineering Lens ---------- */
 const lens = [
   {
@@ -138,7 +195,7 @@ function EngineeringLens() {
   return (
     <section className="border-y border-line bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="ENGINEERING LENS / 01" title="把工程约束放在模型之前">
+        <SectionHead kicker="ENGINEERING LENS / 03" title="把工程约束放在模型之前">
           从证券客户端到 Agent 系统，核心判断没有变：边界必须先于能力，关键动作必须可验证。
         </SectionHead>
         <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
@@ -228,7 +285,7 @@ function FieldNotes() {
   return (
     <section className="border-b border-line bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="FIELD NOTES / 03" title="把学习编译成可复用的工程判断">
+        <SectionHead kicker="FIELD NOTES / 04" title="把学习编译成可复用的工程判断">
           围绕 Agent Runtime、RAG、MCP 与 Loop Engineering，记录直接支撑项目设计的约束与取舍。
         </SectionHead>
         <Reveal>
@@ -277,9 +334,12 @@ function Contact() {
     <section className="border-b border-line-strong bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
         <Reveal>
-          <span className="kicker accent">CONTACT / 04</span>
+          <span className="kicker accent">CONTACT / 05</span>
           <p className="mt-4 max-w-[40ch] font-display text-[1.55rem] leading-[1.25] font-semibold tracking-[-0.01em] text-ink">
-            正在寻找 AI Agent / LLM 应用工程机会。
+            正在寻找 AI Agent / LLM 应用工程机会——优先考虑需要把 Agent 从 Demo 推向生产的团队。
+          </p>
+          <p className="mt-3 max-w-[46ch] font-mono text-[0.72rem] tracking-wider text-muted uppercase">
+            全职 · 深圳或远程 · 可立即入职
           </p>
           <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
             <a
@@ -309,8 +369,9 @@ export function Home() {
   return (
     <>
       <Masthead />
-      <EngineeringLens />
+      <WhatISolve />
       <FeaturedWork />
+      <EngineeringLens />
       <FieldNotes />
       <Contact />
     </>

@@ -156,9 +156,46 @@ export function RagPrinciplesContent() {
         <li>可评估性</li>
       </ul>
 
-      <h2>实战案例</h2>
+      <h2>我的实践：SecRAG 的工程落地</h2>
       <p>
-        <Link to="/projects/secrag">SecRAG</Link> 是把这些原理落地到证券行业投研场景的实践：混合检索（ChromaDB 向量 + BGE Reranker 语义重排）解决召回质量问题，角色权限过滤解决“同一问题不同角色看到不同结果”的问题，验证节点解决数字/引用准确性问题。
+        <Link to="/projects/secrag">SecRAG</Link> 把 RAG 原理落地到证券投研场景，关键工程决策对应原理中的优化点：
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>原理中的优化点</th>
+            <th>SecRAG 的落地</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>检索策略（向量 / BM25 / Hybrid）</td>
+            <td>ChromaDB 向量检索为主，BGE Reranker 对召回结果做语义重排</td>
+          </tr>
+          <tr>
+            <td>权限与可见性</td>
+            <td>RBAC 在 Retriever 节点前置生效，5 种角色（投顾 / 机构销售 / 合规 / 运营 / 技术）决定可检索材料范围</td>
+          </tr>
+          <tr>
+            <td>回答护栏</td>
+            <td>Verifier 节点独立校验来源和数字，不通过则回退 Reasoner 重新推理</td>
+          </tr>
+          <tr>
+            <td>可审计性</td>
+            <td>Auditor 节点记录完整问答轨迹，包括检索结果、推理过程、验证结果、最终答案</td>
+          </tr>
+          <tr>
+            <td>Chunk 粒度设计</td>
+            <td>按文档结构切分，保留章节层级和元信息，避免跨章节语义断裂</td>
+          </tr>
+          <tr>
+            <td>上下文长度控制</td>
+            <td>Retriever 召回后经过 Rerank 筛选，只把 top-k 相关片段拼进 Prompt，避免上下文膨胀</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        最大的教训：普通 RAG 的"检索 → 生成"一步到位在金融场景不够用。SecRAG 拆成六节点的核心原因是——每一步都需要可审计、可回退、可验证，而不是把所有逻辑塞给模型。权限过滤必须在检索前做（不能让模型先看到越权材料），验证必须独立于推理（不能让模型自己验证自己），审计必须结构化记录（不能靠解析对话历史）。
       </p>
 
       <h2>相关笔记</h2>
