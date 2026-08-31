@@ -214,7 +214,7 @@ export function AgentPrinciplesContent() {
 
       <h2>我的实践</h2>
       <p>
-        <Link to="/projects/secrag">SecRAG</Link> 的六节点工作流是对标准执行循环的工程化展开：Planner 对应"理解目标 + 判断是否调用工具"，Retriever / Reasoner 对应"执行工具 + 读取结果"，Verifier 是标准循环中通常被省略的"独立验证"步骤，Composer / Auditor 对应"输出最终答案 + 记录审计轨迹"。
+        <Link to="/projects/secrag">SecRAG</Link> 的嵌套图工作流（外层 StateGraph + reason 节点内部 ReAct 子图）是对标准执行循环的工程化展开：Planner 对应"理解目标 + 判断是否调用工具"，Retriever / Reasoner 对应"执行工具 + 读取结果"，Verifier 是标准循环中通常被省略的"独立验证"步骤，Composer / Auditor 对应"输出最终答案 + 记录审计轨迹"。
       </p>
       <p>
         关键判断：标准 Agent 循环的"决定下一步"在 SecRAG 里不是模型自由发挥，而是 LangGraph 的条件路由——检索不足时回退 Planner，验证失败时回退 Reasoner。这把"自主性"约束在可审计的分支内，而不是让模型无限循环。这也是我从证券客户端工程带来的直觉：交易链路里每一步都必须可追溯、可回滚，Agent 循环也一样。

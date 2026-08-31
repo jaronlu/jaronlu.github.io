@@ -266,7 +266,7 @@ export function LoopEngineeringContent() {
 
       <h2>我的实践</h2>
       <p>
-        <Link to="/projects/secrag">SecRAG</Link> 的六节点工作流是 Loop Engineering 在单 Agent 场景下的落地：Planner → Retriever → Reasoner → Verifier → Composer 构成 Plan → Act → Verify 循环，检索不足时回退 Planner 是"失败模式识别 + 状态持久化"的具体实现——State 中记录了已完成的检索计划和结果，回退时不会重新规划已完成的步骤。
+        <Link to="/projects/secrag">SecRAG</Link> 的嵌套图工作流是 Loop Engineering 在单 Agent 场景下的落地：Planner → Retriever → Reasoner（ReAct 子图）→ Verifier → Composer 构成 Plan → Act → Verify 循环，检索不足时回退 Planner 是"失败模式识别 + 状态持久化"的具体实现——State 中记录了已完成的检索计划和结果，回退时不会重新规划已完成的步骤。
       </p>
       <p>
         在 Harness 层面，我维护的个人知识库使用了七层基础设施中的核心几层：<code>CLAUDE.md</code> 作为常驻上下文（定期修剪，避免上下文膨胀）、<code>skills/</code> 渐进加载（<Link to="/projects/agent-skills">agent-skills</Link> 解决的是 skills 层的分发和版本一致性问题）、<code>.mcp.json</code> 声明工具（<Link to="/projects/llm-wiki-mcp">llm-wiki-mcp</Link> 提供知识操作层）、<code>MEMORY.md</code> 跨会话持久化（每会话修剪，避免记忆腐烂）。

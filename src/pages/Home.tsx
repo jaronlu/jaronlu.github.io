@@ -87,10 +87,10 @@ function Masthead() {
         <Reveal>
           <div className="mt-8 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: "Agentic RAG", desc: "LangGraph 六节点编排，权限前置、引用校验、审计追踪" },
-              { label: "知识治理", desc: "MCP 知识操作层，Candidate-first 写入，raw create-only" },
-              { label: "能力分发", desc: "Skills 单一源码，跨 Codex / Claude / Hermes 幂等同步" },
-              { label: "工程验证", desc: "36+ 单测覆盖节点逻辑，94 tests passing，可复现构建" },
+              { label: "Agentic RAG", desc: "LangGraph 嵌套图编排，服务端身份绑定、权限前置、引用校验、合规检查" },
+              { label: "知识治理", desc: "MCP 知识操作层，Candidate-first 写入，raw create-only，路径边界强制" },
+              { label: "能力分发", desc: "Skills 单一源码，跨 Codex / Claude / Hermes 幂等同步，冲突时停止" },
+              { label: "工程验证", desc: "256 测试用例覆盖 SecRAG 全链路，696 行测试覆盖分发引擎，可复现评估" },
             ].map((c) => (
               <div key={c.label} className="bg-paper p-4">
                 <div className="font-mono text-[0.62rem] font-semibold tracking-[0.08em] text-accent uppercase">

@@ -170,7 +170,7 @@ export function RagPrinciplesContent() {
         <tbody>
           <tr>
             <td>检索策略（向量 / BM25 / Hybrid）</td>
-            <td>ChromaDB 向量检索为主，BGE Reranker 对召回结果做语义重排</td>
+            <td>ChromaDB 角色感知多源向量检索；Reranker 作为 Agent 工具按需调用，不是标准检索固定步骤</td>
           </tr>
           <tr>
             <td>权限与可见性</td>

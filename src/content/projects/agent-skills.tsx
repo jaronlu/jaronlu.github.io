@@ -141,9 +141,11 @@ export function AgentSkillsContent() {
 
       <h2>当前证据</h2>
       <ul>
-        <li>仓库公开 4 个自研 Skill：<code>design-convergence-review</code>、<code>first-principles</code>、<code>git-commit</code>、<code>llm-wiki</code>。</li>
-        <li>链接管理器已覆盖增量同步、路径迁移、重复检测、冲突保护和幂等行为测试。</li>
-        <li>项目文档以 <code>llm-wiki</code> 为真实来源，工程仓库通过受管链接暴露，避免文档双写。</li>
+        <li><strong>69 次 commit</strong>，持续迭代分发引擎和 Skill 内容</li>
+        <li>仓库公开 <strong>5 个自研 Skill</strong>：<code>design-convergence-review</code>（设计就绪检查）、<code>first-principles</code>（第一性原理重建决策）、<code>git-commit</code>（仓库感知 Conventional Commit）、<code>hermes-context-review</code>（Hermes 上下文审计）、<code>llm-wiki</code>（知识库搜索与维护）</li>
+        <li><strong>696 行测试代码</strong>，4 个测试文件：链接管理器、Skill 验证、git-commit Skill 契约、llm-wiki 脚本</li>
+        <li>独立的 <code>validate_skills.py</code> 验证脚本，检查每个 Skill 的结构完整性和契约一致性</li>
+        <li>项目文档以 <code>llm-wiki</code> 为真实来源，工程仓库通过受管链接暴露，避免文档双写；中英文双语 README</li>
       </ul>
 
       <h2>技术判断</h2>
