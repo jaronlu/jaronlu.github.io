@@ -9,7 +9,7 @@ export function Projects() {
       <PageHead
         kicker="PROJECTS"
         title="项目"
-        metaDescription="SecRAG、llm-wiki-mcp、agent-skills、ClipFlow 与 ai-engineering-hub 五个项目的工程记录：可信问答、知识治理、能力分发与跨平台客户端。"
+        metaDescription="六个项目的工程记录：可信问答、RAG 分阶段实现、知识治理、能力分发与跨平台客户端。"
       >
         前三个项目构成一条 Agent 工程链路：<b className="text-ink">SecRAG</b>{" "}
         解决垂直场景中的可信问答，<b className="text-ink">llm-wiki-mcp</b>{" "}
@@ -17,6 +17,9 @@ export function Projects() {
         解决能力如何在多个 Agent 客户端之间一致分发。{" "}
         <b className="text-ink">ClipFlow</b>{" "}
         补充跨平台桌面客户端的产品与工程实践。
+        <b className="text-ink">LlamaIndex RAG</b>{" "}
+        把检索链路拆成六段逐段验证，<b className="text-ink">ai-engineering-hub</b>{" "}
+        记录知识治理与源码校准过程。
       </PageHead>
 
       <section className="border-b border-line">

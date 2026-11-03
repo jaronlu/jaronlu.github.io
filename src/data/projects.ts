@@ -84,6 +84,19 @@ export const projects: Project[] = [
     featured: false,
     index: 5,
   },
+  {
+    slug: "llamaindex-rag",
+    name: "LlamaIndex RAG",
+    role: "个人学习项目",
+    status: "六阶段实现完成",
+    stack: "LlamaIndex · BGE · CrossEncoder · FastAPI · SwiftUI",
+    repo: "https://github.com/jaronlu/llamaindex-rag",
+    q: "把 RAG 拆成加载、切片、索引、检索、重排、回答六段，每段可独立运行与人工核对",
+    ev: "68 commits · 171 个测试用例 · 6 阶段 CLI + 局域网接口 + iOS 客户端 · 7 题检索评测记录",
+    tagline: "不做端到端黑盒：每个阶段单独跑、单独看证据，用 PDF 物理页码、引用核验和检索评测，把「看起来对」变成「可以核对」。",
+    featured: true,
+    index: 6,
+  },
 ];
 
 export const projectBySlug = (slug: string) =>

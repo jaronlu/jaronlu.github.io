@@ -39,7 +39,7 @@ const routes = [
     path: "projects",
     title: `项目 · ${SITE_NAME}`,
     description:
-      "SecRAG、llm-wiki-mcp、agent-skills、ClipFlow 与 ai-engineering-hub 五个项目的工程记录：可信问答、知识治理、能力分发与跨平台客户端。",
+      "六个项目的工程记录：可信问答、RAG 分阶段实现、知识治理、能力分发与跨平台客户端。",
     priority: "0.9",
     changefreq: "monthly",
   },

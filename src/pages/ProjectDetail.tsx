@@ -6,6 +6,7 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { AgentSkillsContent } from "../content/projects/agent-skills";
 import { AiEngineeringHubContent } from "../content/projects/ai-engineering-hub";
 import { ClipFlowContent } from "../content/projects/clip-flow";
+import { LlamaIndexRagContent } from "../content/projects/llamaindex-rag";
 import { LlmWikiMcpContent } from "../content/projects/llm-wiki-mcp";
 import { SecRAGContent } from "../content/projects/secrag";
 
@@ -15,6 +16,7 @@ const contentMap = {
   "agent-skills": AgentSkillsContent,
   "clip-flow": ClipFlowContent,
   "ai-engineering-hub": AiEngineeringHubContent,
+  "llamaindex-rag": LlamaIndexRagContent,
 } as const;
 
 export function ProjectDetail() {
