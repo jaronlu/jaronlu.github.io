@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 export function NotFound() {
+  useDocumentMeta("页面不存在 · Jaron Lu");
+
   return (
     <div className="mx-auto flex max-w-[820px] flex-col items-start px-6 pt-20 pb-16">
       <span className="kicker accent">404 / NOT FOUND</span>

@@ -6,7 +6,11 @@ import { projects, upcoming } from "../data/projects";
 export function Projects() {
   return (
     <>
-      <PageHead kicker="PROJECTS" title="项目">
+      <PageHead
+        kicker="PROJECTS"
+        title="项目"
+        metaDescription="SecRAG、llm-wiki-mcp、agent-skills、ClipFlow 与 ai-engineering-hub 五个项目的工程记录：可信问答、知识治理、能力分发与跨平台客户端。"
+      >
         前三个项目构成一条 Agent 工程链路：<b className="text-ink">SecRAG</b>{" "}
         解决垂直场景中的可信问答，<b className="text-ink">llm-wiki-mcp</b>{" "}
         解决知识如何被安全读写，<b className="text-ink">agent-skills</b>{" "}

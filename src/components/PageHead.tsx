@@ -1,14 +1,27 @@
 import type { ReactNode } from "react";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { Reveal } from "./Reveal";
 
 interface PageHeadProps {
   kicker: string;
   title: string;
+  /** 浏览器标签标题；缺省为「title · Jaron Lu」 */
+  metaTitle?: string;
+  /** meta description（正文导语仍由 children 承担） */
+  metaDescription?: string;
   children?: ReactNode;
 }
 
 /** 内页统一页头：kicker + display 大标题 + 可选导语。 */
-export function PageHead({ kicker, title, children }: PageHeadProps) {
+export function PageHead({
+  kicker,
+  title,
+  metaTitle,
+  metaDescription,
+  children,
+}: PageHeadProps) {
+  useDocumentMeta(metaTitle ?? `${title} · Jaron Lu`, metaDescription);
+
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-[1180px] px-6 pt-10 pb-9">

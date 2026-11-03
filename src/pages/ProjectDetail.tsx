@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
 import { projectBySlug } from "../data/projects";
 import { site } from "../data/site";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { AgentSkillsContent } from "../content/projects/agent-skills";
 import { AiEngineeringHubContent } from "../content/projects/ai-engineering-hub";
 import { ClipFlowContent } from "../content/projects/clip-flow";
@@ -20,6 +21,11 @@ export function ProjectDetail() {
   const { slug } = useParams();
   const project = slug ? projectBySlug(slug) : undefined;
   const Content = slug ? contentMap[slug as keyof typeof contentMap] : undefined;
+
+  useDocumentMeta(
+    project ? `${project.name} · 项目 · Jaron Lu` : "项目 · Jaron Lu",
+    project?.q
+  );
 
   if (!project || !Content) {
     return <Navigate to="/projects" replace />;

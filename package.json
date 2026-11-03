@@ -3,10 +3,14 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
   "description": "Jaron Lu 的个人求职作品集站 — React + Tailwind CSS",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
+    "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit"
   },

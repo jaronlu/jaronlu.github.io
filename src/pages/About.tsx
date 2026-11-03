@@ -57,7 +57,11 @@ const currentProjects = [
 export function About() {
   return (
     <>
-      <PageHead kicker="ABOUT" title="关于我">
+      <PageHead
+        kicker="ABOUT"
+        title="关于我"
+        metaDescription="10 年证券金融客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。"
+      >
         把长期处理过的状态、权限、安全、错误恢复和发布约束，迁移到可验证的 Agent 系统中。
       </PageHead>
 

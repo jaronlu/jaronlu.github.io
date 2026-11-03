@@ -4,6 +4,7 @@ import { Reveal } from "../components/Reveal";
 import { projects } from "../data/projects";
 import { notes } from "../data/notes";
 import { site } from "../data/site";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 /* ---------- 区块头 ---------- */
 function SectionHead({
@@ -366,6 +367,11 @@ function Contact() {
 }
 
 export function Home() {
+  useDocumentMeta(
+    "Jaron Lu · AI Agent Engineer",
+    "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与跨平台客户端实践。把金融客户端的工程约束，编译成可信的 AI Agent 系统。"
+  );
+
   return (
     <>
       <Masthead />

@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
 import { noteBySlug } from "../data/notes";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { AgentPrinciplesContent } from "../content/notes/agent-principles";
 import { AgentRuntimeContent } from "../content/notes/agent-runtime";
 import { EvalEngineeringContent } from "../content/notes/eval-engineering";
@@ -25,6 +26,11 @@ export function NoteDetail() {
   const { slug } = useParams();
   const note = slug ? noteBySlug(slug) : undefined;
   const Content = slug ? contentMap[slug as keyof typeof contentMap] : undefined;
+
+  useDocumentMeta(
+    note ? `${note.title} · 工程笔记 · Jaron Lu` : "工程笔记 · Jaron Lu",
+    note?.description
+  );
 
   if (!note || !Content) {
     return <Navigate to="/notes" replace />;

@@ -8,7 +8,11 @@ const groups = ["agent", "knowledge", "engineering"] as const;
 export function Notes() {
   return (
     <>
-      <PageHead kicker="FIELD NOTES" title="工程笔记">
+      <PageHead
+        kicker="FIELD NOTES"
+        title="工程笔记"
+        metaDescription="围绕 Agent Runtime、RAG、MCP 与 Loop Engineering 的工程笔记，记录直接支撑项目设计的约束、取舍与验证方法。"
+      >
         围绕 Agent Runtime、RAG、MCP 和 Loop Engineering，记录直接支撑项目设计的约束、取舍与验证方法。
       </PageHead>
 
