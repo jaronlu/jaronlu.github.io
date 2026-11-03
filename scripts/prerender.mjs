@@ -24,7 +24,7 @@ const OG_IMAGE = `${SITE}/og-image.png`;
 
 const SITE_NAME = "Jaron Lu";
 const HOME_DESCRIPTION =
-  "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与跨平台客户端实践。把金融客户端的工程约束，编译成可信的 AI Agent 系统。";
+  "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与 RAG 分阶段实现。把金融客户端的工程约束，编译成可信的 AI Agent 系统。";
 
 /** 每条路由的 title / description / changefreq / priority。 */
 const routes = [
@@ -55,7 +55,7 @@ const routes = [
     path: "about",
     title: `关于我 · ${SITE_NAME}`,
     description:
-      "10 年证券金融客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。",
+      "10 年证券客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。",
     priority: "0.7",
     changefreq: "yearly",
   },

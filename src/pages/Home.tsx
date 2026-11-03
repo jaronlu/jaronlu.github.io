@@ -6,6 +6,30 @@ import { notes } from "../data/notes";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
+/* 首页只承担三件事：定位、精选项目、笔记入口。
+   项目全量清单在 /projects，笔记全文与分类在 /notes，联系方式由全站 Footer 承担。 */
+
+const stackLine = ["Agentic RAG", "MCP 知识操作层", "Skills 分发", "评测先行"];
+
+/* 精选行只留一个可核对的数字，完整证据行在项目列表页。 */
+const proof: Record<string, string> = {
+  secrag: "256 测试用例",
+  "llm-wiki-mcp": "94 测试用例",
+  "agent-skills": "696 行测试",
+  "llamaindex-rag": "171 测试用例",
+};
+
+/* 每行补一句它解决的工程约束——原首页三个项目区块的重复表述收敛到这里。 */
+const constraint: Record<string, string> = {
+  secrag: "权限在检索前生效，引用与数字逐条校验",
+  "llm-wiki-mcp": "写入先候选，评审通过才进正式知识",
+  "agent-skills": "单一源码，冲突时停止而非覆盖",
+  "llamaindex-rag": "每一步都能回到 PDF 原文核对",
+};
+
+/* 首页只放三篇，覆盖方法、验证与治理；完整列表在笔记页。 */
+const homeNotes = ["rag-principles", "eval-engineering", "harness-engineering"];
+
 /* ---------- 区块头 ---------- */
 function SectionHead({
   kicker,
@@ -19,11 +43,11 @@ function SectionHead({
   return (
     <Reveal className="mb-8">
       <span className="kicker accent">{kicker}</span>
-      <h2 className="mt-4 max-w-[22ch] font-display text-[2rem] leading-[1.06] font-semibold tracking-[-0.02em] text-ink sm:text-[2.25rem]">
+      <h2 className="mt-4 max-w-[24ch] font-display text-[2rem] leading-[1.06] font-semibold tracking-[-0.02em] text-ink sm:text-[2.25rem]">
         {title}
       </h2>
       {children ? (
-        <p className="mt-4 max-w-[46ch] text-[0.86rem] leading-relaxed text-muted">
+        <p className="mt-4 max-w-[52ch] text-[0.86rem] leading-relaxed text-muted">
           {children}
         </p>
       ) : null}
@@ -52,10 +76,10 @@ function Masthead() {
         </Reveal>
 
         <Reveal>
-          <p className="mt-6 max-w-[28ch] font-sans text-[clamp(1.35rem,3vw,1.7rem)] leading-[1.32] font-medium text-ink">
-            10 年金融工程经验，
+          <p className="mt-6 max-w-[46ch] font-sans text-[clamp(1.35rem,3vw,1.7rem)] leading-[1.32] font-medium text-ink">
+            10 年证券客户端工程，
             <br />
-            构建<em className="font-semibold text-accent not-italic">可验证、可审计</em>
+            现在构建<em className="font-semibold text-accent not-italic">可验证、可审计</em>
             的 AI Agent 系统。
           </p>
         </Reveal>
@@ -84,22 +108,10 @@ function Masthead() {
           </div>
         </Reveal>
 
-        {/* 核心能力：具体技术栈 + 可验证成果，而非空泛数量 */}
         <Reveal>
-          <div className="mt-8 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Agentic RAG", desc: "LangGraph 嵌套图编排，服务端身份绑定、权限前置、引用校验、合规检查" },
-              { label: "知识治理", desc: "MCP 知识操作层，Candidate-first 写入，raw create-only，路径边界强制" },
-              { label: "能力分发", desc: "Skills 单一源码，跨 Codex / Claude / Hermes 幂等同步，冲突时停止" },
-              { label: "工程验证", desc: "256 测试用例覆盖 SecRAG 全链路，696 行测试覆盖分发引擎，可复现评估" },
-            ].map((c) => (
-              <div key={c.label} className="bg-paper p-4">
-                <div className="font-mono text-[0.62rem] font-semibold tracking-[0.08em] text-accent uppercase">
-                  {c.label}
-                </div>
-                <p className="mt-2 text-[0.76rem] leading-relaxed text-muted">{c.desc}</p>
-              </div>
-            ))}
+          <div className="mt-6 flex flex-col gap-2 border-t border-line pt-4 font-mono text-[0.64rem] tracking-[0.08em] text-faint uppercase sm:flex-row sm:items-center sm:justify-between">
+            <span>{stackLine.join("  /  ")}</span>
+            <span>全职 · 深圳或远程 · 可立即入职</span>
           </div>
         </Reveal>
       </div>
@@ -107,141 +119,16 @@ function Masthead() {
   );
 }
 
-/* ---------- What I Solve ---------- */
-function WhatISolve() {
-  const problems = [
-    {
-      label: "01",
-      title: "把 RAG 从 Demo 推向生产",
-      body: "权限前置、引用校验、审计追踪——让问答系统的每一步都可复盘，而不是靠模型自觉。",
-      link: "/projects/secrag",
-      linkText: "SecRAG",
-    },
-    {
-      label: "02",
-      title: "为 Agent 建立知识治理层",
-      body: "候选评审、安全边界、跨 Agent 复用——让 Agent 维护知识时不越权、不漂移、可审计。",
-      link: "/projects/llm-wiki-mcp",
-      linkText: "llm-wiki-mcp",
-    },
-    {
-      label: "03",
-      title: "能力分发保持确定性",
-      body: "单一源码、冲突保护、幂等同步——让自研 Skills 跨 Codex / Claude / Hermes 保持同一版本。",
-      link: "/projects/agent-skills",
-      linkText: "agent-skills",
-    },
-  ];
-  return (
-    <section className="border-b border-line bg-paper-2">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="WHAT I SOLVE / 01" title="不是再做一个 Demo，而是把 Agent 推向生产">
-          三个贯穿项目的工程问题，也是大多数团队从 PoC 到上线时卡住的地方。
-        </SectionHead>
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
-          {problems.map((p, i) => (
-            <Reveal key={p.label}>
-              <article
-                className="flex h-full flex-col border-t border-line pt-5"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <span className="font-mono text-[0.62rem] font-semibold text-accent">{p.label}</span>
-                <h3 className="mt-3 font-display text-[1.25rem] font-semibold text-ink">{p.title}</h3>
-                <p className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-muted">{p.body}</p>
-                <Link
-                  to={p.link}
-                  className="group mt-4 inline-flex items-center gap-2 border-t border-line pt-4 text-ink no-underline"
-                >
-                  <b className="text-[0.74rem] font-semibold">{p.linkText}</b>
-                  <span className="text-[0.85rem] text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-                </Link>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Engineering Lens ---------- */
-const lens = [
-  {
-    label: "ACCESS",
-    title: "权限在检索前生效",
-    body: "模型只接触当前角色可见的材料，不依赖提示词补救。",
-    proof: "SecRAG",
-    proofSub: "RBAC 检索隔离",
-    to: "/projects/secrag",
-  },
-  {
-    label: "WRITE",
-    title: "写入先候选，后发布",
-    body: "Agent 产出先进入评审层，不直接覆盖正式知识。",
-    proof: "llm-wiki-mcp",
-    proofSub: "Candidate-first",
-    to: "/projects/llm-wiki-mcp",
-  },
-  {
-    label: "DELIVERY",
-    title: "能力分发保持确定性",
-    body: "用单一源码、冲突保护和幂等验证替代手工同步。",
-    proof: "agent-skills",
-    proofSub: "配置驱动分发",
-    to: "/projects/agent-skills",
-  },
-];
-
-function EngineeringLens() {
-  return (
-    <section className="border-y border-line bg-paper-2">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="ENGINEERING LENS / 03" title="把工程约束放在模型之前">
-          从证券客户端到 Agent 系统，核心判断没有变：边界必须先于能力，关键动作必须可验证。
-        </SectionHead>
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
-          {lens.map((item, i) => (
-            <Reveal key={item.label}>
-              <article
-                className="flex h-full flex-col border-t border-line pt-5"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <span className="font-mono text-[0.62rem] font-semibold text-accent">
-                  {item.label}
-                </span>
-                <h3 className="mt-3 font-display text-[1.25rem] font-semibold text-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-muted">
-                  {item.body}
-                </p>
-                <Link
-                  to={item.to}
-                  className="group mt-4 grid grid-cols-[auto_1fr_auto] items-center gap-2.5 border-t border-line pt-4 text-ink no-underline"
-                >
-                  <b className="text-[0.74rem] font-semibold">{item.proof}</b>
-                  <span className="truncate text-[0.68rem] text-muted">{item.proofSub}</span>
-                  <span className="text-[0.85rem] text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                    ↗
-                  </span>
-                </Link>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Featured Work ---------- */
-function FeaturedWork() {
+/* ---------- Selected Work ---------- */
+function SelectedWork() {
   const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="SELECTED WORK / 02" title="一条贯穿的 Agent 工程链路">
-          从可信问答、知识操作层到能力分发，三个项目共享同一组工程判断。
+        <SectionHead kicker="SELECTED WORK / 01" title="四个项目，同一条工程主线">
+          先定边界，再谈能力：可信问答、知识治理、能力分发，以及把检索链路拆开逐段验证。
         </SectionHead>
         <Reveal>
           <div className="border-t border-line">
@@ -249,32 +136,42 @@ function FeaturedWork() {
               <Link
                 key={p.slug}
                 to={`/projects/${p.slug}`}
-                className="hover-row group grid grid-cols-[2rem_1fr] items-baseline gap-x-4 gap-y-1 border-b border-line py-4 text-ink no-underline sm:grid-cols-[3rem_1fr_auto] sm:gap-x-7"
+                className="hover-row group grid grid-cols-[2rem_1fr] items-start gap-x-4 gap-y-1 border-b border-line py-5 text-ink no-underline sm:grid-cols-[3rem_1fr_auto] sm:gap-x-7"
               >
-                <span className="font-mono text-[0.72rem] font-semibold text-faint">
+                <span className="font-mono text-[0.72rem] font-semibold text-faint sm:pt-1">
                   P{i + 1}
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-display text-[1.3rem] font-semibold leading-snug tracking-[-0.01em]">
+                  <span className="block font-display text-[1.3rem] font-semibold leading-snug tracking-[-0.01em] transition-colors group-hover:text-accent">
                     {p.name}
                   </span>
-                  <span className="mt-1 block text-[0.8rem] text-ink-soft">{p.q}</span>
+                  <span className="mt-1 block text-[0.82rem] leading-relaxed text-ink-soft">
+                    {p.q}
+                  </span>
+                  <span className="mt-1.5 block font-mono text-[0.66rem] tracking-[0.04em] text-muted">
+                    {constraint[p.slug]}
+                  </span>
                 </span>
-                <span className="col-start-2 hidden text-[0.85rem] text-accent transition-transform group-hover:translate-x-1 sm:col-start-3 sm:block">
-                  →
+                <span className="col-start-2 hidden font-mono text-[0.66rem] text-faint sm:col-start-3 sm:block sm:pt-1.5">
+                  {proof[p.slug]}
                 </span>
               </Link>
             ))}
           </div>
         </Reveal>
         <Reveal>
-          <Link
-            to="/projects"
-            className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
-          >
-            查看全部项目
-            <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+            <Link
+              to="/projects"
+              className="group inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
+            >
+              全部 {projects.length} 个项目
+              <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+            <span className="font-mono text-[0.66rem] text-faint">
+              另有 {rest.map((p) => p.name).join("、")}
+            </span>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -283,33 +180,32 @@ function FeaturedWork() {
 
 /* ---------- Field Notes ---------- */
 function FieldNotes() {
+  const picked = homeNotes.flatMap((slug) => notes.filter((n) => n.slug === slug));
+
   return (
     <section className="border-b border-line bg-paper-2">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="FIELD NOTES / 04" title="把学习编译成可复用的工程判断">
-          围绕 Agent Runtime、RAG、MCP、Loop、Harness、Eval 与知识治理，记录直接支撑项目设计的约束与取舍。
+        <SectionHead kicker="FIELD NOTES / 02" title="把学习编译成可复用的工程判断">
+          只列三篇直接支撑项目设计的笔记：检索链路怎么验证、质量怎么回归、Agent 运行环境要哪些约束。
         </SectionHead>
         <Reveal>
           <div className="border-t border-line">
-            {notes.map((n, i) => (
+            {picked.map((n) => (
               <Link
                 key={n.slug}
                 to={`/notes/${n.slug}`}
-                className="hover-row group grid grid-cols-[2rem_1fr_1.5rem] items-center gap-x-4 gap-y-0.5 border-b border-line py-3.5 text-ink no-underline sm:grid-cols-[3rem_1fr_2rem] sm:gap-x-7"
+                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-4 text-ink no-underline"
               >
-                <span className="font-mono text-[0.72rem] font-semibold text-faint">
-                  N{i + 1}
-                </span>
                 <span className="min-w-0">
-                  <span className="block font-display text-[1.1rem] font-semibold text-ink">
+                  <span className="block font-display text-[1.12rem] font-semibold text-ink">
                     {n.title}
                   </span>
                   <span className="mt-0.5 block truncate text-[0.76rem] text-muted">
                     {n.description}
                   </span>
                 </span>
-                <span className="justify-self-end text-center text-[0.95rem] text-accent transition-transform group-hover:translate-x-1">
-                  →
+                <span className="font-mono text-[0.6rem] tracking-[0.08em] text-faint">
+                  {n.confidence}
                 </span>
               </Link>
             ))}
@@ -320,46 +216,9 @@ function FieldNotes() {
             to="/notes"
             className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
           >
-            查看全部工程笔记
+            全部 {notes.length} 篇工程笔记
             <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
           </Link>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Contact ---------- */
-function Contact() {
-  return (
-    <section className="border-b border-line bg-paper-2">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <Reveal>
-          <span className="kicker accent">CONTACT / 05</span>
-          <p className="mt-4 max-w-[40ch] font-display text-[1.55rem] leading-[1.25] font-semibold tracking-[-0.01em] text-ink">
-            正在寻找 AI Agent / LLM 应用工程机会——优先考虑需要把 Agent 从 Demo 推向生产的团队。
-          </p>
-          <p className="mt-3 max-w-[46ch] font-mono text-[0.72rem] tracking-wider text-muted uppercase">
-            全职 · 深圳或远程 · 可立即入职
-          </p>
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-            <a
-              href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-2 border-b border-line-strong pb-0.5 font-mono text-[0.78rem] font-semibold text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-            >
-              {site.email}
-              <span>→</span>
-            </a>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 border-b border-line-strong pb-0.5 font-mono text-[0.78rem] font-semibold text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-            >
-              GitHub
-              <span>↗</span>
-            </a>
-          </div>
         </Reveal>
       </div>
     </section>
@@ -369,17 +228,14 @@ function Contact() {
 export function Home() {
   useDocumentMeta(
     "Jaron Lu · AI Agent Engineer",
-    "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与跨平台客户端实践。把金融客户端的工程约束，编译成可信的 AI Agent 系统。"
+    "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与 RAG 分阶段实现。把金融客户端的工程约束，编译成可信的 AI Agent 系统。"
   );
 
   return (
     <>
       <Masthead />
-      <WhatISolve />
-      <FeaturedWork />
-      <EngineeringLens />
+      <SelectedWork />
       <FieldNotes />
-      <Contact />
     </>
   );
 }

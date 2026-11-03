@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHead } from "../components/PageHead";
 import { Reveal } from "../components/Reveal";
-import { site } from "../data/site";
 
 const timeline = [
   {
@@ -36,22 +35,12 @@ const stack = [
   },
 ];
 
+/* 只留名字 + 一句定位标签；完整描述与证据在 /projects，避免两页各写一份。 */
 const currentProjects = [
-  {
-    name: "SecRAG",
-    desc: "面向机构投研的 Agentic RAG，重点解决检索权限、数字与引用验证、审计追踪。",
-    to: "/projects/secrag",
-  },
-  {
-    name: "llm-wiki-mcp",
-    desc: "受治理的知识操作层，用候选评审代替 Agent 对正式知识页的直接写入。",
-    to: "/projects/llm-wiki-mcp",
-  },
-  {
-    name: "agent-skills",
-    desc: "自研 Skills 的单一源码与跨 Codex、Claude、Hermes 分发基座。",
-    to: "/projects/agent-skills",
-  },
+  { name: "SecRAG", tag: "可信问答", to: "/projects/secrag" },
+  { name: "llm-wiki-mcp", tag: "知识操作层", to: "/projects/llm-wiki-mcp" },
+  { name: "agent-skills", tag: "能力分发", to: "/projects/agent-skills" },
+  { name: "LlamaIndex RAG", tag: "检索链路验证", to: "/projects/llamaindex-rag" },
 ];
 
 export function About() {
@@ -60,7 +49,7 @@ export function About() {
       <PageHead
         kicker="ABOUT"
         title="关于我"
-        metaDescription="10 年证券金融客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。"
+        metaDescription="10 年证券客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。"
       >
         把长期处理过的状态、权限、安全、错误恢复和发布约束，迁移到可验证的 Agent 系统中。
       </PageHead>
@@ -69,7 +58,7 @@ export function About() {
         <Reveal>
           <div className="prose">
             <p>
-              我是 Jaron Lu，10 年证券金融客户端工程经验，目前专注 AI Agent 与 LLM 应用工程。
+              我是 Jaron Lu，10 年证券客户端工程经验，目前专注 AI Agent 与 LLM 应用工程。
             </p>
             <p>
               从证券交易链路到 Agent 工作流，我的工程直觉始终一致：系统可信度不来自功能多，而来自边界清、验证严、可追溯。我把金融场景的权限治理、错误恢复和发布约束迁移到 Agent 系统设计中，专注解决"模型能回答不等于回答可信"这个核心问题。
@@ -120,16 +109,29 @@ export function About() {
           <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
             当前项目
           </h2>
-          <ul className="space-y-3 border-t border-line pt-4 text-[0.88rem] leading-relaxed text-muted">
+          <div className="border-t border-line">
             {currentProjects.map((p) => (
-              <li key={p.name}>
-                <Link to={p.to} className="font-semibold text-accent">
+              <Link
+                key={p.name}
+                to={p.to}
+                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-3 no-underline"
+              >
+                <span className="text-[0.9rem] font-semibold text-ink transition-colors group-hover:text-accent">
                   {p.name}
-                </Link>
-                ：{p.desc}
-              </li>
+                </span>
+                <span className="font-mono text-[0.64rem] tracking-[0.06em] text-faint">
+                  {p.tag}
+                </span>
+              </Link>
             ))}
-          </ul>
+          </div>
+          <p className="mt-3 max-w-[62ch] text-[0.8rem] leading-relaxed text-muted">
+            六个项目的证据、取舍与边界统一在
+            <Link to="/projects" className="ml-1 text-accent">
+              项目页
+            </Link>
+            ，这里只保留正在推进的部分。
+          </p>
         </Reveal>
 
         <Reveal>
@@ -151,35 +153,7 @@ export function About() {
           </div>
         </Reveal>
 
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            联系
-          </h2>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-5">
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              className="border-b border-line-strong pb-0.5 font-mono text-[0.8rem] font-semibold text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-            >
-              github.com/jaronlu ↗
-            </a>
-            <a
-              href={`mailto:${site.email}`}
-              className="border-b border-line-strong pb-0.5 font-mono text-[0.8rem] font-semibold text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-            >
-              {site.email}
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="border-b border-line-strong pb-0.5 font-mono text-[0.8rem] font-semibold text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-            >
-              LinkedIn ↗
-            </a>
-          </div>
-        </Reveal>
+        {/* 联系方式不在此页重复：全站 Footer 已有邮箱、GitHub 与 LinkedIn */}
       </div>
     </>
   );
