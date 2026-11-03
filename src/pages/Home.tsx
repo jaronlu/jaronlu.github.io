@@ -127,8 +127,10 @@ function SelectedWork() {
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="SELECTED WORK / 01" title="四个项目，同一条工程主线">
-          先定边界，再谈能力：可信问答、知识治理、能力分发，以及把检索链路拆开逐段验证。
+        {/* 标题不带术语：四个项目共同的通俗表述是「给 AI 立规矩」。
+            「四个」与下方 featured 数量同步，增删精选项目时需一并改。 */}
+        <SectionHead kicker="SELECTED WORK / 01" title="四个项目，都在给 AI 立规矩">
+          不该看的看不到，要改的先过审，说出口的能翻回原文。
         </SectionHead>
         <Reveal>
           <div className="border-t border-line">
