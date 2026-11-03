@@ -15,3 +15,5 @@ docs/public-site.md
 # 本地审查报告，不进入历史、不部署
 codex-review.md
 fable5-ret.md
+# Agent 工作记忆，属于本地数据
+.workbuddy/
