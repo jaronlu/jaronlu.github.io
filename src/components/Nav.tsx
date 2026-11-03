@@ -8,14 +8,14 @@ export function Nav() {
       <div className="mx-auto flex h-14 max-w-[1180px] items-center justify-between gap-6 px-6">
         <Link
           to="/"
-          className="font-display text-[0.95rem] font-semibold tracking-tight text-ink transition-colors hover:text-accent"
+          className="shrink-0 font-display text-[0.95rem] font-semibold tracking-tight whitespace-nowrap text-ink transition-colors hover:text-accent"
         >
           {site.name}
         </Link>
 
         <nav
           aria-label="主导航"
-          className="flex items-center gap-5 sm:gap-7"
+          className="flex items-center gap-3 sm:gap-7"
         >
           {nav.map((item) => (
             <NavLink
@@ -23,7 +23,7 @@ export function Nav() {
               to={item.to}
               end={item.to === "/"}
               className={({ isActive }) =>
-                `font-mono text-[0.68rem] font-medium tracking-[0.08em] uppercase transition-colors ${
+                `whitespace-nowrap font-mono text-[0.68rem] font-medium tracking-[0.08em] uppercase transition-colors ${
                   isActive ? "text-accent" : "text-muted hover:text-accent"
                 }`
               }

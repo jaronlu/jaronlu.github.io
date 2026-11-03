@@ -8,7 +8,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={dark ? "切换为浅色模式" : "切换为深色模式"}
       title={dark ? "切换为浅色模式" : "切换为深色模式"}
-      className="group inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-muted transition-colors hover:border-ink hover:text-ink"
+      className="group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-muted transition-colors hover:border-ink hover:text-ink"
     >
       <svg
         width="13"
@@ -31,7 +31,7 @@ export function ThemeToggle() {
           </>
         )}
       </svg>
-      <span className="font-mono text-[0.6rem] font-semibold tracking-wider uppercase">
+      <span className="whitespace-nowrap font-mono text-[0.6rem] font-semibold tracking-wider uppercase">
         {dark ? "浅色" : "深色"}
       </span>
     </button>
