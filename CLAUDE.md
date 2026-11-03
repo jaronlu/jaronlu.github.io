@@ -32,6 +32,9 @@ npm run build
 ## 部署机制
 
 - push master → `.github/workflows/deploy.yml`（setup-node + `npm ci` + `npm run build`）自动构建 `dist/` 并发布到 GitHub Pages。
+- `npm run build` 末尾执行 `node scripts/prerender.mjs`：为每条路由生成 `dist/<route>/index.html` 静态外壳（独立 title / description / canonical / OG），并产出 `dist/sitemap.xml`。没有这步，深链刷新会落到 `404.html`。
+- `index.html` 中的 `<!--seo:start-->…<!--seo:end-->` 是构建时被整块替换的占位区：改标题与描述要改 `scripts/prerender.mjs` 的 `routes` 表（列表页固定文案）或 `src/data/*.ts`（详情页取 `q` / `description`），不要只改 `index.html`。
+- 运行时标题同步由 `src/hooks/useDocumentMeta.ts` 负责（`PageHead` 与各详情页已接入），新增页面必须调用，否则 SPA 内跳转后标题会停留在上一页。
 - **禁止直接 push gh-pages**：`.githooks/pre-push`（已通过 `core.hooksPath` 启用）会拦截。
 - `dist/` 与 `node_modules/` 是构建产物，已 gitignore，不要提交。
 - `docs/` 是上一版 MkDocs 的内容归档，不参与构建，一般不要改动。
@@ -45,6 +48,8 @@ npm run build
 - **页面**在 `src/pages/`：路由在 `src/App.tsx`；项目/笔记详情页通过 `contentMap` 注册正文组件。
 - **视觉 token**在 `src/index.css`：`:root` 与 `.dark` 两块定义 `--paper/--ink/--muted/--line/--accent` 等，深浅色靠 `.dark` class 重定义切换——新增颜色必须两个块都定义，不要在组件里硬编码颜色。`--ink` 在深色下是浅色值，不能当“永远深色的背景”用。
 - **字体三层分工**：Fraunces（`--font-display`）只用于标题与项目名；Inter（`--font-sans`）正文；JetBrains Mono（`--font-mono`）专职 kicker/meta 元信息层。不新增字体，不新增第二强调色。
+- **字体全部自托管**：`public/fonts/` 只放 latin 子集的三个 woff2（`@font-face` 在 `src/index.css`），中文字形走系统字体（macOS 苹方/宋体、Windows 微软雅黑/宋体）。**不要重新引入 fonts.googleapis.com** ——该域名在大陆不可达，会让首屏白等一个 RTT。
+- **对比度基线**：`--accent`（#bf3a29）与 `--faint`（#716c5b）是按"在 paper 与 paper-2 两种底色上都 ≥4.5:1"校准过的值，改色前先核算这两种底色。
 - 新页面必须在 `src/App.tsx` 的 `Routes` 中注册。
 
 ## 内容约定

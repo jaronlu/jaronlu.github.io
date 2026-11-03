@@ -4,6 +4,45 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================================
+   Fonts — 自托管拉丁子集
+   只下载 latin 子集（Fraunces / Inter / JetBrains Mono 均无中文字形）。
+   中文字形交给系统字体：macOS 苹方 + 宋体，Windows 微软雅黑 + 宋体。
+   原方案从 fonts.googleapis.com 拉 5 个字族，在大陆不可达且同步阻塞首屏。
+   ============================================================ */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================
    Design tokens — Editorial / Magazine
    纸墨双色 + 单一编辑红强调色
    ============================================================ */
@@ -59,9 +98,11 @@
 }
 
 @theme {
-  --font-display: "Fraunces", "Noto Serif SC", Georgia, "Songti SC", serif;
-  --font-sans: "Inter", "Noto Sans SC", -apple-system, "PingFang SC",
-    "Microsoft YaHei", sans-serif;
+  /* 拉丁字形走自托管 Font，中文回落到系统字体（不下载 CJK webfont） */
+  --font-display: "Fraunces", "Songti SC", "Noto Serif SC", "Noto Serif CJK SC",
+    Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Menlo",
     monospace;
 

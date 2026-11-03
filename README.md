@@ -23,9 +23,15 @@ npm run build
 ```
 package.json             # 依赖与脚本（dev / build / preview / typecheck）
 vite.config.ts           # Vite + React + Tailwind 插件配置
-index.html               # 入口 HTML（字体、SEO meta）
+index.html               # 入口 HTML（字体、SEO meta 占位）
+scripts/
+├── prerender.mjs        # 构建后为每条路由生成静态外壳 + sitemap.xml
+└── og-image.html        # 社交分享封面源文件（1200×630，输出 public/og-image.png）
 public/
 ├── 404.html             # GitHub Pages SPA 深链回退
+├── robots.txt
+├── og-image.png
+├── fonts/               # 自托管 latin 子集 woff2（中文走系统字体）
 └── favicon.svg
 src/
 ├── index.css            # 设计 token（纸墨色 / 字体 / 深浅色）+ 基础样式

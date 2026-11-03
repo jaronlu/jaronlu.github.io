@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 import { CodeBlock } from "../../components/CodeBlock";
-import clipFlowClassic from "../../assets/images/clip-flow-classic.png";
+import clipFlowClassic from "../../assets/images/clip-flow-classic.webp";
 
 export function ClipFlowContent() {
   return (
     <>
+      {/* 详情页首个内容块，是 LCP 候选：不懒加载，且带明确宽高避免布局抖动 */}
       <img
         src={clipFlowClassic}
         alt="ClipFlow 经典模式界面截图"
-        className="my-6 w-full rounded-md border border-line"
-        loading="lazy"
+        width={1586}
+        height={1180}
+        className="my-6 h-auto w-full rounded-md border border-line"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
       />
 
       <h2>项目一句话</h2>
