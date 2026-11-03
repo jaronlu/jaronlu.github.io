@@ -36,8 +36,8 @@ export function RagPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>组件</th>
-            <th>作用</th>
+            <th scope="col">组件</th>
+            <th scope="col">作用</th>
           </tr>
         </thead>
         <tbody>
@@ -86,8 +86,8 @@ export function RagPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>误区</th>
-            <th>真相</th>
+            <th scope="col">误区</th>
+            <th scope="col">真相</th>
           </tr>
         </thead>
         <tbody>
@@ -114,8 +114,8 @@ export function RagPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>方案</th>
-            <th>适用场景</th>
+            <th scope="col">方案</th>
+            <th scope="col">适用场景</th>
           </tr>
         </thead>
         <tbody>
@@ -163,8 +163,8 @@ export function RagPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>原理中的优化点</th>
-            <th>SecRAG 的落地</th>
+            <th scope="col">原理中的优化点</th>
+            <th scope="col">SecRAG 的落地</th>
           </tr>
         </thead>
         <tbody>

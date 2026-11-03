@@ -75,8 +75,8 @@ export function LlmWikiMcpContent() {
       <table>
         <thead>
           <tr>
-            <th>能力</th>
-            <th>项目中的落点</th>
+            <th scope="col">能力</th>
+            <th scope="col">项目中的落点</th>
           </tr>
         </thead>
         <tbody>
@@ -112,9 +112,9 @@ export function LlmWikiMcpContent() {
       <table>
         <thead>
           <tr>
-            <th>类别</th>
-            <th>工具</th>
-            <th>作用</th>
+            <th scope="col">类别</th>
+            <th scope="col">工具</th>
+            <th scope="col">作用</th>
           </tr>
         </thead>
         <tbody>
@@ -160,8 +160,8 @@ export function LlmWikiMcpContent() {
       <table>
         <thead>
           <tr>
-            <th>方案</th>
-            <th>取舍</th>
+            <th scope="col">方案</th>
+            <th scope="col">取舍</th>
           </tr>
         </thead>
         <tbody>

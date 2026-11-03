@@ -8,22 +8,25 @@
    纸墨双色 + 单一编辑红强调色
    ============================================================ */
 :root {
+  color-scheme: light;
   --paper: #fbf9f4;
   --paper-2: #f3f0e8;
   --card: #ffffff;
   --ink: #171510;
   --ink-soft: #3a3830;
   --muted: #6b675c;
-  --faint: #75705f;
+  /* faint/muted 与 accent 均按 WCAG AA 校准：需在 paper 与 paper-2 两种底色上都 ≥4.5:1 */
+  --faint: #716c5b;
   --line: #e5e1d3;
   --line-strong: #171510;
-  --accent: #c8402f;
-  --accent-soft: rgba(200, 64, 47, 0.08);
+  --accent: #bf3a29;
+  --accent-soft: rgba(191, 58, 41, 0.08);
   --footer-bg: #f3f0e8;
   --footer-fg: #171510;
 }
 
 .dark {
+  color-scheme: dark;
   --paper: #0f0e0b;
   --paper-2: #191813;
   --card: #161510;
@@ -92,7 +95,8 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  /* 用 --paper 而非 #fff：深色下白字对 #f26a52 仅 3.02:1 */
+  color: var(--paper);
 }
 
 /* 键盘可达焦点 */

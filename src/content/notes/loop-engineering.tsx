@@ -21,9 +21,9 @@ export function LoopEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th>阶段</th>
-            <th>模式</th>
-            <th>说明</th>
+            <th scope="col">阶段</th>
+            <th scope="col">模式</th>
+            <th scope="col">说明</th>
           </tr>
         </thead>
         <tbody>
@@ -52,9 +52,9 @@ export function LoopEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th>层</th>
-            <th>文件/目录</th>
-            <th>核心作用</th>
+            <th scope="col">层</th>
+            <th scope="col">文件/目录</th>
+            <th scope="col">核心作用</th>
           </tr>
         </thead>
         <tbody>
@@ -103,9 +103,9 @@ export function LoopEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th>组件</th>
-            <th>作用</th>
-            <th>关联技术</th>
+            <th scope="col">组件</th>
+            <th scope="col">作用</th>
+            <th scope="col">关联技术</th>
           </tr>
         </thead>
         <tbody>
@@ -174,9 +174,9 @@ export function LoopEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th>失败模式</th>
-            <th>本质</th>
-            <th>根因</th>
+            <th scope="col">失败模式</th>
+            <th scope="col">本质</th>
+            <th scope="col">根因</th>
           </tr>
         </thead>
         <tbody>
@@ -219,9 +219,9 @@ export function LoopEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th></th>
-            <th>/goal</th>
-            <th>/loop</th>
+            <th scope="col"></th>
+            <th scope="col">/goal</th>
+            <th scope="col">/loop</th>
           </tr>
         </thead>
         <tbody>

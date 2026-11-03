@@ -6,7 +6,22 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content="Jaron Lu — React + Tailwind CSS" />
     <meta name="author" content="Jaron Lu" />
-    <meta name="theme-color" content="#fbf9f4" />
+    <meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0e0b" media="(prefers-color-scheme: dark)" />
+    <script>
+      // 首帧绘制前应用主题，避免深色用户每次加载看到白闪。逻辑与 src/hooks/useTheme.ts 一致。
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {
+          /* localStorage 不可用时交给系统偏好 */
+        }
+      })();
+    </script>
 
     <!--seo:start-->
     <!-- 本区块由 scripts/prerender.mjs 在构建时按路由整体替换，请勿手工维护。 -->

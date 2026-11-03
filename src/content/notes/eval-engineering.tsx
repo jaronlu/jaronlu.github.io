@@ -61,9 +61,9 @@ export function EvalEngineeringContent() {
       <table>
         <thead>
           <tr>
-            <th>指标</th>
-            <th>适用问题</th>
-            <th>推荐验证方式</th>
+            <th scope="col">指标</th>
+            <th scope="col">适用问题</th>
+            <th scope="col">推荐验证方式</th>
           </tr>
         </thead>
         <tbody>

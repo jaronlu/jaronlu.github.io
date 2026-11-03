@@ -24,7 +24,7 @@ export function Nav() {
               end={item.to === "/"}
               className={({ isActive }) =>
                 `font-mono text-[0.68rem] font-medium tracking-[0.08em] uppercase transition-colors ${
-                  isActive ? "text-accent" : "text-ink opacity-55 hover:opacity-100 hover:text-accent"
+                  isActive ? "text-accent" : "text-muted hover:text-accent"
                 }`
               }
             >

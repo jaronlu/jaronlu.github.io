@@ -33,9 +33,9 @@ export function AgentPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>维度</th>
-            <th>AI Agent</th>
-            <th>Agentic AI</th>
+            <th scope="col">维度</th>
+            <th scope="col">AI Agent</th>
+            <th scope="col">Agentic AI</th>
           </tr>
         </thead>
         <tbody>
@@ -90,8 +90,8 @@ export function AgentPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>概念</th>
-            <th>特点</th>
+            <th scope="col">概念</th>
+            <th scope="col">特点</th>
           </tr>
         </thead>
         <tbody>
@@ -138,8 +138,8 @@ export function AgentPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>风险</th>
-            <th>说明</th>
+            <th scope="col">风险</th>
+            <th scope="col">说明</th>
           </tr>
         </thead>
         <tbody>
@@ -182,9 +182,9 @@ export function AgentPrinciplesContent() {
       <table>
         <thead>
           <tr>
-            <th>层级</th>
-            <th>范式</th>
-            <th>核心动作</th>
+            <th scope="col">层级</th>
+            <th scope="col">范式</th>
+            <th scope="col">核心动作</th>
           </tr>
         </thead>
         <tbody>

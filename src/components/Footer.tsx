@@ -65,7 +65,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 border-t border-footer-fg/15 pt-5 font-mono text-[0.65rem] tracking-wide text-footer-fg/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-2 border-t border-footer-fg/15 pt-5 font-mono text-[0.65rem] tracking-wide text-footer-fg/65 sm:flex-row sm:items-center sm:justify-between">
           <span>{site.copyright}</span>
           <span>PORTFOLIO — AI AGENT ENGINEERING · BUILT WITH REACT</span>
         </div>

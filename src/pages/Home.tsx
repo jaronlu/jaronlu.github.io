@@ -68,7 +68,7 @@ function Masthead() {
             <div className="flex flex-wrap gap-3 md:justify-self-end">
               <Link
                 to="/projects"
-                className="group inline-flex items-center gap-2 rounded-full border border-ink bg-ink px-5 py-2.5 font-mono text-[0.72rem] font-semibold text-paper transition-colors hover:border-accent hover:bg-accent hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-full border border-ink bg-ink px-5 py-2.5 font-mono text-[0.72rem] font-semibold text-paper transition-colors hover:border-accent hover:bg-accent hover:text-paper"
               >
                 查看项目
                 <span className="transition-transform group-hover:translate-x-0.5">↗</span>

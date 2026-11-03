@@ -9,9 +9,9 @@ export function AgentRuntimeContent() {
       <table>
         <thead>
           <tr>
-            <th>概念</th>
-            <th>说明</th>
-            <th>生命周期</th>
+            <th scope="col">概念</th>
+            <th scope="col">说明</th>
+            <th scope="col">生命周期</th>
           </tr>
         </thead>
         <tbody>
@@ -108,8 +108,8 @@ Agent 处理
       <table>
         <thead>
           <tr>
-            <th>概念</th>
-            <th>适用场景</th>
+            <th scope="col">概念</th>
+            <th scope="col">适用场景</th>
           </tr>
         </thead>
         <tbody>

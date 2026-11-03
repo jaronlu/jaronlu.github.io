@@ -22,8 +22,8 @@ export function McpProtocolContent() {
       <table>
         <thead>
           <tr>
-            <th>概念</th>
-            <th>说明</th>
+            <th scope="col">概念</th>
+            <th scope="col">说明</th>
           </tr>
         </thead>
         <tbody>
@@ -53,9 +53,9 @@ export function McpProtocolContent() {
       <table>
         <thead>
           <tr>
-            <th>方式</th>
-            <th>说明</th>
-            <th>特点</th>
+            <th scope="col">方式</th>
+            <th scope="col">说明</th>
+            <th scope="col">特点</th>
           </tr>
         </thead>
         <tbody>
@@ -93,9 +93,9 @@ export function McpProtocolContent() {
       <table>
         <thead>
           <tr>
-            <th>特性</th>
-            <th>Tool Calling</th>
-            <th>MCP</th>
+            <th scope="col">特性</th>
+            <th scope="col">Tool Calling</th>
+            <th scope="col">MCP</th>
           </tr>
         </thead>
         <tbody>

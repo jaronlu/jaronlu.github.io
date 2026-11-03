@@ -35,8 +35,8 @@ export function ClipFlowContent() {
       <table>
         <thead>
           <tr>
-            <th>能力</th>
-            <th>工程落点</th>
+            <th scope="col">能力</th>
+            <th scope="col">工程落点</th>
           </tr>
         </thead>
         <tbody>
@@ -103,8 +103,8 @@ SQLite Storage / Platform Method Channels`}
       <table>
         <thead>
           <tr>
-            <th>选择</th>
-            <th>取舍</th>
+            <th scope="col">选择</th>
+            <th scope="col">取舍</th>
           </tr>
         </thead>
         <tbody>

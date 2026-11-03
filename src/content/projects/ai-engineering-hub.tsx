@@ -15,9 +15,9 @@ export function AiEngineeringHubContent() {
       <table>
         <thead>
           <tr>
-            <th>维度</th>
-            <th>事实</th>
-            <th>来源</th>
+            <th scope="col">维度</th>
+            <th scope="col">事实</th>
+            <th scope="col">来源</th>
           </tr>
         </thead>
         <tbody>

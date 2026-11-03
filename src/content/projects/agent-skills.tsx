@@ -93,8 +93,8 @@ export function AgentSkillsContent() {
       <table>
         <thead>
           <tr>
-            <th>能力</th>
-            <th>项目中的落点</th>
+            <th scope="col">能力</th>
+            <th scope="col">项目中的落点</th>
           </tr>
         </thead>
         <tbody>
