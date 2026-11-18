@@ -5,10 +5,14 @@ export function AiEngineeringHubContent() {
     <>
       <h2>项目定位</h2>
       <p>
-        ai-engineering-hub 是我的 AI 工程知识治理与学习系统。它不是一个产品项目，而是一个<strong>知识工程项目</strong>——用工程化的方法管理 AI 技术学习内容，确保每一条技术事实都可追溯、可验证、可更新。
+        ai-engineering-hub 是我的 AI 工程知识仓库：<strong>纯文档</strong>，不含
+        pyproject、虚拟环境或示例代码——可运行实践一律放在相邻的独立仓库里。它要解决的问题不是
+        “多存几篇笔记”，而是让一条技术事实在被引用之前，能说清版本、来源和证据强度。
       </p>
       <p>
-        项目的核心目标是：<strong>把"学 AI"从零散的网页收藏和笔记，变成有版本控制、有源码校准、有验证脚本的工程系统</strong>。
+        仓库分两层：<code>docs/</code> 是教程与资料，<code>learning/</code>{" "}
+        是主动学习运行层——记录当前只推进的那一个知识点、教学记录与验收证据。两层分开，是为了避免
+        “看过一篇教程”被当成“已经掌握”。
       </p>
 
       <h2>能力证据矩阵</h2>
@@ -16,128 +20,192 @@ export function AiEngineeringHubContent() {
         <thead>
           <tr>
             <th scope="col">维度</th>
-            <th scope="col">事实</th>
-            <th scope="col">来源</th>
+            <th scope="col">事实（仓库 HEAD）</th>
+            <th scope="col">怎么核对</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>提交历史</td>
-            <td>116 commits，持续迭代</td>
-            <td>git log --oneline | wc -l</td>
+            <td>424 commits，2026 年内持续迭代</td>
+            <td>
+              <code>git rev-list --count HEAD</code>
+            </td>
+          </tr>
+          <tr>
+            <td>文档规模</td>
+            <td>241 篇 Markdown；其中 LangChain 源码校准文档 62 篇</td>
+            <td>
+              <code>git ls-files "*.md"</code> / <code>ls docs/langchain</code>
+            </td>
           </tr>
           <tr>
             <td>生态覆盖</td>
-            <td>4 个生态：LangChain、LlamaIndex、AutoGPT、ComfyUI</td>
-            <td>docs/ 目录结构</td>
+            <td>
+              LangChain / LangGraph、LlamaIndex、AutoGPT、ComfyUI、pi、Langfuse、TradingAgents，
+              另有 cross-framework 对比与 interview 资料
+            </td>
+            <td>
+              <code>docs/</code> 目录结构
+            </td>
           </tr>
           <tr>
             <td>专题教程</td>
-            <td>7 个 Agent Engineering 专题，每篇 11-24KB</td>
-            <td>tutorial/ 目录</td>
+            <td>7 个 Agent Engineering 专题 + Hermes Agent 源码系列 + 其他专题</td>
+            <td>
+              <code>docs/tutorial/chore/</code>、<code>docs/tutorial/hermesAgent/</code>
+            </td>
           </tr>
           <tr>
-            <td>学习文档</td>
-            <td>56 篇 LangChain 源码校准文档，从 01-messages 到 56-server-auth-security</td>
-            <td>docs/langchain/ 目录</td>
+            <td>学习运行层</td>
+            <td>
+              <code>14-day-plan.md</code> 排单元、<code>progress.md</code> 作为进度唯一事实来源、{" "}
+              <code>learning-protocol.md</code> 定义教学与验收
+            </td>
+            <td>
+              <code>learning/</code>
+            </td>
           </tr>
           <tr>
-            <td>可运行代码</td>
-            <td>langchain/examples/ 下 model/agent/stream/runnable 示例 + deepagents/langgraph 子目录</td>
-            <td>langchain/examples/</td>
+            <td>源码基线</td>
+            <td>
+              <code>local-source-repos.json</code> 记录上游仓库的本地路径与{" "}
+              <code>branch@commit</code>，写入前核对 HEAD
+            </td>
+            <td>仓库根目录</td>
           </tr>
           <tr>
-            <td>验证脚本</td>
-            <td>validate_tutorial.py 自动验证教程结构和引用完整性</td>
-            <td>scripts/validate_tutorial.py</td>
-          </tr>
-          <tr>
-            <td>工程工具</td>
-            <td>build_nav.py、ecosystem.py、tutorial_loop.py 等自动化脚本</td>
-            <td>scripts/ 目录</td>
-          </tr>
-          <tr>
-            <td>知识治理</td>
-            <td>workflow.md 定义严格的 Search→Execute→Verify SOP，含停止门禁和源码校准机制</td>
-            <td>workflow.md</td>
-          </tr>
-          <tr>
-            <td>生态配置</td>
-            <td>ops/ecosystems.json 定义已启用生态及其运行环境</td>
-            <td>ops/ecosystems.json</td>
-          </tr>
-          <tr>
-            <td>依赖管理</td>
-            <td>每个生态独立 pyproject.toml + uv.lock，不在根目录合并框架依赖</td>
-            <td>各生态目录</td>
+            <td>工作规则</td>
+            <td>
+              <code>AGENTS.md</code> 定义常驻必读、文档分流、引用格式与停止条件；{" "}
+              <code>ops/</code> 保存生态配置与标准
+            </td>
+            <td>
+              <code>AGENTS.md</code>、<code>ops/</code>
+            </td>
           </tr>
         </tbody>
       </table>
 
       <h2>7 个 Agent Engineering 专题</h2>
-      <p>
-        教程按 Agent 工程系统的工作链排列，不是随机的概念集合：
-      </p>
+      <p>教程按 Agent 的工作链排列，不是随机概念集合：</p>
       <ol>
-        <li><strong>Context Engineering</strong>（看什么）：上下文装配、压缩、渐进式披露</li>
-        <li><strong>Tool Engineering</strong>（做什么）：工具设计、边界、返回值、错误处理</li>
-        <li><strong>Memory Engineering</strong>（记什么）：状态、记忆、生命周期、纠错机制</li>
-        <li><strong>Harness Engineering</strong>（在哪里做）：运行环境、沙箱、权限、hooks、back-pressure</li>
-        <li><strong>Loop Engineering</strong>（怎么循环做）：Agent loop、错误恢复、停止条件、状态机</li>
-        <li><strong>Graph Engineering</strong>（怎么组织复杂过程）：LangGraph、子图、动态转移、人机协作</li>
-        <li><strong>Eval Engineering</strong>（怎么判断好坏）：能力定义、黄金数据、verifier 设计、失败回归</li>
+        <li>
+          <strong>Context Engineering</strong>（看什么）：上下文装配、压缩、渐进式披露
+        </li>
+        <li>
+          <strong>Tool Engineering</strong>（做什么）：工具设计、边界、返回值、错误处理
+        </li>
+        <li>
+          <strong>Memory Engineering</strong>（记什么）：状态、记忆、生命周期、纠错机制
+        </li>
+        <li>
+          <strong>Harness Engineering</strong>（在哪里做）：运行环境、沙箱、权限、hooks、回压
+        </li>
+        <li>
+          <strong>Loop Engineering</strong>（怎么循环）：Agent loop、错误恢复、停止条件、状态机
+        </li>
+        <li>
+          <strong>Graph Engineering</strong>（怎么组织）：LangGraph、子图、动态转移、人机协作
+        </li>
+        <li>
+          <strong>Eval Engineering</strong>（怎么判断好坏）：能力定义、黄金数据、verifier、失败回归
+        </li>
       </ol>
       <p>
-        每篇教程都有元数据标注：source_type（官方工程文章/API文档/行业调研）、source_urls（具体来源链接）、retrieved_at（检索日期）、status（research-compiled）。这保证了内容的可追溯性。
+        每篇开头先给结论与边界，再讲“谁产生什么、数据怎么走”，最后才是参数。事实按来源标注，
+        未核实的写成待核，不塞成确定结论。
       </p>
+
+      <h2>学习运行层：把“学过”与“会用”分开</h2>
+      <p>
+        <code>learning/</code> 记录的是可验收的学习状态，而不是阅读清单。三条规则决定它怎么运转：
+      </p>
+      <ul>
+        <li>
+          <strong>一次只推进一个知识点</strong>：<code>14-day-plan.md</code> 排单元，{" "}
+          <code>progress.md</code> 是唯一事实来源；旧笔记与“已完成”不自动算通过。
+        </li>
+        <li>
+          <strong>教学记录不等于验收证据</strong>：教学过程的{" "}
+          <code>notes/teaching/</code> 文件头标注“AI 讲授记录，不是验收证据”，学习者的复述、
+          举例与实作另存，验收分数只认后者。
+        </li>
+        <li>
+          <strong>结论允许被推翻</strong>：冲突未解决时标为 <code>Uncertain</code>、暂停泛化，
+          等新证据，而不是挑一个说法写成结论。
+        </li>
+      </ul>
 
       <h2>知识治理 SOP</h2>
       <p>
-        整个项目最有特色的部分是 <code>workflow.md</code> 定义的严格知识治理 SOP。核心原则：
+        仓库里最有约束力的部分是 <code>AGENTS.md</code> 与{" "}
+        <code>learning/source-trace.md</code> 定义的写入规则。核心几条：
       </p>
       <ul>
-        <li><strong>停止门禁优先于执行</strong>：任何一步发现条件不满足（源码路径不确定、HEAD 与索引不一致、RepoPrompt MCP 不可用、依赖冲突、API 已弃用），必须立即停止，不得用猜测或网页摘要绕过</li>
-        <li><strong>唯一可信源码基线</strong>：local-source-repos.json 记录每个仓库的本地源码路径和 branch_commit（分支@hash 完整字符串），每次写入前必须校验本地 HEAD 与索引中的 hash 一致</li>
-        <li><strong>Search → Execute → Verify 三阶段</strong>：先只读检查边界和已有资产，再用 RepoPrompt MCP 读取源码校准技术事实，最后验证可运行性和引用完整性</li>
-        <li><strong>README/网页/模型记忆只能定位候选，不能证明事实</strong>：已弃用的 API 不得作为实现依据，必须改用当前受支持的公共 API</li>
+        <li>
+          <strong>停止门禁优先于执行</strong>：源码路径不确定、HEAD 与索引不一致、依赖冲突、
+          API 已弃用——任一条命中就停，不用网页摘要或模型记忆绕过。
+        </li>
+        <li>
+          <strong>唯一可信源码基线</strong>：<code>local-source-repos.json</code> 记录{" "}
+          <code>branch@commit</code>；同步、hash 回写与台账流程单独成文，第三方开源库只读，
+          不改 remote、不 push。
+        </li>
+        <li>
+          <strong>引用格式固定</strong>：用 <code>repo:path::symbol</code>，不写行号、commit 或
+          本机绝对路径——文档被移动后引用仍然成立。
+        </li>
+        <li>
+          <strong>文档分流</strong>：教程、memo、面试资料各有格式自由与事实标注要求，
+          冲突时以 <code>AGENTS.md</code> 为准，旧生产流程不再强制。
+        </li>
       </ul>
       <p>
-        这套 SOP 的设计灵感来自证券交易系统的"唯一可信数据源"原则——价格、持仓、权限都必须有唯一权威来源，不能多个系统各自维护然后"互相对齐"。知识治理同理。
+        这套规则的来源是证券系统的“唯一可信数据源”：价格、持仓、权限都必须有单一权威来源，
+        不能多个系统各自维护再互相对齐。知识治理同理——同一事实只允许一个可核对的基线。
       </p>
 
       <h2>与其他项目的关联</h2>
       <ul>
         <li>
-          <Link to="/projects/secrag">SecRAG</Link>：知识治理 SOP 的"增量+校验"原则与 SecRAG 的知识库入库引擎（稳定文档 ID、内容哈希比对、版本管理、更新跳过）是同一套工程思维
+          <Link to="/projects/secrag">SecRAG</Link>：增量入库的“稳定 ID + 内容哈希 + 跳过未变更”
+          与本仓库的源码基线校验是同一套思路
         </li>
         <li>
-          <Link to="/projects/agent-skills">agent-skills</Link>：Harness Engineering 的"能力分发"维度在 agent-skills 中具体落地——Skills 单一源码、配置驱动分发、冲突保护、幂等同步
+          <Link to="/projects/agent-skills">agent-skills</Link>：Harness 维度的能力分发在这里落地——
+          单一源码、配置驱动、冲突停止、幂等同步
         </li>
         <li>
-          <Link to="/projects/llm-wiki-mcp">llm-wiki-mcp</Link>：知识治理的"候选评审"机制在 llm-wiki-mcp 中具体落地——Agent 不直接写入正式知识，而是创建候选，经评审后合并
+          <Link to="/projects/llm-wiki-mcp">llm-wiki-mcp</Link>：知识写入的“候选 → 评审 → 落盘”
+          机制在这里成为工具契约
         </li>
       </ul>
 
-      <h2>从客户端工程到知识工程的迁移</h2>
+      <h2>从客户端工程迁移过来的判断</h2>
       <p>
-        这个项目体现了我从 iOS/鸿蒙客户端工程向 AI 工程转型时的一个关键判断：<strong>客户端工程中"可维护性、可测试性、可追溯性"的核心能力，可以直接迁移到 AI 知识管理领域</strong>。
+        这个仓库体现的是我从 iOS / 鸿蒙客户端转向 AI 工程时的一个判断：
+        <strong>可维护、可测试、可追溯，这三件事在哪个领域都决定系统能不能长期跑</strong>。
       </p>
       <ul>
-        <li>客户端的"版本管理 + 变更日志" → 知识治理的"branch_commit 校验 + 来源追溯"</li>
-        <li>客户端的"单元测试 + UI 测试" → 知识治理的"validate_tutorial.py + 可运行性验证"</li>
-        <li>客户端的"模块化 + 依赖注入" → 知识治理的"生态独立目录 + 独立依赖锁定"</li>
-        <li>客户端的"崩溃监控 + 热修复" → 知识治理的"失败样例回归 + 文档新鲜度 CI"</li>
+        <li>客户端的版本管理 + 变更日志 → 源码基线 + 台账</li>
+        <li>客户端的单元测试 + 回归 → 验收证据 + 失败样例回归</li>
+        <li>客户端的模块化 + 依赖锁定 → 生态独立目录 + 独立依赖</li>
+        <li>客户端的崩溃监控 + 热修复 → 文档新鲜度检查 + 弃用 API 停用</li>
       </ul>
-      <p>
-        这不是"为了学习而学习"，而是用我已有的工程能力去解决 AI 学习中的真实问题——内容过时、来源不可追溯、API 弃用后笔记还在教旧用法。
-      </p>
 
       <h2>适用边界</h2>
       <ul>
-        <li>这是一个学习/知识工程项目，不是产品项目，不面向终端用户</li>
-        <li>tutorial/ 中的内容 status 为 research-compiled（研究编译），基于官方文档和行业调研，不是个人原创实战</li>
-        <li>docs/langchain/ 中的 56 篇文档经过源码校准，但 LangChain API 变化较快，具体用法需结合当前版本验证</li>
-        <li>项目主要服务于我个人的学习和知识管理，开源后可作为"知识工程方法论"的参考，但不保证适合所有人的学习风格</li>
+        <li>这是个人知识工程仓库，不是产品，也没有面向终端用户的功能。</li>
+        <li>仓库为私有，面试时可现场演示目录、规则与提交历史。</li>
+        <li>
+          <code>docs/langchain/</code> 的 62 篇文档经过源码校准，但 LangChain API 变化快，
+          具体用法仍需按当前版本复核。
+        </li>
+        <li>
+          教程的 <code>status</code> 多为 research-compiled（研究编译），基于官方文档与源码，
+          不是原创实战案例；边界写在各篇开头。
+        </li>
       </ul>
     </>
   );
