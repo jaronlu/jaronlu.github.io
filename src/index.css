@@ -286,6 +286,19 @@ body {
   line-height: 1.6;
 }
 
+/* 窄屏下表格里的长命令/路径是溢出元凶：允许任意断行，避免整页横向滚动 */
+.prose table td,
+.prose table th {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 内联 code 默认 nowrap；表格单元格内必须放开，否则长命令会把整页撑宽 */
+.prose table code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .prose thead th {
   background: var(--paper-2);
   color: var(--ink);
@@ -338,8 +351,8 @@ body {
   white-space: pre;
 }
 
-/* 元信息条（项目档案头） */
-.prose .meta-strip {
+/* 元信息条（项目档案头）：详情页里它在 .prose 之外，所以不能写成 .prose .meta-strip */
+.meta-strip {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem 2.2rem;
@@ -349,7 +362,7 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
-.prose .meta-strip > * {
+.meta-strip > * {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -358,7 +371,7 @@ body {
   text-decoration: none;
 }
 
-.prose .meta-strip b {
+.meta-strip b {
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 600;
@@ -367,7 +380,7 @@ body {
   color: var(--faint);
 }
 
-.prose .meta-strip a {
+.meta-strip a {
   color: var(--accent);
 }
 
