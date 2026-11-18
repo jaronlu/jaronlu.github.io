@@ -173,15 +173,15 @@ export function SecRAGContent() {
       <h2>可验证的代码事实</h2>
       <p>这个项目的可信度建立在代码本身，不是设计文档：</p>
       <ul>
-        <li><strong>106 次独立 commit</strong>，功能按模块逐步落地（数据管道 → 基础RAG → Agent编排 → 检索优化 → 金融工具 → 身份权限 → 合规 → 前端 → 容器化）</li>
+        <li><strong>304 次独立 commit</strong>，功能按模块逐步落地（数据管道 → 基础 RAG → Agent 编排 → 检索优化 → 金融工具 → 身份权限 → 合规 → 前端 → 容器化 → 组合持仓）</li>
         <li>
-          <code>src/</code> 共 <strong>11,540 行</strong> Python 代码，10 个模块：<code>agents/</code>（LangGraph 工作流）、<code>api/</code>（FastAPI 路由 + 身份绑定 + Web UI）、<code>ingestion/</code>（文档解析 + 增量入库）、<code>rag/</code>（基础 RAG 链）、<code>retrieval/</code>（多源检索 + 权限过滤）、<code>tools/</code>（7 种 Agent 工具）、<code>utils/</code>（引用验证 + 合规 + 会话 + 审计）、<code>evaluation/</code>、<code>schemas/</code>、<code>config.py</code>
+          <code>src/</code> 共 <strong>16,703 行</strong> Python 代码（79 个文件，11 个模块 + 2 个顶层文件）：<code>agents/</code>（LangGraph 工作流）、<code>api/</code>（FastAPI 路由 + 身份绑定 + Web UI）、<code>ingestion/</code>（文档解析 + 增量入库）、<code>rag/</code>（基础 RAG 链）、<code>retrieval/</code>（多源检索 + 权限过滤）、<code>tools/</code>（Agent 工具集）、<code>jobs/</code>（定时任务）、<code>portfolio/</code>（持仓）、<code>utils/</code>（引用验证 + 合规 + 会话 + 审计）、<code>evaluation/</code>、<code>schemas/</code>
         </li>
         <li>
-          <code>tests/</code> 共 <strong>4,987 行</strong>，<strong>256 个测试用例</strong>，23 个测试文件，覆盖 Agent 节点与路由、身份和权限、检索、数据摄入、会话、合规、工具以及 API
+          <code>tests/</code> 共 <strong>16,452 行</strong>、<strong>683 个测试定义</strong>（<code>pytest --collect-only</code> 收集 745 条），52 个测试文件，覆盖 Agent 节点与路由、身份和权限、检索、数据摄入、会话、合规、工具以及 API
         </li>
         <li>
-          <code>scripts/</code> 共 19 个脚本：入库、演示、权限检查、检索评估、回答评估、端到端评估、合规评估、对话评估、数据抓取、chunk 检查
+          <code>scripts/</code> 共 19 个 Python 脚本：入库、演示、权限检查、检索评估、回答评估、端到端评估、合规评估、对话评估、数据抓取、chunk 检查
         </li>
         <li>
           <code>frontend/</code> 独立 React 应用：App.tsx、pages/、components/、api.ts、types.ts，使用 Vite + Tailwind + TypeScript

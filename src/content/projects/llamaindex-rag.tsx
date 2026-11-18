@@ -172,7 +172,7 @@ export function LlamaIndexRagContent() {
         <tbody>
           <tr>
             <td>自动化测试</td>
-            <td>9 个测试文件、171 个用例，覆盖六个阶段、HTTP 接口与日志</td>
+            <td>11 个测试文件、193 个测试定义，覆盖六个阶段、HTTP 接口与日志</td>
           </tr>
           <tr>
             <td>固定问题集</td>

@@ -22,7 +22,7 @@ export function AgentSkillsContent() {
           viewBox="0 0 820 300"
           xmlns="http://www.w3.org/2000/svg"
           role="img"
-          aria-label="agent-skills 分发架构：skills 唯一源码经配置校验、冲突检测、增量同步分发到 Codex、Claude、Hermes，最终验证路径并记录状态"
+          aria-label="agent-skills 分发架构：skills 唯一源码经配置校验、冲突检测、增量同步分发到 ~/.agents、~/.claude、~/.workbuddy 等共享 Skill 目录，最终验证路径并记录状态"
         >
           <defs>
             <marker id="asarr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -64,29 +64,28 @@ export function AgentSkillsContent() {
 
           {/* 客户端层 */}
           <rect className="asn" x="120" y="170" width="160" height="44" />
-          <text className="ast" x="200" y="190" textAnchor="middle">Codex</text>
-          <text className="ass" x="200" y="206" textAnchor="middle">~/.codex/skills/</text>
+          <text className="ast" x="200" y="190" textAnchor="middle">AGENTS</text>
+          <text className="ass" x="200" y="206" textAnchor="middle">~/.agents/skills · full</text>
 
           <rect className="asn" x="330" y="170" width="160" height="44" />
-          <text className="ast" x="410" y="190" textAnchor="middle">Claude</text>
-          <text className="ass" x="410" y="206" textAnchor="middle">~/.claude/skills/</text>
+          <text className="ast" x="410" y="190" textAnchor="middle">CLAUDE</text>
+          <text className="ass" x="410" y="206" textAnchor="middle">~/.claude/skills · full</text>
 
           <rect className="asn" x="540" y="170" width="160" height="44" />
-          <text className="ast" x="620" y="190" textAnchor="middle">Hermes</text>
-          <text className="ass" x="620" y="206" textAnchor="middle">配置驱动路径</text>
+          <text className="ast" x="620" y="190" textAnchor="middle">WORKBUDDY</text>
+          <text className="ass" x="620" y="206" textAnchor="middle">~/.workbuddy/skills · core</text>
 
           {/* 箭头：最终路径验证 */}
           <line className="asla" x1="200" y1="214" x2="200" y2="236" markerEnd="url(#asarra)" />
           <line className="asla" x1="410" y1="214" x2="410" y2="236" markerEnd="url(#asarra)" />
           <line className="asla" x1="620" y1="214" x2="620" y2="236" markerEnd="url(#asarra)" />
-          <text className="asa" x="410" y="230" textAnchor="middle">最终路径验证 + 状态记录</text>
 
           {/* 状态记录层 */}
           <rect className="asn" x="280" y="244" width="260" height="40" />
           <text className="ast" x="410" y="262" textAnchor="middle">本地状态记录</text>
           <text className="ass" x="410" y="278" textAnchor="middle">受管链接清单 · 源路径 · 目标路径 · 校验时间</text>
         </svg>
-        <figcaption>红色标注的是两个确定性约束点：分发引擎的冲突检测，以及落地后的最终路径验证。状态记录保证幂等——重复运行不会产生重复链接。</figcaption>
+        <figcaption>红色标注的是两个确定性约束点：分发引擎的冲突检测，以及落地后的最终路径验证。状态记录保证幂等——重复运行不会产生重复链接。图中只画三个目标，另有 <code>~/.zcode/skills</code> 与 llm-wiki 项目级 <code>.claude/skills</code> 走同一套机制，差别只在 profile。</figcaption>
       </figure>
 
       <h2>能力证据矩阵</h2>
@@ -141,9 +140,9 @@ export function AgentSkillsContent() {
 
       <h2>当前证据</h2>
       <ul>
-        <li><strong>69 次 commit</strong>，持续迭代分发引擎和 Skill 内容</li>
-        <li>仓库公开 <strong>5 个自研 Skill</strong>：<code>design-convergence-review</code>（设计就绪检查）、<code>first-principles</code>（第一性原理重建决策）、<code>git-commit</code>（仓库感知 Conventional Commit）、<code>hermes-context-review</code>（Hermes 上下文审计）、<code>llm-wiki</code>（知识库搜索与维护）</li>
-        <li><strong>696 行测试代码</strong>，4 个测试文件：链接管理器、Skill 验证、git-commit Skill 契约、llm-wiki 脚本</li>
+        <li><strong>146 次 commit</strong>，持续迭代分发引擎和 Skill 内容</li>
+        <li>仓库维护 <strong>12 个自研 Skill</strong>，覆盖四类场景：提交与仓库（<code>git-commit</code>、<code>agent-gitignore</code>）、知识维护（<code>llm-wiki</code>、<code>hermes-context-review</code>）、设计与决策（<code>design-convergence-review</code>、<code>first-principles</code>、<code>five-dimension-analysis</code>）、表达与阅读（<code>communication-formulas</code>、<code>prompt-optimizer</code>、<code>human-readable-codebook</code>、<code>chinese-text-fixer</code>、<code>chrome-bookmarks</code>）</li>
+        <li><strong>2,113 行测试代码</strong>，6 个测试文件、<strong>118 个测试定义</strong>：链接管理器、Skill 验证、Skill 契约、llm-wiki 脚本、书签分类与 gitignore 规则</li>
         <li>独立的 <code>validate_skills.py</code> 验证脚本，检查每个 Skill 的结构完整性和契约一致性</li>
         <li>项目文档以 <code>llm-wiki</code> 为真实来源，工程仓库通过受管链接暴露，避免文档双写；中英文双语 README</li>
       </ul>
