@@ -6,7 +6,9 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { AgentSkillsContent } from "../content/projects/agent-skills";
 import { AiEngineeringHubContent } from "../content/projects/ai-engineering-hub";
 import { ClipFlowContent } from "../content/projects/clip-flow";
+import { DoubaoCronContent } from "../content/projects/doubao-cron";
 import { LlamaIndexRagContent } from "../content/projects/llamaindex-rag";
+import { LlmWikiContent } from "../content/projects/llm-wiki";
 import { LlmWikiMcpContent } from "../content/projects/llm-wiki-mcp";
 import { SecRAGContent } from "../content/projects/secrag";
 
@@ -17,6 +19,8 @@ const contentMap = {
   "clip-flow": ClipFlowContent,
   "ai-engineering-hub": AiEngineeringHubContent,
   "llamaindex-rag": LlamaIndexRagContent,
+  "doubao-cron": DoubaoCronContent,
+  "llm-wiki": LlmWikiContent,
 } as const;
 
 export function ProjectDetail() {
@@ -66,10 +70,17 @@ export function ProjectDetail() {
             <b>技术栈</b>
             {project.stack}
           </span>
-          <a href={project.repo} target="_blank" rel="noreferrer">
-            <b>源码</b>
-            GitHub ↗
-          </a>
+          {project.repo ? (
+            <a href={project.repo} target="_blank" rel="noreferrer">
+              <b>源码</b>
+              GitHub ↗
+            </a>
+          ) : (
+            <span>
+              <b>源码</b>
+              {project.repoNote ?? "私有仓库"}
+            </span>
+          )}
         </div>
       </Reveal>
 

@@ -9,7 +9,7 @@ export function Projects() {
       <PageHead
         kicker="PROJECTS"
         title="项目"
-        metaDescription="六个项目的工程记录：可信问答、RAG 分阶段实现、知识治理、能力分发与跨平台客户端。"
+        metaDescription="八个项目的工程记录：可信问答、知识编译、知识操作、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。"
       >
         前三个项目构成一条 Agent 工程链路：<b className="text-ink">SecRAG</b>{" "}
         解决垂直场景中的可信问答，<b className="text-ink">llm-wiki-mcp</b>{" "}
@@ -19,7 +19,9 @@ export function Projects() {
         补充跨平台桌面客户端的产品与工程实践。
         <b className="text-ink">LlamaIndex RAG</b>{" "}
         把检索链路拆成六段逐段验证，<b className="text-ink">ai-engineering-hub</b>{" "}
-        记录知识治理与源码校准过程。
+        记录知识治理与源码校准过程，<b className="text-ink">doubao-cron</b>{" "}
+        把同一套约束用在每天固定时点运行的自动化任务上；<b className="text-ink">llm-wiki</b>{" "}
+        是这些工具背后的知识库本体——原始证据在入库时编译成正式页。
       </PageHead>
 
       <section className="border-b border-line">
@@ -49,7 +51,11 @@ export function Projects() {
             </div>
           </Reveal>
           <p className="mt-6 max-w-[62ch] text-[0.78rem] leading-relaxed text-faint">
-            所有数字均来自当前项目源码或 Wiki 中的已核对记录；设计目标与已完成能力分开表达。
+            公开仓库的数字都能在仓库 HEAD 上用一条命令复算（提交数取
+            <code className="mx-1">git rev-list --count HEAD</code>
+            ，测试定义取
+            <code className="mx-1">grep -rho 'def test_'</code>
+            ）；私有仓库在详情页 meta 条中注明，可面试现场演示。设计目标与已完成能力分开表达。
           </p>
         </div>
       </section>

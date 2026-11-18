@@ -202,6 +202,9 @@ export function LlmWikiMcpContent() {
       <h2>相关页面</h2>
       <ul>
         <li>
+          <Link to="/projects/llm-wiki">llm-wiki</Link>：工具层背后的知识库本体与内容契约
+        </li>
+        <li>
           <Link to="/notes/mcp-protocol">MCP 协议</Link>
         </li>
         <li>
