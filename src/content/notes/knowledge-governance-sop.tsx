@@ -66,11 +66,11 @@ export function KnowledgeGovernanceSopContent() {
         这套 SOP 不是理论设计，而是我在 ai-engineering-hub 中实际执行的工作流。具体落地：
       </p>
       <ul>
-        <li><strong>4 个生态目录</strong>（langchain/llamaindex/autogpt/comfyui）各自维护独立的 pyproject.toml 和 uv.lock，不在根目录合并框架依赖</li>
-        <li><strong>56 篇 langchain 学习文档</strong>每篇都经过源码校准，从 01-messages 到 56-server-auth-security</li>
-        <li><strong>7 个 Agent Engineering 专题教程</strong>基于官方文档和行业调研，每篇标注 source_type、source_urls、retrieved_at、status</li>
-        <li><strong>validate_tutorial.py</strong> 自动验证教程结构和引用完整性</li>
-        <li><strong>ops/ecosystems.json</strong> 定义已启用生态及其运行环境</li>
+        <li><strong>7 个生态目录</strong>（langchain、llamaindex、autogpt、comfyui、pi、langfuse、tradingagents）各自成篇，可运行代码放在独立仓库，本仓库只保留文档与规则</li>
+        <li><strong>62 篇 langchain 学习文档</strong>每篇都经过源码校准；全仓库 241 篇 Markdown，事实按来源标注</li>
+        <li><strong>7 个 Agent Engineering 专题教程</strong>按“看什么 → 做什么 → 记什么 → 在哪做 → 怎么循环 → 怎么组织 → 怎么评估”排列</li>
+        <li><strong>AGENTS.md + local-source-repos.json</strong>：常驻必读、文档分流、引用格式（<code>repo:path::symbol</code>）与 <code>branch@commit</code> 基线校验</li>
+        <li><strong>learning/ 学习运行层</strong>：<code>progress.md</code> 作为进度唯一事实来源，教学记录与验收证据分开存放</li>
       </ul>
       <p>
         与 <Link to="/projects/secrag">SecRAG</Link> 的关联：SecRAG 的文档管理和知识库入库也遵循类似的"增量+校验"原则——稳定文档 ID、内容哈希比对、版本管理、更新跳过，本质上和知识治理 SOP 的"唯一可信基线+变更校验"是同一套工程思维。

@@ -159,7 +159,7 @@ export function EvalEngineeringContent() {
         <li><strong>端到端评估</strong>（scripts/eval_e2e.py）：模拟真实用户请求，测量完整回答质量、延迟和 token 消耗</li>
         <li><strong>合规评估</strong>（scripts/eval_compliance.py）：测试风险揭示、免责声明、适当性检查是否在需要时触发</li>
         <li><strong>权限冒烟检查</strong>（scripts/smoke_permissions.py）：验证每种角色能看到什么、不能看到什么，防止越权</li>
-        <li><strong>256 个测试用例</strong>（4987 行测试代码，23 个测试文件）：覆盖检索、工具、安全、合规、状态、增量入库等模块</li>
+        <li><strong>683 个测试定义</strong>（<code>pytest --collect-only</code> 收集 745 条，16,452 行测试代码，52 个测试文件）：覆盖检索、工具、安全、合规、状态、增量入库等模块</li>
       </ul>
       <p>
         这套评估体系的核心判断是：<strong>金融问答的"正确"不只是答案对，还包括来源可追溯、数字可验证、合规有揭示、权限不越界</strong>。因此 SecRAG 的 eval 不是单一分数，而是检索质量、回答质量、合规性、权限隔离四个维度的独立评估。
