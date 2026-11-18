@@ -1,32 +1,42 @@
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
 import { projectBySlug } from "../data/projects";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
-import { AgentSkillsContent } from "../content/projects/agent-skills";
-import { AiEngineeringHubContent } from "../content/projects/ai-engineering-hub";
-import { ClipFlowContent } from "../content/projects/clip-flow";
-import { DoubaoCronContent } from "../content/projects/doubao-cron";
-import { LlamaIndexRagContent } from "../content/projects/llamaindex-rag";
-import { LlmWikiContent } from "../content/projects/llm-wiki";
-import { LlmWikiMcpContent } from "../content/projects/llm-wiki-mcp";
-import { SecRAGContent } from "../content/projects/secrag";
-
-const contentMap = {
-  secrag: SecRAGContent,
-  "llm-wiki-mcp": LlmWikiMcpContent,
-  "agent-skills": AgentSkillsContent,
-  "clip-flow": ClipFlowContent,
-  "ai-engineering-hub": AiEngineeringHubContent,
-  "llamaindex-rag": LlamaIndexRagContent,
-  "doubao-cron": DoubaoCronContent,
-  "llm-wiki": LlmWikiContent,
-} as const;
+/**
+ * 正文按路由懒加载：八个项目的 Markdown 级正文合计占比最大，
+ * 静态导入会让首页也下载全部项目文本。这里改成动态 import，Vite 会切成独立 chunk。
+ */
+const contentMap: Record<string, LazyExoticComponent<ComponentType>> = {
+  secrag: lazy(() => import("../content/projects/secrag").then((m) => ({ default: m.SecRAGContent }))),
+  "llm-wiki-mcp": lazy(() =>
+    import("../content/projects/llm-wiki-mcp").then((m) => ({ default: m.LlmWikiMcpContent }))
+  ),
+  "agent-skills": lazy(() =>
+    import("../content/projects/agent-skills").then((m) => ({ default: m.AgentSkillsContent }))
+  ),
+  "clip-flow": lazy(() =>
+    import("../content/projects/clip-flow").then((m) => ({ default: m.ClipFlowContent }))
+  ),
+  "ai-engineering-hub": lazy(() =>
+    import("../content/projects/ai-engineering-hub").then((m) => ({ default: m.AiEngineeringHubContent }))
+  ),
+  "llamaindex-rag": lazy(() =>
+    import("../content/projects/llamaindex-rag").then((m) => ({ default: m.LlamaIndexRagContent }))
+  ),
+  "doubao-cron": lazy(() =>
+    import("../content/projects/doubao-cron").then((m) => ({ default: m.DoubaoCronContent }))
+  ),
+  "llm-wiki": lazy(() =>
+    import("../content/projects/llm-wiki").then((m) => ({ default: m.LlmWikiContent }))
+  ),
+};
 
 export function ProjectDetail() {
   const { slug } = useParams();
   const project = slug ? projectBySlug(slug) : undefined;
-  const Content = slug ? contentMap[slug as keyof typeof contentMap] : undefined;
+  const Content = slug ? contentMap[slug] : undefined;
 
   useDocumentMeta(
     project ? `${project.name} · 项目 · Jaron Lu` : "项目 · Jaron Lu",
@@ -90,8 +100,10 @@ export function ProjectDetail() {
         </blockquote>
       </Reveal>
 
-      <div className="prose mt-10">
-        <Content />
+      <div className="prose mt-10 min-h-[60vh]">
+        <Suspense fallback={<p className="font-mono text-[0.7rem] text-muted">正在载入正文…</p>}>
+          <Content />
+        </Suspense>
       </div>
 
       <footer className="mt-14 border-t border-line pt-6">
