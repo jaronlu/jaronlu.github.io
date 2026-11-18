@@ -11,12 +11,13 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 const stackLine = ["Agentic RAG", "MCP 知识操作层", "Skills 分发", "评测先行"];
 
-/* 精选行只留一个可核对的数字，完整证据行在项目列表页。 */
+/* 精选行只留一个可核对的数字，完整证据行在项目列表页。
+   数字口径：grep -rho 'def test_' 得到的测试定义数；Skill 数量取 `ls skills | wc -l`。 */
 const proof: Record<string, string> = {
-  secrag: "256 测试用例",
-  "llm-wiki-mcp": "94 测试用例",
-  "agent-skills": "696 行测试",
-  "llamaindex-rag": "171 测试用例",
+  secrag: "683 个测试定义",
+  "llm-wiki-mcp": "87 个测试定义",
+  "agent-skills": "12 Skill · 118 测试定义",
+  "llamaindex-rag": "193 个测试定义",
 };
 
 /* 每行补一句它解决的工程约束——原首页三个项目区块的重复表述收敛到这里。 */
