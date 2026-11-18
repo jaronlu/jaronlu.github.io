@@ -30,6 +30,7 @@ const HOME_DESCRIPTION =
 const routes = [
   {
     path: "",
+    h1: SITE_NAME,
     title: `${SITE_NAME} · AI Agent Engineer`,
     description: HOME_DESCRIPTION,
     priority: "1.0",
@@ -37,6 +38,7 @@ const routes = [
   },
   {
     path: "projects",
+    h1: "项目",
     title: `项目 · ${SITE_NAME}`,
     description:
       "八个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。",
@@ -45,6 +47,7 @@ const routes = [
   },
   {
     path: "notes",
+    h1: "工程笔记",
     title: `工程笔记 · ${SITE_NAME}`,
     description:
       "围绕 Agent Runtime、RAG、MCP 与 Loop Engineering 的工程笔记，记录直接支撑项目设计的约束、取舍与验证方法。",
@@ -53,6 +56,7 @@ const routes = [
   },
   {
     path: "about",
+    h1: "关于我",
     title: `关于我 · ${SITE_NAME}`,
     description:
       "10 年证券客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。",
@@ -61,6 +65,7 @@ const routes = [
   },
   ...projects.map((p) => ({
     path: `projects/${p.slug}`,
+    h1: p.name,
     title: `${p.name} · 项目 · ${SITE_NAME}`,
     description: p.q,
     priority: "0.8",
@@ -68,6 +73,7 @@ const routes = [
   })),
   ...notes.map((n) => ({
     path: `notes/${n.slug}`,
+    h1: n.title,
     title: `${n.title} · 工程笔记 · ${SITE_NAME}`,
     description: n.metaDescription ?? n.description,
     priority: "0.7",
@@ -110,6 +116,36 @@ function seoBlock({ title, description, url }) {
   ].join("\n    ");
 }
 
+
+/**
+ * 无 JS 兜底：预渲染时把标题、摘要与导航写进 #root 的 <noscript>。
+ * 启用 JS 时浏览器不渲染 noscript，React 挂载又会替换整个 #root，所以交互用户看不到闪屏；
+ * 禁用 JS 的抓取器与预览则能读到真实的标题与摘要，不是给爬虫单独准备的隐藏文本。
+ * 使用内联样式 + 主题变量，保证浅色 / 深色下都不闪烁、不出现无样式文本。
+ */
+const ROOT_BLOCK = /<div id="root"><\/div>/;
+
+function fallbackBlock({ h1, description }) {
+  const h = escapeAttr(h1);
+  const d = escapeAttr(description);
+  return [
+    '<div id="root"><noscript><div style="max-width:820px;margin:0 auto;padding:72px 24px 40px">',
+    '<p style="margin:0 0 18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Jaron Lu — Portfolio</p>',
+    '<h1 style="margin:0 0 16px;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--ink)">',
+    h,
+    '</h1>',
+    '<p style="margin:0 0 28px;max-width:56ch;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.7;color:var(--ink-soft)">',
+    d,
+    '</p>',
+    '<p style="margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:600;color:var(--muted)">',
+    '<a style="color:var(--accent);text-decoration:none" href="/">首页</a> · ',
+    '<a style="color:var(--accent);text-decoration:none" href="/projects/">项目</a> · ',
+    '<a style="color:var(--accent);text-decoration:none" href="/notes/">工程笔记</a> · ',
+    '<a style="color:var(--accent);text-decoration:none" href="/about/">关于</a>',
+    '</p></div></noscript></div>',
+  ].join('');
+}
+
 const SEO_BLOCK = /<!--seo:start-->[\s\S]*?<!--seo:end-->/;
 const template = readFileSync(join(DIST, "index.html"), "utf8");
 
@@ -121,7 +157,9 @@ if (!SEO_BLOCK.test(template)) {
 let written = 0;
 for (const route of routes) {
   const url = urlFor(route.path);
-  const html = template.replace(SEO_BLOCK, () => seoBlock({ ...route, url }));
+  const html = template
+    .replace(SEO_BLOCK, () => seoBlock({ ...route, url }))
+    .replace(ROOT_BLOCK, () => fallbackBlock(route));
   const out = join(DIST, route.path, "index.html");
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html);
