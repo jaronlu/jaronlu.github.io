@@ -4,19 +4,27 @@ import { Reveal } from "../components/Reveal";
 
 const timeline = [
   {
-    span: "2015—2024",
-    practice: "iOS 证券客户端与核心 SDK",
-    takeaway: "主导交易链路、实时行情推送与客户端安全体系，负责多券商适配与模块化架构治理",
+    span: "2015—2017",
+    practice: "iOS 开发起步",
+    takeaway: "风景网旅游 App iOS 端开发与测试，建立从需求到上线的完整交付习惯",
+  },
+  {
+    span: "2017—2024",
+    practice: "证券 To B 客户端与核心 SDK",
+    takeaway:
+      "维护交易、行情、公共 UI、Hybrid 四套核心 SDK，服务申港、财达、汇丰前海、华安、华龙、中信建投 6 家券商；2017—2019 驻场中信建投两年，做登录、交易、行情的现场定位",
   },
   {
     span: "2024—2026",
     practice: "HarmonyOS 证券项目",
-    takeaway: "技术负责人，设计 ArkTS 状态编排与公共能力层，落地闪电交易、路由体系与跨端复用",
+    takeaway:
+      "独立负责东莞、华安、汇丰前海三家客户的闪电交易模块：ArkTS 状态编排、安全键盘、价格步长与精度控制；参与公共能力层、路由体系与事件总线",
   },
   {
     span: "2026—至今",
     practice: "AI Agent / RAG / MCP",
-    takeaway: "独立设计 Agentic RAG、知识操作层与能力分发基座，覆盖权限治理、引用验证与审计追踪",
+    takeaway:
+      "独立设计 Agentic RAG、知识操作层与能力分发基座，覆盖权限治理、引用验证、审计追踪与定时任务运行",
   },
 ];
 
@@ -38,9 +46,11 @@ const stack = [
 /* 只留名字 + 一句定位标签；完整描述与证据在 /projects，避免两页各写一份。 */
 const currentProjects = [
   { name: "SecRAG", tag: "可信问答", to: "/projects/secrag" },
+  { name: "llm-wiki", tag: "知识编译", to: "/projects/llm-wiki" },
   { name: "llm-wiki-mcp", tag: "知识操作层", to: "/projects/llm-wiki-mcp" },
   { name: "agent-skills", tag: "能力分发", to: "/projects/agent-skills" },
   { name: "LlamaIndex RAG", tag: "检索链路验证", to: "/projects/llamaindex-rag" },
+  { name: "doubao-cron", tag: "定时自动化", to: "/projects/doubao-cron" },
 ];
 
 export function About() {
@@ -126,12 +136,38 @@ export function About() {
             ))}
           </div>
           <p className="mt-3 max-w-[62ch] text-[0.8rem] leading-relaxed text-muted">
-            六个项目的证据、取舍与边界统一在
+            八个项目的证据、取舍与边界统一在
             <Link to="/projects" className="ml-1 text-accent">
               项目页
             </Link>
             ，这里只保留正在推进的部分。
           </p>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
+            怎么学
+          </h2>
+          <p className="max-w-[64ch] text-[0.86rem] leading-relaxed text-muted">
+            转向 Agent 之后，我把学习也当成工程：概念、边界、实现分开验证，不把某个框架的写法当成 Agent
+            的本质。
+          </p>
+          <ul className="mt-4 max-w-[64ch] list-disc space-y-2.5 pl-5 text-[0.84rem] leading-relaxed text-muted [&::marker]:text-accent">
+            <li>
+              <strong className="text-ink">ag2_agents</strong>
+              ：一份心智模型文档先回答六个问题——谁决定下一步、模型看到了什么、工具如何被校验和执行、
+              结果如何回到上下文、运行因何停止、行为如何验证；再用 4 个可运行的 AG2 示例对照差异，
+              示例只代表“一种实现”，不是标准答案。
+            </li>
+            <li>
+              <strong className="text-ink">ai-engineering-hub</strong>
+              ：文档按上游源码校准，<code>learning/</code> 只推进一个知识点，教学记录不算验收证据。
+            </li>
+            <li>
+              <strong className="text-ink">doubao-cron</strong>
+              ：每天跑的任务同样受规则约束，结论必须带可点击的溯源链接，产物按日期归档。
+            </li>
+          </ul>
         </Reveal>
 
         <Reveal>
