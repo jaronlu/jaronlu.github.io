@@ -54,7 +54,7 @@ npm run build
 
 ## 内容约定
 
-- 四个项目页（`src/content/projects/*.tsx`）共用统一结构：meta 档案头（由 `ProjectDetail.tsx` 统一渲染：角色/状态/技术栈/源码）→ 项目一句话 → 为什么做 → 架构（内联 SVG 线稿）→ 可验证证据 → 技术取舍表 → 项目边界 → 页尾联系短句。新增项目页照此结构。
+- 项目页（`src/content/projects/*.tsx`）共用统一结构：meta 档案头（由 `ProjectDetail.tsx` 统一渲染：角色/状态/技术栈/源码）→ 项目一句话 → 为什么做 → 架构（内联 SVG 线稿）→ 可验证证据 → 技术取舍表 → 项目边界 → 页尾联系短句。新增项目页照此结构。公开仓库填 `repo`；私有仓库留空并填 `repoNote`，详情页只显示说明、不挂失效链接。
 - 架构图一律内联 SVG 线稿：1px 线、mono 标注、无阴影渐变，红色（`--accent`）只标关键约束节点。
 - 工程笔记（`src/content/notes/*.tsx`）带 `CONFIDENCE — HIGH/MEDIUM` 徽章（由 `NoteDetail.tsx` 统一渲染），标记体系在 `src/pages/Notes.tsx` 有解释，新笔记需保持。
 - 站点各处引用的数字（测试数、行数等）必须与项目仓库实际情况一致，且多处引用同一数字时保持同步（如项目列表页与详情页）。不用文件数/行数当能力证据。
