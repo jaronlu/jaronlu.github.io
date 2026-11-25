@@ -43,8 +43,9 @@ npm run build
 
 内容与页面分离，全部数据驱动：
 
-- **数据层**在 `src/data/`：`site.ts`（站点配置/社交/导航）、`projects.ts`（项目元数据）、`notes.ts`（笔记元数据）。加项目/笔记先改这里。
+- **数据层**在 `src/data/`：`site.ts`（站点配置/社交/导航）、`projects.ts`（项目元数据）、`notes.ts`（笔记元数据）、`course.ts`（知识体系 39 课目录）。加项目/笔记/课程先改这里。
 - **正文组件**在 `src/content/`：`projects/<slug>.tsx` 与 `notes/<slug>.tsx` 用 JSX 编写详情页正文；正文复用 `.prose` 排版（`src/index.css`），表格用 `<table>`、代码块用 `CodeBlock` 组件、架构图用内联 SVG（复用 `--ink/--accent/--line-strong` 等 token）。
+- **课程正文例外（markdown 管线）**：知识体系课文是长文，不走 TSX，走 build 时 markdown 转换——清洗后的课文放 `src/content/agent-course/lessons/<slug>.md`，`scripts/build-agent-course.mjs`（devDependency：marked）在 build 最前面把它转成 `generated/<slug>.json`（`{ html }`），`CourseDetail` 用 `import.meta.glob` 按路由懒加载。generated/*.json 提交进仓库保证 dev 可用；改课文后重跑 `npm run build:course`。课文源文件在私有仓库 doubao-cron/knowledge/ai-agent/，入站前必须先清洗（删头部元信息、内部工作流行话中性化）。
 - **页面**在 `src/pages/`：路由在 `src/App.tsx`；项目/笔记详情页通过 `contentMap` 注册正文组件。
 - **视觉 token**在 `src/index.css`：`:root` 与 `.dark` 两块定义 `--paper/--ink/--muted/--line/--accent` 等，深浅色靠 `.dark` class 重定义切换——新增颜色必须两个块都定义，不要在组件里硬编码颜色。`--ink` 在深色下是浅色值，不能当“永远深色的背景”用。
 - **字体三层分工**：Fraunces（`--font-display`）只用于标题与项目名；Inter（`--font-sans`）正文；JetBrains Mono（`--font-mono`）专职 kicker/meta 元信息层。不新增字体，不新增第二强调色。

@@ -17,5 +17,6 @@ export const nav = [
   { label: "首页", to: "/" },
   { label: "项目", to: "/projects" },
   { label: "工程笔记", to: "/notes" },
+  { label: "知识体系", to: "/agent-course" },
   { label: "关于", to: "/about" },
 ] as const;

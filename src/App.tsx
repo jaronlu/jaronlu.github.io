@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { About } from "./pages/About";
+import { AgentCourse } from "./pages/AgentCourse";
+import { CourseDetail } from "./pages/CourseDetail";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { NoteDetail } from "./pages/NoteDetail";
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="projects/:slug" element={<ProjectDetail />} />
         <Route path="notes" element={<Notes />} />
         <Route path="notes/:slug" element={<NoteDetail />} />
+        <Route path="agent-course" element={<AgentCourse />} />
+        <Route path="agent-course/:slug" element={<CourseDetail />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>

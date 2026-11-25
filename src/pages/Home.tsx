@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
+import { courseLessons } from "../data/course";
 import { projects } from "../data/projects";
 import { notes } from "../data/notes";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-/* 首页只承担三件事：定位、精选项目、笔记入口。
-   项目全量清单在 /projects，笔记全文与分类在 /notes，联系方式由全站 Footer 承担。 */
+/* 首页只承担四件事：定位、精选项目、笔记入口、课程入口。
+   项目全量清单在 /projects，笔记全文与分类在 /notes，课程目录与全文在 /agent-course，
+   联系方式由全站 Footer 承担。 */
 
 const stackLine = ["Agentic RAG", "MCP 知识操作层", "Skills 分发", "评测先行"];
 
@@ -30,6 +32,9 @@ const constraint: Record<string, string> = {
 
 /* 首页只放三篇，覆盖方法、验证与治理；完整列表在笔记页。 */
 const homeNotes = ["rag-principles", "eval-engineering", "harness-engineering"];
+
+/* 课程区块只放三篇旗舰课（多智能体已校准 / 生产架构 / 上下文管理），全目录在课程页。 */
+const homeLessons = ["multi-agent", "production-architecture", "context-window"];
 
 /* ---------- 区块头 ---------- */
 function SectionHead({
@@ -228,6 +233,56 @@ function FieldNotes() {
   );
 }
 
+/* ---------- Agent Curriculum ---------- */
+function Curriculum() {
+  const picked = homeLessons.flatMap((slug) => courseLessons.filter((l) => l.slug === slug));
+
+  return (
+    <section className="border-b border-line">
+      <div className="mx-auto max-w-[1180px] px-6 py-14">
+        <SectionHead kicker="AGENT CURRICULUM / 03" title="39 课，把 Agent 知识装订成体系">
+          从消息协议到生产治理的六层课程，收录精校全文，逐课标注资料来源与校准状态。
+        </SectionHead>
+        <Reveal>
+          <div className="border-t border-line">
+            {picked.map((l) => (
+              <Link
+                key={l.slug}
+                to={`/agent-course/${l.slug}`}
+                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-4 text-ink no-underline"
+              >
+                <span className="min-w-0">
+                  <span className="block font-display text-[1.12rem] font-semibold text-ink">
+                    <span className="mr-2 font-mono text-[0.72rem] font-semibold text-faint">
+                      L{String(l.num).padStart(2, "0")}
+                    </span>
+                    {l.title}
+                  </span>
+                  <span className="mt-0.5 block truncate text-[0.76rem] text-muted">
+                    {l.oneLine}
+                  </span>
+                </span>
+                <span className="font-mono text-[0.6rem] tracking-[0.08em] text-faint">
+                  {l.calibrated ? "CALIBRATED" : "IN REVIEW"}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal>
+          <Link
+            to="/agent-course"
+            className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
+          >
+            全部 39 课目录
+            <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 export function Home() {
   useDocumentMeta(
     "Jaron Lu · AI Agent Engineer",
@@ -239,6 +294,7 @@ export function Home() {
       <Masthead />
       <SelectedWork />
       <FieldNotes />
+      <Curriculum />
     </>
   );
 }

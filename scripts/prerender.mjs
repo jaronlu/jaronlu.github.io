@@ -16,6 +16,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { projects } from "../src/data/projects.ts";
 import { notes } from "../src/data/notes.ts";
+import { courseLessons } from "../src/data/course.ts";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
@@ -79,6 +80,25 @@ const routes = [
     priority: "0.7",
     changefreq: "monthly",
   })),
+  {
+    path: "agent-course",
+    h1: "Agent 知识体系",
+    title: `Agent 知识体系 · ${SITE_NAME}`,
+    description:
+      "39 课 AI Agent 系统课程目录：消息协议、核心机制、架构模式、工程落地、框架工具与生产治理。收录精校全文，全部标注资料来源与校准状态。",
+    priority: "0.8",
+    changefreq: "weekly",
+  },
+  ...courseLessons
+    .filter((l) => l.slug)
+    .map((l) => ({
+      path: `agent-course/${l.slug}`,
+      h1: l.title,
+      title: `${l.title} · Agent 知识体系 · ${SITE_NAME}`,
+      description: `${l.oneLine}。系统课程第 ${l.num} 课，标注资料来源与校准状态。`,
+      priority: "0.6",
+      changefreq: "weekly",
+    })),
 ];
 
 const escapeAttr = (value) =>
@@ -141,6 +161,7 @@ function fallbackBlock({ h1, description }) {
     '<a style="color:var(--accent);text-decoration:none" href="/">首页</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/projects/">项目</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/notes/">工程笔记</a> · ',
+    '<a style="color:var(--accent);text-decoration:none" href="/agent-course/">知识体系</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/about/">关于</a>',
     '</p></div></noscript></div>',
   ].join('');
