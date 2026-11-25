@@ -814,13 +814,4 @@ Agentic Workflow 就像电子游戏的“任务图+存档系统”：任务不�
 - 权威课程: [Stanford CS224G — Agent Orchestration & Workflow Design](https://web.stanford.edu/class/cs224g/lectures/CS%20224G%202026%20Lecture%207%20-%20Agent%20Orchestration%20&%20Workflow%20Design.pdf)
 - 技术博客: [AI Workflow Lab — Durable Agent Pipelines with LangGraph and Temporal](https://aiworkflowlab.dev/article/ai-workflow-orchestration-in-production-building-durable-agent-pipelines-with-langgraph-and-temporal)
 - 技术博客: [XBSTACK — LangGraph 实战：状态机、Checkpoint 与 Human-in-the-loop](https://www.xbstack.com/ai/ai-agent-workflow/)
-
-- **修订 2026-10-14**：坑 2「检测重复动作」重写——tool_call 的 `id` 每次由 provider 重新生成，直接比较字典永不相等；改为 `(name, 排序后 args)` 归一化签名（只抓周期 1 的环，局限见代码注释），并入 `should_continue` 三道闸（硬上限 → 重复检测 → tool_calls）；补检查点位置（环关口）、计数落点（环入口节点）、recursion_limit（默认 25）、降级产物、环内状态膨胀、误杀合法重试等要点。
-- **修订 2026-10-14（二）**：坑 2 并行计数：无 reducer 同 key 并行多写抛 `InvalidUpdateError`（实测），非静默覆盖。
-- **修订 2026-10-14（三）**：坑 1 返回完整状态：串行下无害 no-op（实测），风险限于并行/异步旧快照写回；现象②同步改写。
-- **修订 2026-10-14（四）**：坑 3：异步审核需持久化 checkpointer（`MemorySaver` 重启即丢）；审核超时无内置支持，需外部定时器 + `Command(resume=...)` 自行实现。
-- **修订 2026-10-14（五）**：四·三并行扇出示例修复：Send 改从条件边 router 返回（节点返回裸 Send 列表抛 `InvalidUpdateError`）、invoke 补 `thread_id`、`research_worker` 签名改收 dict；已从文档原样抽取实跑验证。
-- **修订 2026-10-14（六）**：七·问题 1：FSM「循环次数有限」改为「循环不演化数据」（状态数有限不限制循环次数）。
-- **修订 2026-10-14（七）**：补 Anthropic 数据点出处（Measuring AI agent autonomy in practice，已核验）与上界 caveat；「2x-5x 延迟降低」标注存疑（课程存在，数字未核验到出处）。
-- **修订 2026-10-14（八）**：第五节删除与第三节重复的 4 张表（vs 传统工作流、控制流、Checkpointer、人机交互模式），标题改为「优势与挑战」；本 footer 由长段落压缩为条目式。
-- **修订 2026-10-14（九）**：三个示例入口 API 替换——`set_entry_point(...)` 为 LangGraph 1.0 起弃用 API（官方推荐 `add_edge(START, ...)`），示例 1/2/3 各改一行，导入行补 `START`；七·问题 2 的 73% 复述补「上界估计」标注（与三·四 caveat 一致）；示例 1 `action_node` 改为逐 `tool_call` 返回 `ToolMessage`（`tool_call_id` 对应调用 id，工具执行本身仍为模拟），不再用 `HumanMessage` 简化。
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

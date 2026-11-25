@@ -574,7 +574,7 @@ print(f"最优工具：{agent.get_best_tool()}")
 
 ## 资料来源
 
-- 论文: [Tool Learning with Large Language Models: A Survey，人大高瓴 2024](https://arxiv.org/abs/2309.01659)
+- 论文: [Tool Learning with Large Language Models: A Survey，人大高瓴 2024](https://arxiv.org/abs/2405.17935)
 - 论文: [arXiv:2502.00225 — Should You Use Your LLM to Explore or Exploit?](https://arxiv.org/html/2502.00225v1)
 - 论文: [arXiv:2512.13278 — AutoTool: Dynamic Tool Selection](https://arxiv.org/html/2512.13278v1)
 - 论文: [arXiv:2511.14650 — AutoTool: Efficient Tool Selection（工具使用惯性）](https://arxiv.org/html/2511.14650v1)
@@ -584,3 +584,5 @@ print(f"最优工具：{agent.get_best_tool()}")
 - 技术博客: [Aman AI — Agentic Reinforcement Learning](https://aman.ai/primers/ai/agentic-RL/)
 - 框架文档: [Azrien Docs — RL Exploration Strategies](https://docs.azrienlabs.com/docs/rl-exploration-strategies)
 - 教程: [DataCamp — Reinforcement Learning Python 入门](https://www.datacamp.com/it/tutorial/reinforcement-learning-python-introduction)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

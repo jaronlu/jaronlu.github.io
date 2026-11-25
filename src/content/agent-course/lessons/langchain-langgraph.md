@@ -1158,3 +1158,5 @@ LangChain 像一套乐高积木零件箱（模型接口、工具接口、Prompt 
 - 框架文档: [LangGraph 中文文档 - 持久化概述](https://langgraph.com.cn/concepts/persistence.1.html)
 - 技术博客: [腾讯云 - LangGraph 架构全解](https://developer.cloud.tencent.com/article/2748338)
 - 技术博客: [阿里云 - 从 LangChain 到 LangGraph 工程实践](https://developer.aliyun.com/article/1712725)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

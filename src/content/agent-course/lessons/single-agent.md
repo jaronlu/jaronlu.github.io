@@ -615,3 +615,5 @@ print(result["messages"][-1].content)
 - 技术博客: [Tuan-Anh Bui — Building an Agent from Scratch](https://tuananhbui89.github.io/blog/2025/llm-agents-lec07/)
 - 框架文档: [AgentFlow Academy — LangChain Agent with Memory & Tools](https://www.agentflow.academy/implementations/langchain-agent-memory-tools)
 - 教程: [菜鸟教程 — Agent 架构工作原理](https://www.runoob.com/ai-agent/agent-architecture.html)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

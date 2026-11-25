@@ -736,3 +736,5 @@ Router 模式就像医院的分诊台：护士不看病，只问你“哪里不�
 - 技术博客: [BSWEN — AI Agent Routing: Intent Classification and Routing](https://docs.bswen.com/blog/2026-03-06-agent-routing/)
 - 官方文档: [NVIDIA — Route AI Agent Workloads with NeMo Switchyard](https://developer.nvidia.com/blog/route-ai-agent-workloads-across-models-with-nvidia-nemo-switchyard/)
 - 官方文档: [Microsoft Learn — Model Router with Foundry Agents](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router-agents)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -430,3 +430,5 @@ CoT 像闭卷考试，只在脑子里算，记不清就瞎编。ReAct 像开卷�
 - 教学文档: [Scaler - Reasoning & Planning In Agentic AI](https://www.scaler.com/topics/agentic-ai/reasoning-in-agentic-ai/)
 - 技术博客: [Research Rudrite - ReAct Reason + Act](https://research.rudrite.com/react)
 - 技术博客: [SegmentFault - 万字长文背诵最新 Agent 常见试题](https://segmentfault.com/a/1190000047756432)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -1,11 +1,11 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents working with code in this repository.
 
 ## 路径与运行环境
 
 - 当前仓库运行在 macOS/POSIX 环境。开始工作时先用 `pwd -P` 和 `git rev-parse --show-toplevel` 确认真实仓库根目录。
-- 所有仓库文件操作必须使用相对于 Git 根目录的 POSIX 路径，例如 `src/data/projects.ts` 或 `CLAUDE.md`。
+- 所有仓库文件操作必须使用相对于 Git 根目录的 POSIX 路径，例如 `src/data/projects.ts` 或 `AGENTS.md`。
 - 禁止生成或使用 `C:\Users\...`、`D:\...` 等 Windows 绝对路径，即使界面、历史消息或模型上下文中出现了这类路径。
 - 写入或编辑文件前检查目标路径：不得包含反斜杠 `\`，不得以 Windows 盘符开头。路径与当前 Git 根目录不一致时立即停止并重新确认，不得猜测用户名或工作目录。
 

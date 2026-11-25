@@ -430,3 +430,5 @@ CoT 像一个人做题在草稿纸上一步步算，一条路走到黑，走错�
 - 技术博客: [Articsledge - What is Chain of Thought (CoT) Prompting?](https://www.articsledge.com/post/chain-of-thoughts-cot-prompting)
 - 论文: [Towards Structured Reasoning: CoT Survey, TechRxiv](https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176617594.46953319/v1)
 - 教材: [清华大学出版社 - 第5章 大模型推理能力优化](http://www.tup.tsinghua.edu.cn/upload/books/yz/111943-01.pdf)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

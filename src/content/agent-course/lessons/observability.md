@@ -1094,3 +1094,5 @@ async def monitored_agent_call(user_input: str):
 - 技术博客: [Zylos AI - Agent Observability and Debugging](https://zylos.ai/research/2026-05-29-agent-observability-debugging/)
 - 技术博客: [Maxim - Top 5 Leading Agent Observability Tools in 2025](https://www.getmaxim.ai/articles/top-5-leading-agent-observability-tools-in-2025/)
 - 技术博客: [LangChain - LLM Observability Tools to Monitor & Eval Agents](https://www.langchain.com/articles/llm-observability-tools)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

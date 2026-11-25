@@ -1545,7 +1545,7 @@ if __name__ == "__main__":
 
 - 行业观点: [niteagent - Multi-Modal AI Agents in Production: Architecture Patterns](https://niteagent.com/blog/multi-modal-ai-agents-production-2026/) — 三种生产架构模式的行业归纳（观点类文章，非学术来源，其中具体模型名与数值不作依据）
 - 论文: [arXiv - Thinking with Images for Multimodal Reasoning](https://arxiv.org/html/2506.23918v1) — 迭代视觉思维与跨模态推理
-- 论文: [arXiv - Frontier Vision-Language Models: Architectural Evolution, Benchmarks, Challenges](https://arxiv.org/pdf/2501.02189) — 前沿视觉语言模型综述
+- 论文: [A Survey of State of the Art Large Vision Language Models (arXiv 2501.02189)](https://arxiv.org/abs/2501.02189) — 前沿视觉语言模型综述
 - 论文: [arXiv - Kwai Keye-VL-2.0 Technical Report](https://arxiv.org/html/2606.10651v1) — MoE + 稀疏注意力处理小时级视频
 - 论文: [arXiv - VisualClaw: A Real-Time, Personalized Agent for the Physical World](https://arxiv.org/html/2606.16295v1) — 物理世界自进化多模态 Agent
 - 官方文档: [NVIDIA - Nemotron 3 Nano Omni](https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/) — 视觉音频语言统一开放模型
@@ -1558,3 +1558,5 @@ if __name__ == "__main__":
 - 技术博客: [Mental Momentum Research - Architecture of Multimodal VLM](https://research.mental-momentum.ai/r/architecture-multimodal-vision-language-d9jlgf) — 融合方式与模态干扰
 - 技术博客: [腾讯云 - 多模态理解模型简介](https://cloud.tencent.com/developer/techpedia/2625) — 跨模态对齐概念
 - 技术博客: [AIonX - AI chatbot vision capabilities Tutorial](https://aionx.co/productivity/ai-chatbot-vision-capabilities/) — 文档/发票/OCR 落地教程
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

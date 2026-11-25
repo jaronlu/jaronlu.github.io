@@ -1151,3 +1151,5 @@ def main():
 - 论文: [arXiv:2604.11790 - CLAWGUARD Runtime Security Framework](https://arxiv.org/pdf/2604.11790v2)
 - 技术博客: [neelmishra - Agent Security: Injection, Tool Abuse, Sandboxing](https://neelmishra.github.io/blog/mlops/llm-agents/agent-security.html)
 - 权威媒体: [CACM - Strengthening Safety Boundaries for AI Agents](https://cacm.acm.org/blogcacm/strengthening-safety-boundaries-for-evolving-ai-agents/)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

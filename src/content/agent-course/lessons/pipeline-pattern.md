@@ -624,3 +624,5 @@ Pipeline 模式就像工厂流水线：第一个工人只装轮子，第二个�
 - 行业报告: [ExplainX — Multi-Agent Orchestration Patterns Guide 2026](https://explainx.ai/blog/multi-agent-orchestration-patterns-guide-2026)
 - 技术博客: [Enrico Piovano — LLM Frameworks Comparison (LCEL pipe)](https://enricopiovano.com/blog/llm-frameworks-comparison/)
 - 官方文档: [Microsoft Learn — Semantic Kernel Sequential Orchestration](https://learn.microsoft.com/en-my/training/modules/orchestrate-semantic-kernel-multi-agent-solution/5-use-sequential-orchestration)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -1023,3 +1023,5 @@ bad = "出错了，不知道为什么，你自己看着办吧"
 - 源码: [OpenAI Python SDK, `_constants.py` 与 `_base_client.py`](https://github.com/openai/openai-python/blob/main/src/openai/_constants.py) — 默认 2 次、0.5 秒起、8 秒封顶、408/409/429/`>=500`，以及 `Retry-After` 上限
 - 源码: [Anthropic Python SDK, `_constants.py` 与 `_exceptions.py`](https://github.com/anthropics/anthropic-sdk-python/blob/main/src/anthropic/_constants.py) — 同样的默认退避，另有 529 Overloaded
 - 源码: [tenacity `wait_exponential_jitter`](https://github.com/jd/tenacity/blob/main/tenacity/wait.py) — `multiplier × exp_base^n + random(0, jitter)`，不是 Full Jitter
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

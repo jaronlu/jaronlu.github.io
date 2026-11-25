@@ -437,7 +437,6 @@ import json
 import os
 import requests
 
-
 class DifyClient:
     """封装 Dify Service API 的三个常用动作。"""
 
@@ -514,7 +513,6 @@ class DifyClient:
         resp.raise_for_status()
         return resp.json()
 
-
 if __name__ == "__main__":
     client = DifyClient()
 
@@ -533,18 +531,6 @@ if __name__ == "__main__":
 ---
 
 ## 五、易混概念对比
-
-### Dify vs Coze
-
-| 维度 | Dify | Coze |
-|---|---|---|
-| 定位 | 开源 LLM 应用开发平台 | 字节的 AI Bot 开发平台 |
-| 开源情况 | 主仓库开源，可自托管 | 核心引擎 Coze Studio 已开源（Apache 2.0），商业版仍以云服务为主 |
-| 部署 | 云服务 / 社区版自托管 / Premium（AWS AMI）/ Enterprise | 云服务为主，另有自托管开源版 |
-| 模型接入 | 供应商插件化，模型无关 | 以自家生态模型为主，也支持第三方 |
-| 发布渠道 | Web App / 嵌入 / API / MCP | 抖音、飞书、微信等多渠道 |
-| 数据控制 | 自托管可完全自控 | 云服务数据在平台侧；开源版可自托管 |
-| 适用用户 | 开发者、需要数据可控的团队 | 运营、非技术用户、生态内快速上线 |
 
 ### Dify vs LangChain / LangGraph
 
@@ -771,10 +757,4 @@ OPENDAL_SCHEME=s3
 - 源码 · 应用类型枚举 `AppMode`: [dify/api/models/model.py](https://github.com/langgenius/dify/blob/main/api/models/model.py)
 - 源码 · 节点实现目录: [dify/api/core/workflow/nodes](https://github.com/langgenius/dify/tree/main/api/core/workflow/nodes)
 - 源码 · 默认部署配置: [dify/docker/.env.example](https://github.com/langgenius/dify/blob/main/docker/.env.example)
-- 官方仓库 · 开源核心引擎（Apache 2.0）: [coze-dev/coze-studio](https://github.com/coze-dev/coze-studio)
-
----
-
-## 修订记录
-
-- 修订（一）2026-10-27：按 Dify 官方文档与 GitHub 源码校准全文，不以仓库原稿为事实依据。应用类型由「四种」改为官方的「Workflow / Chatflow 为主 + Chatbot / Agent / Text Generator 三种基础类型」，并补正起点终点（Workflow 起点可为用户输入或 Trigger、终点 Output 可选；Chatflow 必须用户输入 → Answer，不支持 Trigger）。节点清单重写：删掉不存在的「变量转换节点」，明确没有并行节点（并行=同源分叉）、迭代与循环不等价，补齐 Trigger / Human Input / Output / Answer / 文档提取 / 列表操作与新版 Agent 节点。补入 Human Input 原生人工介入（原稿称 Dify 只能凑合实现，与官方节点文档不符）。RAG 部分修正：最大块长度为字符单位、分块模式建库后不可改、父子仅高质量索引可用、整篇父块上限 10,000 token 且不可编辑、预处理仅两项、检索为知识库层 + 节点层两层。默认值纠错：`VECTOR_STORE` 默认 weaviate（原稿写 Qdrant）、`STORAGE_TYPE` 默认 opendal（原稿的 `S3_ENDPOINT` / `S3_BUCKET_NAME` 已非当前配置方式）。DSL 部分：明确 YAML 格式与 `.ifpkg` / `.yml` 两种导出形态，替换原稿虚构的整段工作流 YAML 为结构骨架 + 官方 `difyctl` 流程。架构纠错：后端为 Flask + Gunicorn（原稿写 FastAPI），补 Celery、插件运行时、沙箱与 SSRF 代理。坑 2 的「语义缓存」不存在，改为标注回复。删除时效性数字与版本清单（模型数量、具体模型版本、资源配额、告警阈值）。状态保持「已学习，待四关自测」，校准不等于通过四关自测。
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

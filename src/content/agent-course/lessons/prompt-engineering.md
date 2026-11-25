@@ -862,10 +862,4 @@ Agent 的 System Prompt 就像给新员工的入职手册：告诉他是谁、�
 - 书稿: [The Art of ChatGPT Prompting — Loop Engineering（第 14 章）](https://github.com/f/prompts.chat/blob/main/src/content/book/14a-loop-engineering.mdx)
 - 书稿: [The Art of ChatGPT Prompting — Agents and Skills（第 25 章）](https://github.com/f/prompts.chat/blob/main/src/content/book/25-agents-and-skills.mdx)
 - 书稿: [The Art of ChatGPT Prompting — The Harnesses（第 26 章）](https://github.com/f/prompts.chat/blob/main/src/content/book/26-the-harnesses.mdx)
-
----
-
-## 修订记录
-
-- 修订（一）2026-10-15：全文 review 修复。删除少样本数量表中无来源的“+20-30% / +30-40% 准确率”数字；“生产级 1000-2000 字”改定性表述并标存疑（坑 1 与反例关两处）；工具数量三段精确阈值（<10 / 10-100 / >100）改模糊区间并补 Anthropic 官方口径；第一个代码块注明 tools 需与三.二定义合并运行；资料来源修正 AgentAilor 标签、拆分 OpenAI 两条文档、新增 Anthropic 官方工程博客与 Lost in the Middle 论文（arXiv:2307.03172）。
-- 修订（二）2026-10-15：参考开源库 f/prompts.chat（Awesome ChatGPT Prompts）重写三.七节为「实证对照与升级路径」——① 从 prompts.csv 全量 2,471 条（本地克隆确定性统计）提炼六个可复用句式机制及占比（参数化模板 26.1%、角色锚定 8.9%、首轮初始化 5.8%、输出钉死 1.1%、通道隔离 0.7%、交互节流 0.1%）；② 给每个模式一条升级到 Agent 场景的路径（对应九段式与 harness 层）；③ 引入书稿第 14 章 Loop Engineering（“工程量在箭头之间的契约里”）与第 26 章 Harness（模型/harness 六分开）补本文盲区，“九段式=loop 契约预写”标注为推断；资料来源新增仓库与书稿第 2/14/25/26 章。原文其余内容未改动。
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

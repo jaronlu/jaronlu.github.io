@@ -646,3 +646,5 @@ Supervisor 模式就像餐厅厨房：主厨不亲自做菜，只负责接单、
 - 技术博客: [Agentic AI Training — The Supervisor Pattern](https://brainupgrade-in.github.io/blog/posts/supervisor-pattern-multi-agent-langgraph-2026.html)
 - 权威媒体: [腾讯云 — Manager-Worker 协作模式](https://cloud.tencent.cn/developer/article/2744644)
 - 行业报告: [AgileSoftLabs — Multi-Agent AI Systems Enterprise Guide 2026](https://www.agilesoftlabs.com/blog/2026/03/multi-agent-ai-systems-enterprise-guide)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -1982,3 +1982,5 @@ if __name__ == "__main__":
 - 技术博客: [CSDN - 从0到1量产Agent落地](https://blog.csdn.net/weixin_40959890/article/details/157775790) — 输入输出过滤与审计留痕
 - 技术博客: [XBSTACK - 2026 Full-Stack Guide to AI Agents](https://www.xbstack.com/en/ai/ai-agent-complete-guide/) — 配额计费与多租户隔离
 - 官方文档: [MLflow - Developing AI Agents](https://www.mlflow.org/articles/tags/developing-ai-agents/) — 漂移检测与响应质量基线
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

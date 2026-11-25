@@ -501,3 +501,5 @@ print(result["output"])
 - 技术博客: [腾讯云 - 初识 Function Calling：让 AI 学会调用工具](https://cloud.tencent.com/developer/article/2644468)
 - 技术博客: [博客园 - MCP 是如何工作的](https://www.cnblogs.com/zyts/p/19011313/how-does-mcp-work-z5wkdu)
 - 论文: [ToolRegistry (arXiv 2025)](https://arxiv.org/html/2507.10593v2)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

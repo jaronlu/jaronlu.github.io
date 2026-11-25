@@ -588,3 +588,5 @@ print(agent.core_memory["human"])  # "用户信息：暂无\n我叫小明，是 
 - 技术博客: [CSDN - 深度拆解 Agent Memory 记忆机制](https://blog.csdn.net/m0_67391870/article/details/162549990)
 - 技术博客: [掘金 - 从认知科学到代码实现：为 AI Agent 构建记忆系统](https://juejin.cn/post/7633974336799014966)
 - 权威媒体: [麻省理工科技评论 - 当 AI 开始“记得”你](https://www.mittrchina.com/news/detail/15922)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

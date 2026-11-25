@@ -873,3 +873,5 @@ class TokenBudgetManager:
 - 论文: [arXiv:2511.12712 — Adaptive Focus Memory for Language Models](https://arxiv.org/html/2511.12712v2/)
 - 论文: [Preprints — Context Compression for Long-Horizon AI Agents](https://www.preprints.org/manuscript/202607.0924)
 - 权威媒体: [腾讯新闻 — 横向拆解六大 Agent 上下文压缩策略](http://news.qq.com/rain/a/20260608A07HSX00)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

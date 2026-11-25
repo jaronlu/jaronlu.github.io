@@ -1074,3 +1074,5 @@ user_proxy.initiate_chat(
 - 技术博客: [AI/TLDR - What Is AutoGen](https://ai-tldr.dev/learn/agent-frameworks/orchestration-frameworks/what-is-autogen/)
 - 技术博客: [腾讯云 - AutoGen 多智能体实战](https://developer.cloud.tencent.com/article/2746744)
 - 技术博客: [腾讯云 - AutoGen 解析与应用](https://cloud.tencent.com/developer/article/2728603)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

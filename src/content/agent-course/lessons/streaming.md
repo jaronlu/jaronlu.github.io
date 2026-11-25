@@ -293,10 +293,8 @@ app = FastAPI()
 client = AsyncOpenAI()
 MODEL = os.environ["LLM_MODEL"]
 
-
 class ChatIn(BaseModel):
     message: str
-
 
 @app.post("/chat")
 async def chat(body: ChatIn):
@@ -414,12 +412,10 @@ tools = [
     }
 ]
 
-
 def execute_tool(name: str, params: dict) -> str:
     if name == "search":
         return f"关于 {params.get('query', '')} 的摘要（示例占位）"
     return f"未知工具 {name}"
-
 
 def run_agent(user_text: str):
     messages = [{"role": "user", "content": user_text}]
@@ -507,7 +503,6 @@ import asyncio
 from openai.types.responses import ResponseTextDeltaEvent
 from agents import Agent, ItemHelpers, Runner
 
-
 async def main():
     agent = Agent(name="Joker", instructions="You are a helpful assistant.")
     result = Runner.run_streamed(agent, input="Please tell me 5 jokes.")
@@ -530,7 +525,6 @@ async def main():
     # 必须消费到 iterator 结束；这里循环退出后看最终状态
     print("complete:", result.is_complete)
 
-
 if __name__ == "__main__":
     asyncio.run(main())
 ```
@@ -543,11 +537,9 @@ LangChain 的 `stream_events v3` 和 LangGraph 的 `stream v2` 是两套命名�
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 
-
 def get_weather(city: str) -> str:
     """Get weather for a given city."""
     return f"It's always sunny in {city}!"
-
 
 # 模型字符串按你的 provider 改；不要照抄文档里的过时/内部代号
 agent = create_agent(
@@ -748,9 +740,4 @@ def generate():  # 不要这样：堵 event loop，也取消不了
 - 官方文档: [nginx ngx_http_proxy_module — proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) — 默认 on；`X-Accel-Buffering: yes|no` 可覆盖，除非 `proxy_ignore_headers`；`proxy_read_timeout` 为两次读的间隔
 - 源码 / README: [openai-python](https://github.com/openai/openai-python) — streaming 使用 SSE；Chat Completions indefinitely supported；消费 `Stream` 不自动重试
 - 源码: [anthropic-sdk-python helpers](https://github.com/anthropics/anthropic-sdk-python) — `messages.stream` / `text_stream` / 退出 context manager 取消 / `stream.close()`（官方站点 HTML 本次未打开）
-
----
-
-## 修订记录
-
-- 修订（一）2026-10-20：按官方文档 / SDK 源码校准全文，不以仓库原稿为事实。修正 OpenAI Agents SDK 顶层事件名（`response.output_text.delta` 等不在 `event.type`）；LangChain 改为 `stream_events(version="v3")` + `interleave`，LangGraph 标明默认 v1 与 `stream version="v2"` 是另一套命名空间；Letta 补 `stream_tokens=True` 与按 id 重组。纠正把工具等待写成 SSE/HTTP 队头阻塞；澄清 `EventSource` 无 pause、不能 POST，背压来自暂停 `reader.read()`。删除无出处数字（TTFT 区间、8s→0.6s、90%、提前停 15–20% 省 30–50% token、10K+ 并发等）和过时模型名。FastAPI 示例改为 `AsyncOpenAI` + async generator + `X-Accel-Buffering: no`；前端改为 fetch POST、按 `\n\n` 切事件、`AbortController`。nginx 依据官方默认 `proxy_buffering on`。资料来源只保留本次实际打开的链接，去掉 JS LangChain、Anthropic 站、腾讯云 / OpenHelm / NiteAgent 等博客。状态保持“已学习，待四关自测”，校准 ≠ 过四关自测。
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

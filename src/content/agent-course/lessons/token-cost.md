@@ -902,3 +902,5 @@ Token 成本就像开车烧汽油：油有贵贱（便宜模型/贵模型），�
 - 技术博客: [AI/TLDR — How to Cut LLM Token Costs](https://ai-tldr.dev/learn/production-llmops/cost-latency-optimization/cut-llm-token-costs/)
 - 技术博客: [OpenLegion — LLM Cost Optimization: Six Levers](https://www.openlegion.ai/en/learn/llm-cost-optimization)
 - 技术博客: [NeuralTrust — AI Token Optimization Guide](https://neuraltrust.ai/blog/ai-token-optimization-guide)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

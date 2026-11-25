@@ -1562,3 +1562,5 @@ if __name__ == "__main__":
 - 技术博客: [CSDN - 生产级 AI Agent 评估体系](https://blog.csdn.net/weixin_43444989/article/details/161146034) — 12 指标框架与持续评估闭环
 - 技术博客: [InfoQ 写作社区 - AI Agent评估体系深度实战](https://xie.infoq.cn/article/e6f8d611a87887cc187cdfcb7) — 正确性/忠实度/效率/成本全维度
 - 技术博客: [AI Wiki - Agent evaluation](https://aiwiki.ai/wiki/agent_evaluation) — 成功率指标与 SWE-bench/WebArena 基准
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

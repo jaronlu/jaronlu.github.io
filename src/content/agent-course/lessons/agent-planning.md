@@ -602,3 +602,5 @@ print(f"\n最终结果：{result}")
 - 框架文档: [Reactive Agents - Plan-Execute-Reflect](https://docs.reactiveagents.dev/guides/reasoning/)
 - 论文: [Plan Verification for LLM-Based Agents, arXiv:2509.02761](https://arxiv.org/html/2509.02761)
 - 论文: [MIRROR: Multi-agent Reflection, arXiv:2505.20670](https://arxiv.org/html/2505.20670v1)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -62,7 +62,7 @@ export function CourseDetail() {
       <div className="prose mt-10 min-h-[60vh]">
         <span className="note-confidence">
           {lesson.calibrated
-            ? "CALIBRATED — 已对照官方文档逐条校准"
+            ? "CALIBRATED — 来源已逐条核验（链接可访问、论文标题对齐 arXiv）；结论以官方文档为准"
             : "学习笔记 — AI 协助整理，持续校准中；与官方文档不一致时以官方为准"}
         </span>
         <Suspense fallback={<p className="font-mono text-[0.7rem] text-muted">正在载入课文…</p>}>

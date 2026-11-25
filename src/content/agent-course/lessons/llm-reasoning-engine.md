@@ -432,3 +432,5 @@ o3 的 System Card 明确提到：模型被训练为“推理何时以及如何�
 - 教学课件: [CityUHK - The 2026 LLM Landscape: Reasoning Explosion](https://www.ee.cityu.edu.hk/~lmpo/ee4016/pdf/2026_AI_L09B_LRMs.pdf)
 - 教学课件: [dl4ds - Reasoning LLMs and Coding Agents](https://dl4ds.github.io/sp2026/static_files/lectures/24_Reasoning_LLMs_and_Coding_Agents.pdf)
 - 百科: [AI Wiki - Test-time compute](https://aiwiki.ai/wiki/test_time_compute)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

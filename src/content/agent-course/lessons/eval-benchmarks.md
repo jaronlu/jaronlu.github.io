@@ -1605,3 +1605,5 @@ if __name__ == "__main__":
 - 技术博客: [Codersera - AI Agent Benchmark Roundup](https://codersera.com/blog/ai-agent-benchmarks-state-of-leaderboard-may-2026/) — Verified 污染与 Pro 替代的行业反应
 - 技术博客: [OpenLegion - AI Agent Benchmarks](https://www.openlegion.ai/ru/learn/ai-agent-benchmarks) — tau-bench 策略遵循与私有评估
 - 行业报告: [全国团体标准信息平台 - 智能体评测指标与方法](https://www.ttbz.org.cn/upload/file/20251113/6389867508329388643279661.pdf) — 智能体评测团体标准
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

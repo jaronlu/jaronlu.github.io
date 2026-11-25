@@ -1624,3 +1624,5 @@ Python 数据科学团队做 RAG 密集型的研究原型，硬选 SK 就会别�
 - 技术博客: [腾讯云开发者社区 - 使用 SemanticKernel 进行智能应用开发](https://cloud.tencent.com/developer/article/2334930) — Semantic Kernel 智能应用开发实践
 - 官方文档: [Semantic Kernel Cookbook (PDF)](https://info.microsoft.com/rs/157-GQE-382/images/ZH-CNTNT-eBook-SRGCM11464-SemanticKernelCN151202435539.pdf) — Semantic Kernel 中文 Cookbook
 - 行业报告: [LangChain - The best AI agent frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — 2026 年最佳 AI Agent 框架对比
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

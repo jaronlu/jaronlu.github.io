@@ -1261,3 +1261,5 @@ chat_engine.reset()
 - 技术博客: [Yobitel - LlamaIndex Knowledge Base](https://yobitel.com/knowledge-base/llamaindex)
 - 教程: [Agents Lib - Building RAG with LlamaIndex](https://agents-lib.com/tutorials/building-rag-with-llamaindex)
 - 教程: [Made By Agents - LlamaIndex Framework](https://www.madebyagents.com/frameworks/llamaindex)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

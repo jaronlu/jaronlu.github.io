@@ -717,3 +717,5 @@ Agent 花钱像打电话：每说一句，都要把前面说过的重说一遍�
 - 论文：[SGLang / RadixAttention (arXiv:2312.07104)](https://arxiv.org/abs/2312.07104)　前缀复用最高约 6.4 倍吞吐
 - 论文：[FrugalGPT (arXiv:2305.05176)](https://arxiv.org/abs/2305.05176)　LLM 级联可在保持质量的同时大幅降本（最高约 98%）
 - 官方文档：[NVIDIA Dynamo — Full-Stack Optimizations for Agentic Inference](https://docs.nvidia.com/dynamo/v1.1.0/blog/agentic-inference)　WORM 前缀模式、工具调用间隙导致的缓存淘汰、KV 感知路由与全局索引
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

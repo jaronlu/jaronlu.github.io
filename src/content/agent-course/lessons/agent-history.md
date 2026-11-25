@@ -352,3 +352,5 @@ from langgraph.graph import StateGraph, END
 - 官方博客: [OpenAI - GPT-6 Astra](https://openai.com/zh-Hans-CN/research/index/)
 - 技术博客: [AI Beat - Cursor 3 多Agent编排](https://ai-beat.github.io/tags/agents/)
 - 权威媒体: [央视新闻 - 中美AI“拐点”·白宫超级智能协议](http://m.toutiao.com/group/7693031906124038692/)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

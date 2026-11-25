@@ -550,7 +550,6 @@ def get_current_time(timezone: str = "Asia/Shanghai") -> str:
         raise ToolError(f"无效时区 {timezone!r}：{exc}") from exc
     return f"当前时间（{timezone}）：{now:%Y-%m-%d %H:%M:%S %A}"
 
-
 @mcp.tool()
 def calculate(expression: str) -> str:
     """
@@ -568,7 +567,6 @@ def calculate(expression: str) -> str:
     except Exception as exc:
         raise ToolError(f"无法计算 {expression!r}：{exc}") from exc
     return f"{expression} = {result}"
-
 
 @mcp.tool()
 def write_file(filepath: str, content: str) -> str:
@@ -593,7 +591,6 @@ def write_file(filepath: str, content: str) -> str:
         f.write(content)
     return f"文件写入成功：{target}（{len(content)} 字符）"
 
-
 # ========== 2. 定义 Resources（资源）==========
 
 @mcp.resource("config://app-settings")
@@ -610,7 +607,6 @@ def get_app_settings() -> str:
 - 日志级别：DEBUG
 - 最大并发：10
 """
-
 
 @mcp.resource("file://{filepath}")
 def read_file(filepath: str) -> str:
@@ -632,7 +628,6 @@ def read_file(filepath: str) -> str:
         raise ResourceNotFoundError(f"文件不存在：{target}")
     with open(target, "r", encoding="utf-8") as f:
         return f.read()
-
 
 # ========== 3. 定义 Prompts（提示词模板）==========
 
@@ -671,7 +666,6 @@ def code_review(language: str, code: str) -> str:
 - **改进建议**：（整体改进方向）
 """
 
-
 @mcp.prompt()
 def summarize_text(text: str, max_length: str = "100") -> str:
     """
@@ -696,7 +690,6 @@ def summarize_text(text: str, max_length: str = "100") -> str:
 
 ## 摘要
 """
-
 
 # ========== 4. 启动 Server ==========
 
@@ -726,7 +719,6 @@ import sys
 
 from mcp import Client, StdioServerParameters
 from mcp.types import TextContent, TextResourceContents
-
 
 async def main():
     # 1. 本地 STDIO：把 Server 作为子进程拉起
@@ -788,7 +780,6 @@ async def main():
         )
         for message in rendered.messages:
             print(message.role, message.content)
-
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -1640,11 +1631,4 @@ MCP 就像手机的 Type-C 口：以前每个牌子手机充电口都不一样�
 - 官方 README: [modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk) — `MCPServer` / `Client` 最小示例（解释器版本要求以 PyPI 的 `requires_python` 为准）
 - 官方源码: [python-sdk - mcpserver/exceptions.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/src/mcp/server/mcpserver/exceptions.py) — `ToolError` / `ResourceError` / `ResourceNotFoundError` 的语义
 - 官方仓库: [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) — 当前参考实现清单与归档列表
-
----
-
-## 修订记录
-
-- 修订（一）2026-10-27：按官方规范与 Python SDK 官方文档校准全文，不以原稿为事实。**协议版本**：`2026-07-28` 已由 RC 转正式（2026-05-21 锁定、07-28 发布），原稿标题与正文仍写“Release Candidate”已改。**核心机制**：原稿的 `initialize → notifications/initialized → lists` 流程是 `2025-11-25` 及更早的行为，已重写为无状态流程（逐请求 `_meta`、`server/discover`、`resultType`、MRTR、`subscriptions/listen`），并单列旧版本流程做区分。**原语与弃用**：补 Client 侧原语 Elicitation；按官方弃用政策标注 Roots、Sampling、Logging 已弃用，并删除“Roots 限权”作为推荐做法的表述。**概念纠正**：原稿“MCP 位于 Function Calling 之上”与同文对比表“MCP 的底层／Function Calling 的上层”自相矛盾，统一改为“上游决策 vs 下游传输”；删除“MCP 不需要每次传 Schema”的说法——工具定义仍要进上下文，MCP 省的是集成代码，并补 `ttlMs`/`cacheScope` 与稳定排序两条实际缓解手段。**代码**：全部由 v1 API（`mcp.server.fastmcp.FastMCP`、`ClientSession`、手动 `initialize()`）改写为 v2 API（`mcp.server.MCPServer`、`mcp.Client`），修正 `content.type` 判断为 `isinstance` 收窄、`get_prompt` 参数改为字符串、`host/port` 归属 `run()`；删除不存在的 `@mcp.exception_handler`，改为 v2 真实的错误分流（`ToolError` / `MCPError` / 兜底异常）；修正路径前缀校验缺少 `os.sep` 的绕过问题。**配置**：`@modelcontextprotocol/server-github` 已归档，配置示例改用仍维护的 filesystem / memory，并标注归档清单。**其他**：删除具体模型名（Claude 3.5 Opus）、Server 数量、微秒级延迟等无出处或时效性数据；SDK 覆盖范围由“仅 Python/TypeScript”更正为官方 Tier 1–3 全清单；安全模型由“9 条机制清单”改为“规范三原则 + 实现建议”。资料来源只保留本次实际打开的官方页面、官方博客、官方 SDK 文档与源码。状态保持“已学习，待四关自测”，校准不等于通过四关自测。
-
-- 修订（二）2026-10-27 复核：对外部原文逐条比对后收口三处。**残留 v1 写法**：坑 3 的沙箱示例仍用 `mcp.server.fastmcp.FastMCP`，与全文的 v2 迁移不一致，已改为 `mcp.server.MCPServer`，并把「超时」这类可预期失败改为 `raise ToolError`、删掉吞掉一切异常的 `except Exception`（与坑 2 的错误分流口径对齐）。**规范强度用词**：`tools/list` 的稳定顺序在规范里是 SHOULD，不是 MUST，正文与清单统一改为「建议（SHOULD）」。**请求头适用范围**：`Mcp-Method` 每个请求必带、`Mcp-Name` 只在 `tools/call` / `resources/read` / `prompts/get` 上必带，并按规范补 `-32020`（HeaderMismatch）。另删掉资料来源里「Python 3.11+」的转述（PyPI 的 `requires_python` 是 `>=3.10`，与正文注释一致）。
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

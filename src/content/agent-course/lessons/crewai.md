@@ -1049,7 +1049,7 @@ LangGraph（外层编排）
   - 用户选择 = 选 Python 还是 Rust？取决于项目需求、团队熟悉度、生态需求——没有绝对的好坏，只有合适不合适
   - CrewAI Flow 不会“替代” LangGraph，就像 Python 的 C 扩展不会“替代” Rust——两者各有生态，用户根据需求选择
 
-- 延伸：后续知识点（生产级 Agent 架构设计）会深入讲解如何根据场景选择和组合不同的 Agent 框架（CrewAI/LangGraph/AutoGen/Dify/Coze）和架构模式
+- 延伸：后续知识点（生产级 Agent 架构设计）会深入讲解如何根据场景选择和组合不同的 Agent 框架（CrewAI/LangGraph/AutoGen/Dify）和架构模式
 
 ---
 
@@ -1085,10 +1085,4 @@ LangGraph（外层编排）
 - 框架文档: [CrewAI on PyPI](https://pypi.org/project/crewai/) — 依赖清单中不含 langchain / langchain-core，佐证“独立于 LangChain”
 - 官方 README: [microsoft/autogen](https://github.com/microsoft/autogen) — Project archived and no longer maintained，指向 Microsoft Agent Framework
 - 官方文档: [AutoGen → Microsoft Agent Framework 迁移指南](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen/) — 继任关系与迁移路径
-
----
-
-## 修订记录
-
-- 修订（一）2026-10-27：按 CrewAI 官方文档与源码校准全文，不以仓库原稿为事实。删除“Consensual（共识流程）”——官方流程文档与 `process.py` 均只有 sequential、hierarchical，共识仅存在于源码 TODO 注释，原稿多处据此展开的类比、定义、对比表、复述关一并修正。记忆机制由“短期/长期/实体三种”改为统一 `Memory` 类（scope / slice / 复合打分），并把 `memory=True` 从 Agent 示例移到 Crew 层（官方主路径）。LLM 配置从 `langchain_openai.ChatOpenAI` 改为官方 `crewai.LLM`（model 带 provider 前缀 + base_url + api_key 读环境变量），并补 `crewai[tools]` 与 SERPER_API_KEY 前置条件。Hierarchical 补“manager_llm 或 manager_agent 必填”、任务不预分配 agent；Task 补 context 参数与 output_file / TaskOutput 的实际语义，替换无出处的“Artifact”概念；Kickoff 补 `CrewOutput` 的取数方式。Flow 概念由“State/Event/Step/Router”改为实际 API（`@start`/`@listen`/`@router`/`@persist`/`@human_feedback`），并把“Flow 无持久化、无人机交互”的错误表述改掉；删除“78+ 向量存储”等无出处数字。标注 AutoGen 已归档、继任者为 Microsoft Agent Framework。删除具体模型名（gpt-4o / gpt-4o-advanced / gpt-4o-mini）与年份限定（2025-2026 年）。资料来源只保留本次实际打开的官方页面、源码与 README。状态保持“已学习，待四关自测”，校准 ≠ 过四关自测。
-
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

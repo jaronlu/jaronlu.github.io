@@ -1178,3 +1178,5 @@ if __name__ == "__main__":
 - 官方文档: [Python Docs - Coroutines and Tasks](https://docs.python.org/3/library/asyncio-task.html)——已核对 Task cancellation、Task.cancel() / uncancel() / cancelling() 各节，确认：取消是下一轮事件循环注入 CancelledError 的协作式请求；吞掉取消须配 uncancel()，否则结构化并发组件会误判；await 其他任务处收到的 CancelledError 需区分自身取消与被等任务取消
 - 论文: [arXiv:2507.06520 - Gradientsys Multi-Agent LLM Scheduler](https://export.arxiv.org/pdf/2507.06520)
 - 框架文档: [AWS Labs - Reactor (Semaphore for LLM concurrency)](https://awslabs.github.io/quark-agents/reactor/)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

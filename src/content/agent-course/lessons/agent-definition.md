@@ -347,3 +347,5 @@ print(result["messages"][-1].content)
 - 框架文档: [LangGraph 官方文档：Workflows and Agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 - 框架文档: [LangGraph 官方文档：Use Graph API（recursion_limit）](https://docs.langchain.com/oss/javascript/langgraph/use-graph-api)
 - 权威媒体: [新华网，《智能体：把能力转化为生产力》, 2026-04](http://www.xinhuanet.com/globe/20260402/2e094094cb7c4a5ea9267e3ac55dd5ae/c.html)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

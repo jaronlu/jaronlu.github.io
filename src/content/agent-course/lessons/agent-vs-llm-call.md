@@ -323,3 +323,5 @@ print(result["messages"][-1].content)
 - 技术博客: [掘金 - Agent Loop: AI Agent 的最小实现结构深入解析](https://juejin.cn/post/7623370979330752563)
 - 教学课件: [清华大学计算机实验教学中心 - Agent 架构](https://lab.cs.tsinghua.edu.cn/rust/projects/agent/agent-architecture/)
 - 技术博客: [腾讯云 - 大模型与智能体(Agent)的核心差异](https://cloud.tencent.com/developer/article/2633184)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

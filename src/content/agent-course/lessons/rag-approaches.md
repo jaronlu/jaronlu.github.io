@@ -421,3 +421,5 @@ print(answer)
 - 行业报告: [Zylos AI - Agentic RAG for Long-Horizon Tasks](https://zylos.ai/research/2026-05-15-agentic-rag-long-horizon-agent-retrieval/)
 - 论文: [RouteRAG (arXiv 2025)](https://arxiv.org/html/2512.09487)
 - 教学课件: [同济大学 - Agentic RAG 时代：知识检索增强](https://tongji-kgllm.github.io/assets/talks/%E8%9E%8D%E5%90%88%E6%8E%A8%E7%90%86%E7%9A%84%E7%9F%A5%E8%AF%86%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA.pdf)
+
+> 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。
