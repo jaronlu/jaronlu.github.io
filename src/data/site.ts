@@ -9,8 +9,7 @@ export const site = {
   issue: "ISSUE 2026 · SHENZHEN / REMOTE",
   email: "jr.lu.jobs@gmail.com",
   github: "https://github.com/jaronlu",
-  linkedin:
-    "https://www.linkedin.com/in/%E5%BB%BA%E8%8D%A3-%E9%99%86-a5a10a400/",
+  linkedin: "https://www.linkedin.com/in/jaronlu/",
   copyright: "© 2026 Jaron Lu",
 } as const;
 

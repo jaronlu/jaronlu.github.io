@@ -148,7 +148,7 @@ export function LlmWikiContent() {
           </tr>
           <tr>
             <td>领域覆盖</td>
-            <td>10 个领域目录（AI Agent、iOS SDK、鸿蒙、申港 / 东莞 / 华安证券、认知与表达等）+ 7 个项目包</td>
+            <td>10 个领域目录（AI Agent、iOS SDK、鸿蒙、证券业务、认知与表达等）+ 7 个项目包</td>
             <td>
               <code>domains/</code>、<code>workshop/</code>
             </td>
