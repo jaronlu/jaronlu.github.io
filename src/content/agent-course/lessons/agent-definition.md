@@ -69,13 +69,13 @@ Agent 的本质是一个**循环（Loop）**，不是一次函数调用。最经
 ```
 
 **关键机制**：
-1. **状态（State）**：循环中所有节点共享的数据结构，包含消息历史、中间结果、当前目标。LangGraph 中将其建模为显式的 State Schema。[LangGraph·Graph API](https://docs.langchain.org.cn/oss/python/langgraph/graph-api)
+1. **状态（State）**：循环中所有节点共享的数据结构，包含消息历史、中间结果、当前目标。LangGraph 中将其建模为显式的 State Schema。[LangGraph·Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
 2. **记忆（Memory）**：短期记忆 = 上下文窗口内的消息历史；长期记忆 = 外部存储（向量库/数据库），在每轮循环中检索注入。
-3. **终止条件**：LLM 输出 `finish` 动作，或达到最大步数（防死循环）。LangGraph 通过 `recursion_limit` 强制上限。[LangGraph·Use Graph API](https://docs.langchain.com/oss/javascript/langgraph/use-graph-api)
+3. **终止条件**：LLM 输出 `finish` 动作，或达到最大步数（防死循环）。LangGraph 通过 `recursion_limit` 强制上限。[LangGraph·Use Graph API](https://docs.langchain.com/oss/python/langgraph/use-graph-api)
 
 ### 3.2 LangGraph 中的建模方式
 
-LangGraph 把 Agent Loop 建模为**图（Graph）**，三个核心组件：[LangGraph·Graph API](https://docs.langchain.org.cn/oss/python/langgraph/graph-api)
+LangGraph 把 Agent Loop 建模为**图（Graph）**，三个核心组件：[LangGraph·Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
 
 | 组件 | 作用 | 类比 |
 |---|---|---|
@@ -303,7 +303,7 @@ print(result["messages"][-1].content)
 
 ### 坑2：不设最大步数，Agent 死循环烧 token
 **现象**：LLM 在两个工具之间反复横跳（搜索→计算→搜索→计算…），永远不输出 finish，token 账单爆炸。
-**正解**：必须设置 `max_steps` / `recursion_limit`。LangGraph 默认有 recursion_limit，超出后报错而非无限运行。[LangGraph·Use Graph API](https://docs.langchain.com/oss/javascript/langgraph/use-graph-api) 同时在 Prompt 中明确“最多尝试N次，失败则报告原因”。
+**正解**：必须设置 `max_steps` / `recursion_limit`。LangGraph 默认有 recursion_limit，超出后报错而非无限运行。[LangGraph·Use Graph API](https://docs.langchain.com/oss/python/langgraph/use-graph-api) 同时在 Prompt 中明确“最多尝试N次，失败则报告原因”。
 
 ### 坑3：工具描述写得太模糊，LLM 不知道何时调用
 **现象**：定义了 `search(query: str)` 工具，但 LLM 该搜的时候不搜、不该搜的时候乱搜。
@@ -343,7 +343,7 @@ print(result["messages"][-1].content)
 - 技术博客: [Lilian Weng, *LLM Powered Autonomous Agents*, 2023](https://lilianweng.github.io/tags/agent/)
 - 官方课程: [Andrew Ng, *Agentic AI* 课程, DeepLearning.AI](https://corporate.deeplearning.ai/courses/agentic-ai/information)
 - 行业报告: [Cloud Security Alliance, *Agentic Universe: April 2026*](https://labs.cloudsecurityalliance.org/agentic/agentic-universe-april-2026-v1/)
-- 框架文档: [LangGraph 官方文档：Graph API](https://docs.langchain.org.cn/oss/python/langgraph/graph-api)
+- 框架文档: [LangGraph 官方文档：Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
 - 框架文档: [LangGraph 官方文档：Workflows and Agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 - 框架文档: [LangGraph 官方文档：Use Graph API（recursion_limit）](https://docs.langchain.com/oss/javascript/langgraph/use-graph-api)
 - 权威媒体: [新华网，《智能体：把能力转化为生产力》, 2026-04](http://www.xinhuanet.com/globe/20260402/2e094094cb7c4a5ea9267e3ac55dd5ae/c.html)

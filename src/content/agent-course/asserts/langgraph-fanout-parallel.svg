@@ -1,0 +1,88 @@
+<svg viewBox="0 48 680 562" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>并行扇出工作流节点与边拓扑</title>
+  <desc>START 经固定边进入 fan_out，fan_out 通过条件边返回 Send 列表并行调用 research 三次，结果经 operator.add 汇总后由固定边进入 synthesis，再到 END。</desc>
+  <style>
+    text { font-family: -apple-system, "PingFang SC", sans-serif; }
+    .h { font-size: 14px; font-weight: 500; }
+    .s { font-size: 12px; }
+    .mono { font-family: Menlo, Consolas, monospace; }
+    .container { fill: #F1EFE8; stroke: #888780; }
+    .pill { fill: #FFFFFF; stroke: #5F5E5A; }
+    .b-blue { fill: #E6F1FB; stroke: #185FA5; }
+    .b-purple { fill: #EEEDFE; stroke: #534AB7; }
+    .b-green { fill: #EAF3DE; stroke: #3B6D11; }
+    .e-gray { stroke: #5F5E5A; }
+    .e-purple { stroke: #534AB7; }
+    .t-blue { fill: #0C447C; }
+    .t-purple { fill: #3C3489; }
+    .t-green { fill: #27500A; }
+    .t-purple-s { fill: #534AB7; }
+    .t-gray { fill: #444441; }
+    .t-gray-s { fill: #5F5E5A; }
+    @media (prefers-color-scheme: dark) {
+      .container { fill: #2C2C2A; stroke: #888780; }
+      .pill { fill: #444441; stroke: #B4B2A9; }
+      .b-blue { fill: #0C447C; stroke: #85B7EB; }
+      .b-purple { fill: #3C3489; stroke: #AFA9EC; }
+      .b-green { fill: #27500A; stroke: #97C459; }
+      .e-gray { stroke: #B4B2A9; }
+      .e-purple { stroke: #AFA9EC; }
+      .t-blue { fill: #E6F1FB; }
+      .t-purple { fill: #EEEDFE; }
+      .t-green { fill: #EAF3DE; }
+      .t-purple-s { fill: #CECBF6; }
+      .t-gray { fill: #F1EFE8; }
+      .t-gray-s { fill: #D3D1C7; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="48" width="680" height="562" fill="#FFFFFF"/>
+
+  <text class="s t-gray-s" x="245" y="80" text-anchor="middle">① app.invoke(...)</text>
+  <line x1="245" y1="88" x2="245" y2="178" stroke-width="1.5" stroke-dasharray="4 3" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="96" width="600" height="440" rx="14" stroke-width="0.5" class="container"/>
+  <text class="s t-gray-s" x="56" y="118">编译后的图 app</text>
+
+  <rect x="64" y="196" width="76" height="36" rx="18" stroke-width="0.5" class="pill"/>
+  <text class="s t-gray" x="102" y="214" text-anchor="middle" dominant-baseline="central">START</text>
+
+  <text class="s mono t-gray-s" x="158" y="172" text-anchor="middle">set_entry_point</text>
+  <line x1="140" y1="214" x2="176" y2="214" stroke-width="1.5" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="180" y="182" width="130" height="64" rx="10" stroke-width="0.5" class="b-purple"/>
+  <text class="h t-purple" x="245" y="214" text-anchor="middle" dominant-baseline="central">fan_out</text>
+
+  <text class="s t-purple-s" x="475" y="122" text-anchor="middle">条件边（Send ×3）</text>
+  <path d="M310 214 H340 V152 H396" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <path d="M310 214 H340 V228 H396" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <path d="M310 214 H340 V304 H396" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+
+  <rect x="400" y="130" width="130" height="44" rx="10" stroke-width="0.5" class="b-green"/>
+  <text class="h t-green" x="465" y="152" text-anchor="middle" dominant-baseline="central">research · 技术</text>
+  <rect x="400" y="206" width="130" height="44" rx="10" stroke-width="0.5" class="b-green"/>
+  <text class="h t-green" x="465" y="228" text-anchor="middle" dominant-baseline="central">research · 商业</text>
+  <rect x="400" y="282" width="130" height="44" rx="10" stroke-width="0.5" class="b-green"/>
+  <text class="h t-green" x="465" y="304" text-anchor="middle" dominant-baseline="central">research · 社会</text>
+
+  <path d="M530 152 H555" fill="none" stroke-width="1.5" class="e-gray"/>
+  <path d="M530 228 H555" fill="none" stroke-width="1.5" class="e-gray"/>
+  <path d="M530 304 H555" fill="none" stroke-width="1.5" class="e-gray"/>
+  <path d="M555 152 V340 H475 V366" fill="none" stroke-width="1.5" class="e-gray" marker-end="url(#arrow)"/>
+  <text class="s t-gray-s" x="592" y="336" text-anchor="middle">add_edge</text>
+
+  <rect x="400" y="370" width="150" height="56" rx="10" stroke-width="0.5" class="b-blue"/>
+  <text class="h t-blue" x="475" y="398" text-anchor="middle" dominant-baseline="central">synthesis</text>
+
+  <line x1="475" y1="426" x2="475" y2="466" stroke-width="1.5" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+  <rect x="437" y="470" width="76" height="36" rx="18" stroke-width="0.5" class="pill"/>
+  <text class="s t-gray" x="475" y="488" text-anchor="middle" dominant-baseline="central">END</text>
+
+  <text class="s t-gray-s" x="340" y="566" text-anchor="middle">灰实线 = 固定边（add_edge）· 紫实线 = 条件边（fan_out 返回 Send 列表，自动并行）</text>
+  <text class="s t-gray-s" x="340" y="586" text-anchor="middle">research 被 Send 并行调用 3 次，结果经 operator.add 追加汇总，全部完成后进 synthesis</text>
+</svg>

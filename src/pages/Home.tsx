@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
-import { courseLessons } from "../data/course";
+import { courseLessons, courseManifest } from "../data/course";
 import { projects } from "../data/projects";
 import { notes } from "../data/notes";
 import { site } from "../data/site";
@@ -240,7 +240,7 @@ function Curriculum() {
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="AGENT CURRICULUM / 03" title="39 课，把 Agent 知识装订成体系">
+        <SectionHead kicker="AGENT CURRICULUM / 03" title={`${courseManifest.total} 课，把 Agent 知识装订成体系`}>
           从消息协议到生产治理的六层课程，收录精校全文，逐课标注资料来源与校准状态。
         </SectionHead>
         <Reveal>
@@ -263,7 +263,7 @@ function Curriculum() {
                   </span>
                 </span>
                 <span className="font-mono text-[0.6rem] tracking-[0.08em] text-faint">
-                  {l.calibrated ? "CALIBRATED" : "IN REVIEW"}
+                  {l.calibrated ? "CALIBRATED" : "CALIBRATING"}
                 </span>
               </Link>
             ))}
@@ -274,7 +274,7 @@ function Curriculum() {
             to="/agent-course"
             className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
           >
-            全部 39 课目录
+            全部 {courseManifest.total} 课目录
             <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </Reveal>

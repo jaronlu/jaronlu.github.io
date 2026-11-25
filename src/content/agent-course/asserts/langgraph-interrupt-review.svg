@@ -1,0 +1,53 @@
+<svg viewBox="0 76 680 488" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>人工审核工作流节点与边拓扑</title>
+  <desc>START 经固定边进入 generate，generate 经固定边到 review，review 经固定边到 END；review 内 interrupt 暂停时快照写入 MemorySaver，人工通过 Command resume 从断点恢复。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="76" width="680" height="488" fill="#FFFFFF"/>
+
+  <text class="ts" x="250" y="108" text-anchor="middle" fill="#5F5E5A">① app.invoke(初始状态)</text>
+  <line x1="250" y1="116" x2="250" y2="189" stroke="#5F5E5A" stroke-width="1.5" stroke-dasharray="4 3" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="150" width="600" height="150" rx="14" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text class="ts" x="56" y="172" fill="#444441">编译后的图 app</text>
+
+  <rect x="64" y="207" width="76" height="36" rx="18" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="ts" x="102" y="225" text-anchor="middle" dominant-baseline="central" fill="#444441">START</text>
+
+  <text class="ts" x="158" y="190" text-anchor="middle" fill="#5F5E5A" style="font-family: Menlo, Consolas, monospace">set_entry_point</text>
+  <line x1="140" y1="225" x2="176" y2="225" stroke="#5F5E5A" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="180" y="193" width="140" height="64" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="250" y="225" text-anchor="middle" dominant-baseline="central" fill="#0C447C">generate</text>
+
+  <text class="ts" x="348" y="212" text-anchor="middle" fill="#5F5E5A">add_edge</text>
+  <line x1="320" y1="225" x2="376" y2="225" stroke="#5F5E5A" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="380" y="193" width="140" height="64" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="th" x="450" y="225" text-anchor="middle" dominant-baseline="central" fill="#3C3489">review</text>
+
+  <text class="ts" x="543" y="212" text-anchor="middle" fill="#5F5E5A">add_edge</text>
+  <line x1="520" y1="225" x2="566" y2="225" stroke="#5F5E5A" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="570" y="207" width="60" height="36" rx="18" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="ts" x="600" y="225" text-anchor="middle" dominant-baseline="central" fill="#444441">END</text>
+
+  <rect x="64" y="420" width="170" height="64" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text class="th" x="149" y="442" text-anchor="middle" dominant-baseline="central" fill="#633806">人工审核</text>
+  <text class="ts" x="149" y="462" text-anchor="middle" dominant-baseline="central" fill="#854F0B">approve / 修改内容</text>
+  <path d="M149 420 V360 H430 V261" fill="none" stroke="#854F0B" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text class="ts" x="290" y="352" text-anchor="middle" fill="#854F0B">② Command(resume=...)</text>
+
+  <rect x="520" y="420" width="150" height="64" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="th" x="595" y="442" text-anchor="middle" dominant-baseline="central" fill="#085041">MemorySaver</text>
+  <text class="ts" x="595" y="462" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">checkpointer</text>
+  <path d="M450 257 V340 H595 V416" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text class="ts" x="522" y="332" text-anchor="middle" fill="#0F6E56">存 / 取快照</text>
+
+  <text class="ts" x="340" y="520" text-anchor="middle" fill="#444441">实线 = add_edge 图内边 · 虚线 = 图外调用与快照读写</text>
+  <text class="ts" x="340" y="540" text-anchor="middle" fill="#444441">review 执行到 interrupt() 暂停，resume 后从断点继续，generate 不重跑</text>
+</svg>

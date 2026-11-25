@@ -9,6 +9,7 @@
   "description": "Jaron Lu 的个人求职作品集站 — React + Tailwind CSS",
   "scripts": {
     "dev": "vite",
+    "predev": "node scripts/build-agent-course.mjs",
     "build": "node scripts/build-agent-course.mjs && tsc -b && vite build && node scripts/prerender.mjs",
     "build:course": "node scripts/build-agent-course.mjs",
     "prerender": "node scripts/prerender.mjs",

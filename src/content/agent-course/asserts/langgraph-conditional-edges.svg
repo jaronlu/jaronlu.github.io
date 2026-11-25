@@ -1,0 +1,41 @@
+<svg viewBox="0 100 680 434" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>LangGraph 节点与边拓扑</title>
+  <desc>START 经固定边进入 reason；reason 有两条条件边分别指向 action 和 END，由 should_continue 选路；action 经固定边回到 reason 形成循环。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="100" width="680" height="434" fill="#FFFFFF"/>
+
+  <rect x="40" y="120" width="600" height="340" rx="14" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text class="ts" x="56" y="142" fill="#444441">编译后的图</text>
+
+  <rect x="64" y="180" width="76" height="36" rx="18" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="ts" x="102" y="198" text-anchor="middle" dominant-baseline="central" fill="#444441">START</text>
+
+  <text class="ts" x="178" y="182" text-anchor="middle" fill="#5F5E5A" style="font-family: Menlo, Consolas, monospace">set_entry_point</text>
+  <line x1="140" y1="198" x2="216" y2="198" stroke="#5F5E5A" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="220" y="166" width="130" height="64" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="285" y="198" text-anchor="middle" dominant-baseline="central" fill="#0C447C">reason</text>
+
+  <text class="ts" x="453" y="182" text-anchor="middle" fill="#534AB7">条件边（should_continue）</text>
+  <line x1="350" y1="198" x2="556" y2="198" stroke="#534AB7" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="180" width="60" height="36" rx="18" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="ts" x="590" y="198" text-anchor="middle" dominant-baseline="central" fill="#444441">END</text>
+
+  <text class="ts" x="297" y="290" fill="#534AB7">条件边（should_continue）</text>
+  <line x1="285" y1="230" x2="285" y2="336" stroke="#534AB7" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="220" y="340" width="130" height="64" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text class="th" x="285" y="372" text-anchor="middle" dominant-baseline="central" fill="#27500A">action</text>
+
+  <path d="M220 372 H150 V214 H216" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text class="ts" x="140" y="300" text-anchor="end" fill="#5F5E5A">固定边（回到 reason）</text>
+
+  <text class="ts" x="340" y="490" text-anchor="middle" fill="#444441">灰实线 = 固定边（add_edge）· 紫实线 = 条件边（add_conditional_edges）</text>
+  <text class="ts" x="340" y="510" text-anchor="middle" fill="#444441">should_continue 返回值经映射选路："action" 去 action，"end" 去 END</text>
+</svg>

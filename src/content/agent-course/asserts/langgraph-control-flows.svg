@@ -1,0 +1,92 @@
+<svg viewBox="0 40 680 450" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>四种基本控制流</title>
+  <desc>四个面板分别展示顺序、条件分支、循环、并行四种控制流的节点与边拓扑。</desc>
+  <style>
+    text { font-family: -apple-system, "PingFang SC", sans-serif; }
+    .h { font-size: 14px; font-weight: 500; }
+    .s { font-size: 12px; }
+    .container { fill: #F1EFE8; stroke: #888780; }
+    .b-blue { fill: #E6F1FB; stroke: #185FA5; }
+    .b-green { fill: #EAF3DE; stroke: #3B6D11; }
+    .e-gray { stroke: #5F5E5A; }
+    .e-purple { stroke: #534AB7; }
+    .t-blue { fill: #0C447C; }
+    .t-green { fill: #27500A; }
+    .t-purple-s { fill: #534AB7; }
+    .t-gray { fill: #444441; }
+    .t-gray-s { fill: #5F5E5A; }
+    @media (prefers-color-scheme: dark) {
+      .container { fill: #2C2C2A; stroke: #888780; }
+      .b-blue { fill: #0C447C; stroke: #85B7EB; }
+      .b-green { fill: #27500A; stroke: #97C459; }
+      .e-gray { stroke: #B4B2A9; }
+      .e-purple { stroke: #AFA9EC; }
+      .t-blue { fill: #E6F1FB; }
+      .t-green { fill: #EAF3DE; }
+      .t-purple-s { fill: #CECBF6; }
+      .t-gray { fill: #F1EFE8; }
+      .t-gray-s { fill: #D3D1C7; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="40" width="680" height="450" fill="#FFFFFF"/>
+
+  <rect x="40" y="60" width="285" height="180" rx="14" stroke-width="0.5" class="container"/>
+  <text class="s t-gray" x="56" y="84">① 顺序（Sequential）</text>
+  <rect x="56" y="140" width="60" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="86" y="156" text-anchor="middle" dominant-baseline="central">A</text>
+  <line x1="116" y1="156" x2="152" y2="156" stroke-width="1.5" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+  <rect x="156" y="140" width="60" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="186" y="156" text-anchor="middle" dominant-baseline="central">B</text>
+  <line x1="216" y1="156" x2="248" y2="156" stroke-width="1.5" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+  <rect x="252" y="140" width="60" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="282" y="156" text-anchor="middle" dominant-baseline="central">C</text>
+
+  <rect x="355" y="60" width="285" height="180" rx="14" stroke-width="0.5" class="container"/>
+  <text class="s t-gray" x="371" y="84">② 条件分支（Conditional）</text>
+  <rect x="371" y="140" width="64" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="403" y="156" text-anchor="middle" dominant-baseline="central">A</text>
+  <rect x="520" y="104" width="90" height="32" rx="8" stroke-width="0.5" class="b-green"/>
+  <text class="s t-green" x="565" y="120" text-anchor="middle" dominant-baseline="central">B</text>
+  <rect x="520" y="184" width="90" height="32" rx="8" stroke-width="0.5" class="b-green"/>
+  <text class="s t-green" x="565" y="200" text-anchor="middle" dominant-baseline="central">C</text>
+  <path d="M435 156 H470 V120 H516" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <path d="M470 156 V200 H516" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <text class="s t-purple-s" x="474" y="106">条件1</text>
+  <text class="s t-purple-s" x="474" y="222">条件2</text>
+
+  <rect x="40" y="290" width="285" height="180" rx="14" stroke-width="0.5" class="container"/>
+  <text class="s t-gray" x="56" y="314">③ 循环（Looping）</text>
+  <rect x="56" y="350" width="60" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="86" y="366" text-anchor="middle" dominant-baseline="central">A</text>
+  <line x1="116" y1="366" x2="152" y2="366" stroke-width="1.5" class="e-gray" fill="none" marker-end="url(#arrow)"/>
+  <rect x="156" y="350" width="60" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="186" y="366" text-anchor="middle" dominant-baseline="central">B</text>
+  <path d="M186 382 V420 H86 V386" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <text class="s t-purple-s" x="136" y="440" text-anchor="middle">不满足 → 回到 A</text>
+  <path d="M216 366 H252" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <text class="s t-purple-s" x="234" y="340" text-anchor="middle">满足 → 退出</text>
+  <rect x="256" y="350" width="60" height="32" rx="8" stroke-width="0.5" class="b-green"/>
+  <text class="s t-green" x="286" y="366" text-anchor="middle" dominant-baseline="central">C</text>
+
+  <rect x="355" y="290" width="285" height="180" rx="14" stroke-width="0.5" class="container"/>
+  <text class="s t-gray" x="371" y="314">④ 并行（Parallelism）</text>
+  <rect x="371" y="350" width="64" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="403" y="366" text-anchor="middle" dominant-baseline="central">A</text>
+  <text class="s t-purple-s" x="466" y="316">Send ×2</text>
+  <path d="M435 366 H462 V340 H486" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <path d="M462 366 V400 H486" fill="none" stroke-width="1.5" class="e-purple" marker-end="url(#arrow)"/>
+  <rect x="490" y="324" width="80" height="32" rx="8" stroke-width="0.5" class="b-green"/>
+  <text class="s t-green" x="530" y="340" text-anchor="middle" dominant-baseline="central">B</text>
+  <rect x="490" y="384" width="80" height="32" rx="8" stroke-width="0.5" class="b-green"/>
+  <text class="s t-green" x="530" y="400" text-anchor="middle" dominant-baseline="central">C</text>
+  <path d="M570 340 H590 V368 H596" fill="none" stroke-width="1.5" class="e-gray" marker-end="url(#arrow)"/>
+  <path d="M570 400 H590 V368" fill="none" stroke-width="1.5" class="e-gray"/>
+  <rect x="600" y="352" width="36" height="32" rx="8" stroke-width="0.5" class="b-blue"/>
+  <text class="s t-blue" x="618" y="368" text-anchor="middle" dominant-baseline="central">D</text>
+</svg>

@@ -18,7 +18,9 @@ for (const [path, loader] of Object.entries(lessonModules)) {
   contentMap[slug] = lazy(async () => {
     const mod = await loader();
     // marked 产出的 HTML 来自仓库内自己清洗过的课文，非用户输入，可直接注入。
-    const LessonHtml = () => <div dangerouslySetInnerHTML={{ __html: mod.default.html }} />;
+    const LessonHtml = () => (
+      <div className="prose-body" dangerouslySetInnerHTML={{ __html: mod.default.html }} />
+    );
     return { default: LessonHtml };
   });
 }

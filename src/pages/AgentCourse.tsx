@@ -5,12 +5,16 @@ import { courseLessons, courseManifest, courseTiers, type CourseLesson } from ".
 
 const tierOrder = [1, 2, 3, 4, 5, 6] as const;
 
+/** 全文已发布课程的校准状态：首页、目录页、详情页共用同一套说法。 */
+const statusLabel = (lesson: CourseLesson) =>
+  lesson.calibrated ? "CALIBRATED" : "CALIBRATING";
+
 /** 已收录全文的课程行：可点击进详情页。 */
 function PublishedRow({ lesson }: { lesson: CourseLesson }) {
   return (
     <Link
       to={`/agent-course/${lesson.slug}`}
-      className="hover-row group grid grid-cols-[2rem_1fr_auto] items-center gap-x-4 gap-y-0.5 border-b border-line py-4 text-ink no-underline sm:grid-cols-[3rem_1fr_auto] sm:gap-x-7"
+      className="hover-row group grid grid-cols-[2rem_1fr_auto] items-center gap-x-4 gap-y-0.5 border-b border-line py-4 text-ink no-underline sm:grid-cols-[3rem_1fr_auto_auto] sm:gap-x-7"
     >
       <span className="font-mono text-[0.72rem] font-semibold text-faint">
         L{String(lesson.num).padStart(2, "0")}
@@ -22,13 +26,21 @@ function PublishedRow({ lesson }: { lesson: CourseLesson }) {
         <span className="mt-0.5 block truncate text-[0.76rem] text-muted">
           {lesson.oneLine}
         </span>
+        {/* 窄屏放不下右侧徽章，把状态贴在标题下方，保证移动端也能看到校准状态 */}
+        <span
+          className={`mt-1 block font-mono text-[0.58rem] font-semibold tracking-[0.08em] sm:hidden ${
+            lesson.calibrated ? "text-muted" : "text-accent"
+          }`}
+        >
+          {statusLabel(lesson)}
+        </span>
       </span>
       <span
         className={`hidden items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[0.6rem] font-semibold tracking-[0.08em] sm:inline-flex ${
           lesson.calibrated ? "border-line text-muted" : "border-line text-accent"
         }`}
       >
-        {lesson.calibrated ? "CALIBRATED" : "FULL TEXT"}
+        {statusLabel(lesson)}
       </span>
       <span className="justify-self-end text-center text-[0.95rem] text-accent transition-transform group-hover:translate-x-1">
         →
@@ -62,7 +74,7 @@ export function AgentCourse() {
       <PageHead
         kicker="AGENT CURRICULUM"
         title="Agent 知识体系"
-        metaDescription="39 课 AI Agent 系统课程目录：消息协议、核心机制、架构模式、工程落地、框架工具与生产治理。收录 8 篇精校全文，全部标注资料来源与校准状态。"
+        metaDescription={`${courseManifest.total} 课 AI Agent 系统课程目录：消息协议、核心机制、架构模式、工程落地、框架工具与生产治理。收录 ${courseManifest.published} 篇精校全文，全部标注资料来源与校准状态。`}
       >
         把 Agent 知识拆成六层：概念、机制、架构、工程、框架、生产。每篇课文都标注资料来源与校准状态。
       </PageHead>

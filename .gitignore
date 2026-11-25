@@ -17,3 +17,8 @@ codex-review.md
 fable5-ret.md
 # Agent 工作记忆，属于本地数据
 .workbuddy/
+# 课程图片是 build 时从 src/content/agent-course/asserts/ 拷过来的产物
+public/agent-course/asserts/
+# agent runtime artifacts
+.mimosa/
+.v2c/

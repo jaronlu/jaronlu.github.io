@@ -351,6 +351,47 @@ body {
   white-space: pre;
 }
 
+/* 课程课文是 marked 产出的整块 HTML，注入在 .prose-body wrapper 里，和手写正文有三处差别：
+   1. `.prose > * + *` 够不到 wrapper 内部，块间距要单独定义；
+   2. 课文有 h4/h5 层级，手写正文没有；
+   3. 课文里的长命令/裸 URL 若沿用内联 code 的 nowrap，会把窄屏整页撑宽。 */
+.prose-body > * + * {
+  margin-top: 1.1rem;
+}
+
+.prose-body h4 {
+  margin-top: 1.6rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.prose-body h5 {
+  margin-top: 1.2rem;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.prose-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.prose-body :not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.prose-body p,
+.prose-body li {
+  overflow-wrap: anywhere;
+}
+
 /* 元信息条（项目档案头）：详情页里它在 .prose 之外，所以不能写成 .prose .meta-strip */
 .meta-strip {
   display: flex;
