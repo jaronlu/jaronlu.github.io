@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 368" width="680" height="368" font-family="-apple-system, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ahGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/>
+    </marker>
+    <marker id="ahPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7C5CD6"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="368" fill="#FFFFFF"/>
+
+  <!-- Host -->
+  <rect x="20" y="24" width="228" height="272" rx="10" fill="#F7F9FC" stroke="#C9D3E0"/>
+  <text x="36" y="44" font-size="12" font-weight="600" fill="#1F2933">Host（AI 应用）</text>
+
+  <rect x="36" y="54" width="196" height="76" rx="8" fill="#EAF0FA" stroke="#7C9BD1"/>
+  <text x="46" y="76" font-size="12" font-weight="600" fill="#1F2933">LLM（Function Calling）</text>
+  <text x="46" y="98" font-size="11" fill="#33414F">决定调哪个工具、传什么参数</text>
+  <text x="46" y="116" font-size="11" fill="#33414F">工具定义仍随请求进上下文</text>
+
+  <rect x="36" y="142" width="196" height="142" rx="8" fill="#EAF7F2" stroke="#6FB79B"/>
+  <text x="46" y="164" font-size="12" font-weight="600" fill="#1F2933">Client（连接器）</text>
+  <text x="46" y="184" font-size="11" fill="#33414F">每个请求注入 _meta：</text>
+  <text x="46" y="202" font-size="11" fill="#33414F">protocolVersion</text>
+  <text x="46" y="220" font-size="11" fill="#33414F">clientCapabilities</text>
+  <text x="46" y="242" font-size="11" fill="#33414F">与 Server 严格一对一</text>
+  <text x="46" y="260" font-size="11" fill="#33414F">维护连接与订阅</text>
+  <text x="46" y="278" font-size="11" fill="#33414F">不承载业务逻辑</text>
+
+  <!-- Server -->
+  <rect x="432" y="24" width="228" height="272" rx="10" fill="#F7F9FC" stroke="#C9D3E0"/>
+  <text x="448" y="44" font-size="12" font-weight="600" fill="#1F2933">Server（独立进程 / 远程服务）</text>
+
+  <rect x="448" y="54" width="196" height="76" rx="8" fill="#FBF0E8" stroke="#D89A6A"/>
+  <text x="458" y="76" font-size="12" font-weight="600" fill="#1F2933">Tools / Resources / Prompts</text>
+  <text x="458" y="98" font-size="11" fill="#33414F">tools/call 在这里执行</text>
+  <text x="458" y="116" font-size="11" fill="#33414F">返回 content / isError</text>
+
+  <rect x="448" y="142" width="196" height="142" rx="8" fill="#F3EFFA" stroke="#9B87C9"/>
+  <text x="458" y="164" font-size="12" font-weight="600" fill="#1F2933">应用状态（可选）</text>
+  <text x="458" y="184" font-size="11" fill="#33414F">协议无状态：跨调用状态</text>
+  <text x="458" y="202" font-size="11" fill="#33414F">需 Server 自己签发句柄</text>
+  <text x="458" y="220" font-size="11" fill="#33414F">（如 basket_id）</text>
+  <text x="458" y="238" font-size="11" fill="#33414F">由模型当参数带回</text>
+  <text x="458" y="260" font-size="11" fill="#33414F">重试凭证 requestState</text>
+  <text x="458" y="278" font-size="11" fill="#33414F">由 Server 密封，客户端回传</text>
+
+  <!-- ① tools/call -->
+  <line x1="248" y1="160" x2="424" y2="160" stroke="#6B7280" stroke-width="1.6" marker-end="url(#ahGray)"/>
+  <rect x="292" y="151" width="96" height="18" rx="9" fill="#FFFFFF" stroke="#C9D3E0"/>
+  <text x="340" y="164" font-size="11" text-anchor="middle" fill="#1F2933">① tools/call</text>
+
+  <!-- ② input_required -->
+  <line x1="432" y1="188" x2="256" y2="188" stroke="#7C5CD6" stroke-width="1.6" marker-end="url(#ahPurple)"/>
+  <rect x="272" y="179" width="136" height="18" rx="9" fill="#FFFFFF" stroke="#C3B6E8"/>
+  <text x="340" y="192" font-size="11" text-anchor="middle" fill="#1F2933">② input_required</text>
+
+  <!-- ③ retry -->
+  <line x1="248" y1="216" x2="424" y2="216" stroke="#7C5CD6" stroke-width="1.6" marker-end="url(#ahPurple)"/>
+  <rect x="300" y="207" width="80" height="18" rx="9" fill="#FFFFFF" stroke="#C3B6E8"/>
+  <text x="340" y="220" font-size="11" text-anchor="middle" fill="#1F2933">③ 重试</text>
+
+  <!-- ④ result -->
+  <line x1="432" y1="244" x2="256" y2="244" stroke="#6B7280" stroke-width="1.6" marker-end="url(#ahGray)"/>
+  <rect x="304" y="235" width="72" height="18" rx="9" fill="#FFFFFF" stroke="#C9D3E0"/>
+  <text x="340" y="248" font-size="11" text-anchor="middle" fill="#1F2933">④ complete</text>
+
+  <!-- caption -->
+  <rect x="20" y="308" width="640" height="40" rx="8" fill="#FFF8E6" stroke="#E2C275"/>
+  <text x="36" y="325" font-size="11" fill="#1F2933">无握手、无会话：任意一台实例都能应答任意请求；②③ 只在服务端处理①的过程中发生，</text>
+  <text x="36" y="341" font-size="11" fill="#1F2933">客户端补齐答案后带原 requestState 重放①，因此重试也不必回到原实例。</text>
+</svg>

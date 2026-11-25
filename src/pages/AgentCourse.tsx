@@ -85,8 +85,8 @@ export function AgentCourse() {
             <p className="mb-8 max-w-[62ch] text-[0.82rem] leading-relaxed text-muted">
               <b className="text-ink">{courseManifest.total} 课</b>
               系统学习笔记（AI 协助整理，逐课标注论文 / 官方文档来源），本站收录其中{" "}
-              <b className="text-ink">{courseManifest.published} 篇</b>精校全文，其余课程目录展示、全文待校准后发布。
-              框架类课程（第⑤层）时效敏感，全文以官方文档校准为准，暂不公开。
+              <b className="text-ink">{courseManifest.published} 篇</b>全文，第 37 课源稿整理中、暂只列目录。
+              框架类课程（第⑤层）时效敏感，结论以官方文档为准。
             </p>
           </Reveal>
 

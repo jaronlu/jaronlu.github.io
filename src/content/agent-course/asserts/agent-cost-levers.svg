@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="500" viewBox="0 0 680 500" role="img" aria-label="成本的三个因子与各杠杆的作用点">
+<rect x="0" y="0" width="680" height="500" fill="#FFFFFF"/>
+<text x="20" y="32" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="15" font-weight="600" fill="#1F2328">成本的三个因子，与各杠杆分别压在哪个因子上</text>
+<rect x="20" y="46" width="640" height="58" rx="8" fill="#F6F8FA" stroke="#D0D7DE"/>
+<text x="36" y="70" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="13" fill="#1F2328">总成本 = Σ（每步单价 × 每步 Token 数）</text>
+<text x="36" y="90" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12" fill="#57606A">单价 × 每步量 × 步数——每条杠杆只能压其中一项，先动哪个要看账单占比。</text>
+<rect x="20" y="118" width="200" height="316" rx="10" fill="#FBFCFE" stroke="#DBE2EA"/>
+<text x="120" y="143" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" font-weight="600" text-anchor="middle" fill="#3A4B63">① 单价（元 / Token）</text>
+<rect x="32" y="158" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="46" y="177" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">模型路由</text>
+<text x="46" y="192" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">简单任务换便宜档</text>
+<rect x="32" y="212" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="46" y="231" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">级联路由</text>
+<text x="46" y="246" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">先小后大，按结果升级</text>
+<rect x="32" y="266" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="46" y="285" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">前缀缓存</text>
+<text x="46" y="300" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">重复前缀只算一次价</text>
+<rect x="32" y="320" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="46" y="339" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">语义缓存</text>
+<text x="46" y="354" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">命中即短路整次调用</text>
+<rect x="32" y="374" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="46" y="393" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">批处理接口</text>
+<text x="46" y="408" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">非实时任务走半价窗口</text>
+<rect x="240" y="118" width="200" height="316" rx="10" fill="#FBFCFE" stroke="#DBE2EA"/>
+<text x="340" y="143" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" font-weight="600" text-anchor="middle" fill="#3A4B63">② 每步 Token 量</text>
+<rect x="252" y="158" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="266" y="177" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">输出限制</text>
+<text x="266" y="192" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">约束 max_tokens 与结构</text>
+<rect x="252" y="212" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="266" y="231" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">上下文压缩 / 滑窗</text>
+<text x="266" y="246" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">摘要、丢弃、外置记忆</text>
+<text x="266" y="392" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11.5" fill="#57606A">缓存不归这一列</text>
+<text x="266" y="410" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11.5" fill="#8A94A0">它压单价，不压重发量</text>
+<rect x="460" y="118" width="200" height="316" rx="10" fill="#FBFCFE" stroke="#DBE2EA"/>
+<text x="560" y="143" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" font-weight="600" text-anchor="middle" fill="#3A4B63">③ 调用次数</text>
+<rect x="472" y="158" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="486" y="177" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">步数与重试护栏</text>
+<text x="486" y="192" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">防死循环、防误重放</text>
+<rect x="472" y="212" width="176" height="42" rx="7" fill="#FFFFFF" stroke="#C6D4EC"/>
+<text x="486" y="231" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12.5" fill="#1F2328">预算告警与熔断</text>
+<text x="486" y="246" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11" fill="#6B7684">超限降级或停</text>
+<text x="486" y="392" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11.5" fill="#57606A">护栏是止损，不是优化</text>
+<text x="486" y="410" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="11.5" fill="#8A94A0">所有 Agent 都该有</text>
+<text x="20" y="462" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12" fill="#57606A">读法：同一列 = 压同一个因子；三个因子合起来就是账单——单价 × 每步量 × 步数。</text>
+<text x="20" y="482" font-family="-apple-system,'PingFang SC','Helvetica Neue','Microsoft YaHei',sans-serif" font-size="12" fill="#8A94A0">注：两种缓存只改“重复部分的计价”，不改变步数增长带来的量级。</text>
+</svg>

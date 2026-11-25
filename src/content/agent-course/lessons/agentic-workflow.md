@@ -813,7 +813,6 @@ Agentic Workflow 就像电子游戏的“任务图+存档系统”：任务不�
 - 论文/报告: [Anthropic Research — Measuring AI agent autonomy in practice](https://anthropic.com/research/measuring-agent-autonomy)（“73% 人机参与 / 0.8% 不可逆”数据点出处）
 - 权威课程: [Stanford CS224G — Agent Orchestration & Workflow Design](https://web.stanford.edu/class/cs224g/lectures/CS%20224G%202026%20Lecture%207%20-%20Agent%20Orchestration%20&%20Workflow%20Design.pdf)
 - 技术博客: [AI Workflow Lab — Durable Agent Pipelines with LangGraph and Temporal](https://aiworkflowlab.dev/article/ai-workflow-orchestration-in-production-building-durable-agent-pipelines-with-langgraph-and-temporal)
-- 技术博客: [Gurpreet Sandhu — LangGraph: Build Stateful AI Agents in Production](https://www.gurpreetsandhu.tech/blog/langgraph-build-stateful-ai-agents-that-actually-work-in-production)
 - 技术博客: [XBSTACK — LangGraph 实战：状态机、Checkpoint 与 Human-in-the-loop](https://www.xbstack.com/ai/ai-agent-workflow/)
 
 - **修订 2026-10-14**：坑 2「检测重复动作」重写——tool_call 的 `id` 每次由 provider 重新生成，直接比较字典永不相等；改为 `(name, 排序后 args)` 归一化签名（只抓周期 1 的环，局限见代码注释），并入 `should_continue` 三道闸（硬上限 → 重复检测 → tool_calls）；补检查点位置（环关口）、计数落点（环入口节点）、recursion_limit（默认 25）、降级产物、环内状态膨胀、误杀合法重试等要点。
