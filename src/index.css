@@ -60,6 +60,10 @@
   --line-strong: #171510;
   --accent: #bf3a29;
   --accent-soft: rgba(191, 58, 41, 0.08);
+  /* 代码高亮色板：keyword/comment 复用 accent/faint，三色按 paper/paper-2 双底 ≥4.5:1 校准 */
+  --code-string: #55702a;
+  --code-number: #8a4a00;
+  --code-fn: #3e5c76;
   --footer-bg: #f3f0e8;
   --footer-fg: #171510;
 }
@@ -77,6 +81,9 @@
   --line-strong: #f0ede2;
   --accent: #f26a52;
   --accent-soft: rgba(242, 106, 82, 0.12);
+  --code-string: #a9c47c;
+  --code-number: #d9a15e;
+  --code-fn: #9fb6cf;
   --footer-bg: #191813;
   --footer-fg: #e8e5da;
 }
@@ -349,6 +356,38 @@ body {
   font-size: 0.78rem;
   line-height: 1.7;
   white-space: pre;
+}
+
+/* 语法高亮（highlight.js）：只对带语言标注的块生效，未列出的 hljs 类继承正文 --ink。
+   代码块底色是 --paper-2，色板已按该底色校准对比度。 */
+.hljs-keyword,
+.hljs-built_in {
+  color: var(--accent);
+}
+
+.hljs-string,
+.hljs-attr,
+.hljs-regexp {
+  color: var(--code-string);
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--faint);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol {
+  color: var(--code-number);
+}
+
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_,
+.hljs-type,
+.hljs-name {
+  color: var(--code-fn);
 }
 
 /* 课程课文是 marked 产出的整块 HTML，注入在 .prose-body wrapper 里，和手写正文有三处差别：

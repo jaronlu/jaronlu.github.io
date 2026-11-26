@@ -40,6 +40,7 @@ export function AgentRuntimeContent() {
       <p>继承 AgentState，添加自定义属性：</p>
       <CodeBlock
         title="python"
+        lang="python"
         code={`from langchain.agents import AgentState
 from typing import NotRequired
 
@@ -54,6 +55,7 @@ class CustomState(AgentState):
       <p>在 Tool 或 Middleware 中操作 State：</p>
       <CodeBlock
         title="python"
+        lang="python"
         code={`@tool
 def my_tool(runtime: ToolRuntime):
     # 读取 state

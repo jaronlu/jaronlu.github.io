@@ -1,6 +1,7 @@
-import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
+import { lazy, Suspense, useEffect, useRef, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
+import { highlightCodeBlocks } from "../lib/highlight";
 import { courseBySlug } from "../data/course";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
@@ -18,9 +19,16 @@ for (const [path, loader] of Object.entries(lessonModules)) {
   contentMap[slug] = lazy(async () => {
     const mod = await loader();
     // marked 产出的 HTML 来自仓库内自己清洗过的课文，非用户输入，可直接注入。
-    const LessonHtml = () => (
-      <div className="prose-body" dangerouslySetInnerHTML={{ __html: mod.default.html }} />
-    );
+    const LessonHtml = () => {
+      const ref = useRef<HTMLDivElement>(null);
+      // 带语言标注的围栏在挂载后做语法高亮；裸围栏（ASCII 图/伪代码）保持纯文本。
+      useEffect(() => {
+        highlightCodeBlocks(ref.current);
+      }, []);
+      return (
+        <div ref={ref} className="prose-body" dangerouslySetInnerHTML={{ __html: mod.default.html }} />
+      );
+    };
     return { default: LessonHtml };
   });
 }

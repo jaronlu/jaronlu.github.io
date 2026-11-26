@@ -1,10 +1,18 @@
+import { useEffect, useRef } from "react";
+import { highlightElement } from "../lib/highlight";
+
 interface CodeBlockProps {
   title?: string;
+  lang?: string;
   code: string;
 }
 
-/** 简洁代码块：可选标题栏 + mono 等宽正文（不做语法高亮，保持克制）。 */
-export function CodeBlock({ title, code }: CodeBlockProps) {
+/** 简洁代码块：可选标题栏 + mono 等宽正文；传 `lang`（如 "python"）时做语法高亮，架构图/流程图不传。 */
+export function CodeBlock({ title, lang, code }: CodeBlockProps) {
+  const codeRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (codeRef.current) highlightElement(codeRef.current, lang);
+  }, [lang, code]);
   return (
     <div className="my-5 overflow-hidden rounded-md border border-line bg-paper-2">
       {title ? (
@@ -19,7 +27,10 @@ export function CodeBlock({ title, code }: CodeBlockProps) {
         role="region"
         aria-label={title ? `${title} 代码块` : "代码块"}
       >
-        <code className="font-mono text-[0.76rem] leading-relaxed text-ink whitespace-pre">
+        <code
+          ref={codeRef}
+          className={`font-mono text-[0.76rem] leading-relaxed text-ink whitespace-pre${lang ? ` language-${lang}` : ""}`}
+        >
           {code}
         </code>
       </pre>
