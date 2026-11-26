@@ -21,28 +21,54 @@ function Hero() {
   return (
     <section className="mx-auto max-w-shell px-6 pt-16 sm:pt-24">
       <Reveal>
-        {/* 每个短语是一个不可拆的整体：宽屏三行，窄屏按短语换行，不会把「可审计」拆开 */}
-        <h1 className="font-display text-[clamp(1.75rem,5vw,4rem)] leading-[1.14] font-semibold tracking-[-0.02em] text-ink">
-          <span className="inline-block">10 年证券客户端工程，</span>
-          <span className="inline-block">现在构建可验证、可审计的</span>
-          <span className="inline-block">AI Agent 系统。</span>
+        {/* 中英混排的大字用无衬线。每个短语是不可拆的整体：从 390px 手机到宽屏都是两行
+            （两行长度接近），更窄时按短语换行；行尾不带标点。 */}
+        <h1 className="text-[clamp(1.375rem,0.55rem+3.4vw,2.75rem)] leading-[1.3] font-semibold tracking-[-0.01em] text-ink">
+          <span className="block">
+            <span className="inline-block">10 年证券客户端工程，</span>
+            <span className="inline-block">现在构建</span>
+          </span>
+          <span className="block">
+            <span className="inline-block">可验证、</span>
+            <span className="inline-block">可审计的</span>{" "}
+            <span className="inline-block">AI Agent 系统</span>
+          </span>
         </h1>
       </Reveal>
       <Reveal delay={90}>
-        <p className="mt-8 max-w-[44em] text-[1.0625rem] leading-[1.75] text-ink-soft">
-          {site.intro}
-        </p>
-      </Reveal>
-      <Reveal delay={180}>
-        <p className="mt-6 max-w-[44em] text-[0.9375rem] leading-[1.75] text-muted">
-          {site.availability}
-        </p>
-        <a
-          href={`mailto:${site.email}`}
-          className="mt-2 inline-block text-[0.9375rem] text-accent underline underline-offset-4 transition-colors hover:text-ink"
-        >
-          {site.email}
-        </a>
+        {/* 左边是判断，右边是怎么联系；窄屏上下堆叠，用一条横线分隔 */}
+        <div className="mt-10 grid grid-cols-1 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:items-start lg:gap-x-12">
+          <p className="max-w-[36em] text-[1.0625rem] leading-[1.75] text-ink-soft">
+            {site.intro}
+          </p>
+          <div className="border-t border-line pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+            <p className="text-[0.9375rem] leading-[1.7] text-ink-soft">{site.availability}</p>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-5 block text-[0.9375rem] font-medium text-accent underline underline-offset-4 transition-colors hover:text-ink"
+            >
+              {site.email}
+            </a>
+            <div className="mt-2 flex gap-x-5">
+              <a
+                href={site.github}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[0.9375rem] text-accent underline underline-offset-4 transition-colors hover:text-ink"
+              >
+                GitHub
+              </a>
+              <a
+                href={site.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[0.9375rem] text-accent underline underline-offset-4 transition-colors hover:text-ink"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
       </Reveal>
     </section>
   );
