@@ -757,7 +757,7 @@ print(f"\n最终方案：\n{final}")
 ---
 
 ## 资料来源
-> 以下链接已于 2026-10-12 逐一联网核验可访问；论文标题按 arXiv / OpenReview 原文校准。
+> 来源核验 2026-11-26：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。
 
 - 论文：[arXiv:2305.14325 — Improving Factuality and Reasoning in Language Models through Multiagent Debate（ICML 2024）](https://arxiv.org/abs/2305.14325)
 - 论文：[arXiv:2308.00352 — MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352)
