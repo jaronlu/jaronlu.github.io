@@ -279,10 +279,10 @@ export function LlamaIndexRagContent() {
       <h2>相关页面</h2>
       <ul>
         <li>
-          <Link to="/notes/rag-principles">RAG 原理</Link>
+          <Link to="/agent-course/rag-approaches">RAG：基础 / 高级 / Graph / Hybrid</Link>：知识体系第 5 课
         </li>
         <li>
-          <Link to="/notes/eval-engineering">Eval Engineering</Link>
+          <Link to="/agent-course/llamaindex">LlamaIndex</Link>：知识体系第 27 课
         </li>
       </ul>
     </>

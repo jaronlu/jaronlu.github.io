@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
 import { SectionTitle } from "../components/PageHead";
 import { courseLessons, courseManifest, courseTiers } from "../data/course";
-import { notes } from "../data/notes";
 import { projects } from "../data/projects";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-/* 首页只有四块：一句话定位、全部项目、笔记、课程入口。
-   项目的完整证据行在 /projects，笔记的分类与置信度在 /notes，课程目录与全文在 /agent-course。 */
+/* 首页只有三块：一句话定位与联系方式、全部项目、课程入口。
+   项目的完整证据行在 /projects，课程目录与全文在 /agent-course。 */
 
 const tiers = ([1, 2, 3, 4, 5, 6] as const)
   .map((tier) => ({
@@ -82,31 +81,6 @@ function ProjectIndex() {
   );
 }
 
-function NoteIndex() {
-  return (
-    <section className="mx-auto max-w-shell px-6 pt-16">
-      <SectionTitle title="工程笔记" meta={`${notes.length} 篇`} to="/notes" />
-      <p className="mt-2 max-w-[42em] text-[0.9375rem] leading-[1.75] text-muted">
-        直接支撑项目设计的约束、取舍与验证方法。
-      </p>
-      <ul className="mt-4 grid grid-cols-1 border-t border-line sm:grid-cols-2 sm:gap-x-12">
-        {notes.map((n) => (
-          <li key={n.slug} className="border-b border-line">
-            <Link to={`/notes/${n.slug}`} className="row-link block py-4">
-              <span className="row-title block font-display text-[1.0625rem] leading-snug font-semibold text-ink">
-                {n.title}
-              </span>
-              <span className="mt-0.5 block text-[0.875rem] leading-relaxed text-muted">
-                {n.description}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 function CourseIndex() {
   return (
     <section className="mx-auto max-w-shell px-6 pt-16">
@@ -139,7 +113,6 @@ export function Home() {
     <>
       <Hero />
       <ProjectIndex />
-      <NoteIndex />
       <CourseIndex />
     </>
   );

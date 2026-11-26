@@ -5,8 +5,6 @@ import { AgentCourse } from "./pages/AgentCourse";
 import { CourseDetail } from "./pages/CourseDetail";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
-import { NoteDetail } from "./pages/NoteDetail";
-import { Notes } from "./pages/Notes";
 import { ProjectDetail } from "./pages/ProjectDetail";
 import { Projects } from "./pages/Projects";
 
@@ -17,8 +15,6 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="projects" element={<Projects />} />
         <Route path="projects/:slug" element={<ProjectDetail />} />
-        <Route path="notes" element={<Notes />} />
-        <Route path="notes/:slug" element={<NoteDetail />} />
         <Route path="agent-course" element={<AgentCourse />} />
         <Route path="agent-course/:slug" element={<CourseDetail />} />
         <Route path="about" element={<About />} />

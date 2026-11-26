@@ -20,7 +20,6 @@ export const site = {
 /** 主导航；首页由左上角站名承担，不单列。 */
 export const nav = [
   { label: "项目", to: "/projects" },
-  { label: "笔记", to: "/notes" },
   { label: "知识体系", to: "/agent-course" },
   { label: "关于", to: "/about" },
 ] as const;

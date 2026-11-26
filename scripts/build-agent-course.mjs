@@ -1,7 +1,7 @@
 /**
  * 课程正文构建脚本：把 src/content/agent-course/lessons/*.md 转成 JSON 模块。
  *
- * 背景：课程课文是长文（单篇 2~10 万字），不适合像工程笔记那样逐篇手写 TSX 组件。
+ * 背景：课程课文是长文（单篇 2~10 万字），不适合逐篇手写 TSX 组件。
  * 做法：构建时用 marked 把 markdown 转成 HTML 字符串，输出到
  *   src/content/agent-course/generated/<slug>.json  （{ html: "..." }）
  * CourseDetail 通过 import.meta.glob 按路由懒加载对应 JSON，避免全量打进主包。

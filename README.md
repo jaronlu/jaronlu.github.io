@@ -37,13 +37,11 @@ src/
 ├── index.css            # 设计 token（纸墨色 / 字体 / 深浅色）+ 基础样式
 ├── data/
 │   ├── site.ts          # 站点配置：姓名、邮箱、社交、导航
-│   ├── projects.ts      # 项目元数据（加新项目改这里）
-│   └── notes.ts         # 笔记元数据（加新笔记改这里）
+│   └── projects.ts      # 项目元数据（加新项目改这里）
 ├── content/
-│   ├── projects/        # 项目详情页正文组件
-│   └── notes/           # 笔记详情页正文组件
+│   └── projects/        # 项目详情页正文组件
 ├── components/          # 布局与通用组件（Nav / Footer / PageHead / SectionTitle / Reveal…）
-├── pages/               # 路由页面（Home / Projects / Notes / About / 404…）
+├── pages/               # 路由页面（Home / Projects / AgentCourse / About / 404…）
 └── assets/images/       # 本地图片资源
 ```
 
@@ -52,7 +50,6 @@ src/
 数据驱动，加内容不必改页面代码：
 
 - **新增项目**：在 `src/data/projects.ts` 的 `projects` 数组加一条 → 新建 `src/content/projects/<slug>.tsx` 写正文 → 在 `src/pages/ProjectDetail.tsx` 的 `contentMap` 注册。列表页和首页会自动出现。
-- **新增笔记**：在 `src/data/notes.ts` 的 `notes` 数组加一条 → 新建 `src/content/notes/<slug>.tsx` 写正文 → 在 `src/pages/NoteDetail.tsx` 的 `contentMap` 注册。
 - **社交 / 联系方式**：改 `src/data/site.ts`。
 
 ## 部署

@@ -9,13 +9,12 @@
  * 做法：复制 dist/index.html 到 dist/<route>/index.html，替换 <!--seo:start--><!--seo:end-->
  * 之间的 meta 区块。正文仍由 React 接管，路由行为不变。
  *
- * 数据源：src/data/projects.ts 与 src/data/notes.ts（Node ≥22.18 可直接导入 .ts）。
+ * 数据源：src/data/projects.ts 与 src/data/course.ts（Node ≥22.18 可直接导入 .ts）。
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { projects } from "../src/data/projects.ts";
-import { notes } from "../src/data/notes.ts";
 import { courseLessons } from "../src/data/course.ts";
 import { site } from "../src/data/site.ts";
 
@@ -47,15 +46,6 @@ const routes = [
     changefreq: "monthly",
   },
   {
-    path: "notes",
-    h1: "工程笔记",
-    title: `工程笔记 · ${SITE_NAME}`,
-    description:
-      "围绕 Agent Runtime、RAG、MCP 与 Loop Engineering 的工程笔记，记录直接支撑项目设计的约束、取舍与验证方法。",
-    priority: "0.8",
-    changefreq: "monthly",
-  },
-  {
     path: "about",
     h1: "关于我",
     title: `关于我 · ${SITE_NAME}`,
@@ -70,14 +60,6 @@ const routes = [
     title: `${p.name} · 项目 · ${SITE_NAME}`,
     description: p.q,
     priority: "0.8",
-    changefreq: "monthly",
-  })),
-  ...notes.map((n) => ({
-    path: `notes/${n.slug}`,
-    h1: n.title,
-    title: `${n.title} · 工程笔记 · ${SITE_NAME}`,
-    description: n.metaDescription ?? n.description,
-    priority: "0.7",
     changefreq: "monthly",
   })),
   {
@@ -160,7 +142,6 @@ function fallbackBlock({ h1, description }) {
     '<p style="margin:0;font-size:13px;color:var(--muted)">',
     '<a style="color:var(--accent);text-decoration:none" href="/">首页</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/projects/">项目</a> · ',
-    '<a style="color:var(--accent);text-decoration:none" href="/notes/">工程笔记</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/agent-course/">知识体系</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/about/">关于</a>',
     '</p></div></noscript></div>',

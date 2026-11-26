@@ -165,9 +165,6 @@ export function AgentSkillsContent() {
       <h2>相关页面</h2>
       <ul>
         <li>
-          <Link to="/notes/agent-runtime">Agent Runtime</Link>
-        </li>
-        <li>
           <Link to="/projects/llm-wiki-mcp">llm-wiki-mcp</Link>
         </li>
       </ul>

@@ -73,11 +73,11 @@ export function AgentCourse() {
         })}
 
         <p className="max-w-[46em] text-[0.9375rem] leading-[1.75] text-muted">
-          这套课程是学习材料；落到工程决策上的结论在{" "}
-          <Link to="/notes" className="text-accent underline underline-offset-4 hover:text-ink">
-            工程笔记
+          这套课程是学习材料，不是能力证明；用这些知识做出来的东西在{" "}
+          <Link to="/projects" className="text-accent underline underline-offset-4 hover:text-ink">
+            项目
           </Link>
-          ，两边口径一致：边界先于能力，验证先于交付。
+          。
         </p>
       </section>
     </>
