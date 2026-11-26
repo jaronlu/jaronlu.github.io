@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
-import { SectionTitle } from "../components/PageHead";
+import { PrivateTag, SectionTitle } from "../components/PageHead";
 import { courseLessons, courseManifest, courseTiers } from "../data/course";
 import { projects } from "../data/projects";
 import { site } from "../data/site";
@@ -91,6 +91,7 @@ function ProjectIndex() {
               <span className="min-w-0">
                 <span className="row-title block font-display text-[1.25rem] leading-snug font-semibold text-ink">
                   {p.name}
+                  {p.repo ? null : <PrivateTag className="ml-2" />}
                 </span>
                 <span className="mt-1 block max-w-[42em] text-[0.9375rem] leading-[1.65] text-ink-soft">
                   {p.q}

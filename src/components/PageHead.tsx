@@ -28,6 +28,17 @@ export function PageHead({ title, metaDescription, children }: PageHeadProps) {
   );
 }
 
+/** 私有仓库标记：没有公开 repo 的项目在列表行与详情页标题旁都要带，避免被读成可点开的公开仓库。 */
+export function PrivateTag({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`inline-block border border-line-strong px-1.5 py-px align-middle font-sans text-[0.75rem] font-normal leading-[1.5] tracking-normal whitespace-nowrap text-ink-soft ${className}`.trim()}
+    >
+      私有仓库
+    </span>
+  );
+}
+
 interface SectionTitleProps {
   title: string;
   /** 标题右侧的数量等补充信息 */

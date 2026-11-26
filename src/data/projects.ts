@@ -7,7 +7,7 @@ export interface Project {
   stack: string;
   /** 公开源码地址；私有仓库留空，改用 repoNote 说明 */
   repo?: string;
-  /** 私有仓库的说明文案（详情页 meta 条显示） */
+  /** 私有仓库的说明文案（详情页 meta 条显示；列表行与详情页标题旁会自动带「私有仓库」标记） */
   repoNote?: string;
   /** 列表页一句话 */
   q: string;
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     role: "个人知识工程",
     status: "持续迭代中",
     stack: "Python · Markdown · 源码校准",
-    repoNote: "私有知识库 · 面试可演示",
+    repoNote: "未公开，面试可现场演示",
     q: "AI 工程知识库与学习运行层，62 篇源码校准文档 + 治理 SOP + 渐进学习协议",
     ev: "424 commits · 241 篇 Markdown · 62 篇 LangChain 源码校准文档 · 学习运行层 + 治理 SOP",
     proof: "62 篇源码校准文档",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     role: "个人自动化系统",
     status: "已归档 61 期日报",
     stack: "cron · Python · 飞书 API",
-    repoNote: "私有仓库 · 面试可演示",
+    repoNote: "未公开，面试可现场演示",
     q: "两个每天固定时点执行的定时任务，把采集、校验、落盘、推送固化成一条可回查的流水线",
     ev: "439 commits · 61 期日报归档（47 期 AI 早报 + 14 期股市日报）· 142 个测试定义 · 规则路由 + 链接校验 + 飞书推送",
     proof: "61 期日报",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     role: "个人知识库",
     status: "持续编译中",
     stack: "Markdown · Schema 契约 · 编译流水线",
-    repoNote: "私有知识库 · 面试可演示",
+    repoNote: "未公开，面试可现场演示",
     q: "把原始证据在入库时编译成正式页，查询不再临时拼接；185 个页面全部可从 index 定位",
     ev: "971 commits · 387 份来源（230 已编译 / 157 待处理）· 185 个 Catalog 页面 · 缺口台账 + 审计",
     proof: "185 个页面",

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PageHead } from "../components/PageHead";
+import { PageHead, PrivateTag } from "../components/PageHead";
 import { projects, upcoming } from "../data/projects";
 
 export function Projects() {
@@ -21,6 +21,7 @@ export function Projects() {
               <Link to={`/projects/${p.slug}`} className="row-link block py-5">
                 <span className="row-title block font-display text-[1.25rem] leading-snug font-semibold text-ink">
                   {p.name}
+                  {p.repo ? null : <PrivateTag className="ml-2" />}
                 </span>
                 <span className="mt-1 block max-w-[46em] text-[0.9375rem] leading-[1.65] text-ink-soft">
                   {p.q}

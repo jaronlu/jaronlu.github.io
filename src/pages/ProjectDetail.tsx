@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { projectBySlug } from "../data/projects";
+import { PrivateTag } from "../components/PageHead";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 /**
@@ -55,8 +56,9 @@ export function ProjectDetail() {
         全部项目
       </Link>
 
-      <h1 className="mt-6 font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.75rem]">
+      <h1 className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.75rem]">
         {project.name}
+        {project.repo ? null : <PrivateTag />}
       </h1>
 
       <div className="meta-strip mt-7">
