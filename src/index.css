@@ -43,8 +43,8 @@
 }
 
 /* ============================================================
-   Design tokens — Editorial / Magazine
-   纸墨双色 + 单一编辑红强调色
+   Design tokens
+   纸墨双色 + 单一红色强调色（只给链接、当前位置、关键约束节点）
    ============================================================ */
 :root {
   color-scheme: light;
@@ -64,8 +64,6 @@
   --code-string: #55702a;
   --code-number: #8a4a00;
   --code-fn: #3e5c76;
-  --footer-bg: #f3f0e8;
-  --footer-fg: #171510;
 }
 
 .dark {
@@ -84,8 +82,6 @@
   --code-string: #a9c47c;
   --code-number: #d9a15e;
   --code-fn: #9fb6cf;
-  --footer-bg: #191813;
-  --footer-fg: #e8e5da;
 }
 
 @theme inline {
@@ -100,8 +96,6 @@
   --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
-  --color-footer-bg: var(--footer-bg);
-  --color-footer-fg: var(--footer-fg);
 }
 
 @theme {
@@ -113,9 +107,9 @@
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Menlo",
     monospace;
 
-  /* 版心与间距节奏 */
-  --spacing-shell: min(1180px, 90vw);
-  --spacing-gutter: max(5vw, calc((100vw - 1180px) / 2));
+  /* 版心：列表页 / 首页用 shell，详情正文用 text（CJK 约 46 字/行） */
+  --container-shell: 68rem;
+  --container-text: 50rem;
 }
 
 /* 内联 SVG 架构图引用的字体别名（与旧版 extra.css 兼容） */
@@ -136,9 +130,22 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* 行内代码（代码块外的所有 code） */
+:not(pre) > code {
+  white-space: nowrap;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.88em;
 }
 
 ::selection {
@@ -157,39 +164,14 @@ body {
 /* ============================================================
    Typography helpers
    ============================================================ */
-/* kicker / eyebrow — mono 大写元信息层 */
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+/* 可点击的列表行：整行是链接，hover 只让标题变色，不位移、不改内边距 */
+.row-link {
+  color: inherit;
+  text-decoration: none;
 }
 
-.kicker.accent {
+.row-link:hover .row-title {
   color: var(--accent);
-}
-
-.kicker.accent::before {
-  width: 1.8rem;
-  height: 1px;
-  background: currentColor;
-  content: "";
-}
-
-/* 可点击行列表的 hover 位移 */
-.hover-row {
-  transition: padding 180ms ease, background-color 180ms ease;
-}
-
-.hover-row:hover {
-  padding-left: 0.9rem;
-  padding-right: 0.9rem;
-  background: var(--paper-2);
 }
 
 /* ============================================================
@@ -197,8 +179,8 @@ body {
    ============================================================ */
 .prose {
   color: var(--ink-soft);
-  font-size: 0.9rem;
-  line-height: 1.78;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 .prose > * + * {
@@ -206,12 +188,12 @@ body {
 }
 
 .prose h2 {
-  margin-top: 2.8rem;
-  padding-top: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--line);
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -221,7 +203,7 @@ body {
   margin-top: 1.8rem;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.005em;
 }
@@ -289,7 +271,7 @@ body {
   width: 100%;
   margin: 1.4rem 0;
   border-collapse: collapse;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.6;
 }
 
@@ -309,12 +291,9 @@ body {
 .prose thead th {
   background: var(--paper-2);
   color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
   text-align: left;
-  text-transform: uppercase;
 }
 
 .prose th,
@@ -328,18 +307,6 @@ body {
   background: var(--accent-soft);
 }
 
-.prose code {
-  padding: 0.08rem 0.35rem;
-  border-radius: 3px;
-  background: var(--paper-2);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 0.82em;
-}
-
-.prose :not(pre) > code {
-  white-space: nowrap;
-}
 
 .prose pre {
   margin: 1.4rem 0;
@@ -353,7 +320,7 @@ body {
 .prose pre code {
   padding: 0;
   background: transparent;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   line-height: 1.7;
   white-space: pre;
 }
@@ -402,7 +369,7 @@ body {
   margin-top: 1.6rem;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -410,7 +377,7 @@ body {
 .prose-body h5 {
   margin-top: 1.2rem;
   color: var(--ink);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -435,29 +402,22 @@ body {
 .meta-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem 2.2rem;
-  margin: -0.4rem 0 1.6rem;
-  padding: 0.9rem 0;
-  border-top: 1px solid var(--line-strong);
+  gap: 0.4rem 2.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
 .meta-strip > * {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--ink-soft);
   text-decoration: none;
 }
 
 .meta-strip b {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--faint);
+  margin-right: 0.5rem;
+  font-weight: 400;
+  color: var(--muted);
 }
 
 .meta-strip a {
@@ -482,23 +442,20 @@ body {
   margin-top: 0.9rem;
   padding-top: 0.7rem;
   border-top: 1px solid var(--line);
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   text-align: left;
 }
 
-/* confidence 徽章 */
+/* 置信度 / 来源声明：正文前的一行说明 */
 .prose .note-confidence {
-  display: inline-block;
-  margin-bottom: 0.4rem;
-  padding: 0.18rem 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--line-strong);
+  font-size: 0.875rem;
+  line-height: 1.6;
   color: var(--muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
 }
 
 /* ============================================================
@@ -506,9 +463,9 @@ body {
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(8px);
+  transition: opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 

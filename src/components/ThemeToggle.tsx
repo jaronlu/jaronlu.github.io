@@ -8,15 +8,9 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={dark ? "切换为浅色模式" : "切换为深色模式"}
       title={dark ? "切换为浅色模式" : "切换为深色模式"}
-      className="group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-muted transition-colors hover:border-ink hover:text-ink"
+      className="ml-1 inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-paper-2 hover:text-ink"
     >
-      <svg
-        width="13"
-        height="13"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-      >
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         {dark ? (
           <path
             d="M8 1.5a6.5 6.5 0 1 0 0 13 5.2 5.2 0 0 1-4.2-8.4A5.2 5.2 0 0 1 8 1.5Z"
@@ -31,9 +25,6 @@ export function ThemeToggle() {
           </>
         )}
       </svg>
-      <span className="whitespace-nowrap font-mono text-[0.6rem] font-semibold tracking-wider uppercase">
-        {dark ? "浅色" : "深色"}
-      </span>
     </button>
   );
 }

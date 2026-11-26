@@ -1,86 +1,47 @@
 import { Link } from "react-router-dom";
 import { PageHead } from "../components/PageHead";
-import { Reveal } from "../components/Reveal";
 import { projects, upcoming } from "../data/projects";
 
 export function Projects() {
+  const next = upcoming[0];
   return (
     <>
       <PageHead
-        kicker="PROJECTS"
         title="项目"
-        metaDescription="八个项目的工程记录：可信问答、知识编译、知识操作、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。"
+        metaDescription={`${projects.length} 个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。`}
       >
-        前三个项目构成一条 Agent 工程链路：<b className="text-ink">SecRAG</b>{" "}
-        解决垂直场景中的可信问答，<b className="text-ink">llm-wiki-mcp</b>{" "}
-        解决知识如何被安全读写，<b className="text-ink">agent-skills</b>{" "}
-        解决能力如何在多个 Agent 客户端之间一致分发。{" "}
-        <b className="text-ink">ClipFlow</b>{" "}
-        补充跨平台桌面客户端的产品与工程实践。
-        <b className="text-ink">LlamaIndex RAG</b>{" "}
-        把检索链路拆成六段逐段验证，<b className="text-ink">ai-engineering-hub</b>{" "}
-        记录知识治理与源码校准过程，<b className="text-ink">doubao-cron</b>{" "}
-        把同一套约束用在每天固定时点运行的自动化任务上；<b className="text-ink">llm-wiki</b>{" "}
-        是这些工具背后的知识库本体——原始证据在入库时编译成正式页。
+        公开仓库的数字取自仓库当前版本，可用 <code>git rev-list --count HEAD</code> 复算提交数、
+        <code>grep -rho 'def test_'</code> 复算测试定义数；私有仓库可面试现场演示。
       </PageHead>
 
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-[1180px] px-6 py-10">
-          <Reveal>
-            <div className="border-t border-line">
-              {projects.map((p) => (
-                <Link
-                  key={p.slug}
-                  to={`/projects/${p.slug}`}
-                  className="hover-row group grid grid-cols-1 gap-y-1.5 border-b border-line py-5 text-ink no-underline sm:grid-cols-[3rem_1fr] sm:gap-x-7"
-                >
-                  <span className="font-mono text-[0.72rem] font-semibold text-faint sm:pt-1">
-                    0{p.index}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block font-display text-[1.35rem] font-semibold tracking-[-0.01em] text-ink transition-colors group-hover:text-accent">
-                      {p.name}
-                    </span>
-                    <span className="mt-1 block text-[0.8rem] text-ink-soft">{p.q}</span>
-                    <span className="mt-2 block font-mono text-[0.66rem] tracking-[0.02em] text-muted">
-                      {p.ev}
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </Reveal>
-          <p className="mt-6 max-w-[62ch] text-[0.78rem] leading-relaxed text-faint">
-            公开仓库的数字都能在仓库 HEAD 上用一条命令复算（提交数取
-            <code className="mx-1">git rev-list --count HEAD</code>
-            ，测试定义取
-            <code className="mx-1">grep -rho 'def test_'</code>
-            ）；私有仓库在详情页 meta 条中注明，可面试现场演示。设计目标与已完成能力分开表达。
-          </p>
-        </div>
-      </section>
+      <section className="mx-auto max-w-shell px-6">
+        <ul className="border-t border-line">
+          {projects.map((p) => (
+            <li key={p.slug} className="border-b border-line">
+              <Link to={`/projects/${p.slug}`} className="row-link block py-5">
+                <span className="row-title block font-display text-[1.25rem] leading-snug font-semibold text-ink">
+                  {p.name}
+                </span>
+                <span className="mt-1 block max-w-[46em] text-[0.9375rem] leading-[1.65] text-ink-soft">
+                  {p.q}
+                </span>
+                <span className="mt-2 block max-w-[52em] text-[0.8125rem] leading-relaxed text-muted">
+                  {p.ev}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-      <section className="border-b border-line bg-paper-2">
-        <div className="mx-auto max-w-[1180px] px-6 py-12">
-          <Reveal>
-            <span className="kicker accent">IN PROGRESS</span>
-            <h2 className="mt-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-              {upcoming[0].name}
-            </h2>
-            <p className="mt-2 font-mono text-[0.68rem] font-semibold tracking-[0.06em] text-accent uppercase">
-              {upcoming[0].status}
-            </p>
-            <p className="mt-4 max-w-[64ch] text-[0.86rem] leading-relaxed text-muted">
-              {upcoming[0].description}
-            </p>
-            <ul className="mt-4 max-w-[64ch] list-disc space-y-2 pl-5 text-[0.84rem] leading-relaxed text-muted">
-              {upcoming[0].bullets.map((b) => (
-                <li key={b} className="[&::marker]:text-accent">
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+        <div className="mt-16 border-t border-line-strong pt-6">
+          <h2 className="font-display text-[1.25rem] leading-snug font-semibold text-ink">{next.name}</h2>
+          <p className="mt-1 text-[0.875rem] text-accent">{next.status}</p>
+          <p className="mt-3 max-w-[46em] text-[0.9375rem] leading-[1.75] text-ink-soft">{next.description}</p>
+          <ul className="mt-3 max-w-[46em] list-disc space-y-1.5 pl-5 text-[0.9375rem] leading-[1.75] text-muted [li::marker]:text-accent">
+            {next.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </div>
       </section>
     </>

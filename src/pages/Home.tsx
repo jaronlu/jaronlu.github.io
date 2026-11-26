@@ -1,300 +1,146 @@
-import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
-import { courseLessons, courseManifest } from "../data/course";
-import { projects } from "../data/projects";
+import { SectionTitle } from "../components/PageHead";
+import { courseLessons, courseManifest, courseTiers } from "../data/course";
 import { notes } from "../data/notes";
+import { projects } from "../data/projects";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-/* 首页只承担四件事：定位、精选项目、笔记入口、课程入口。
-   项目全量清单在 /projects，笔记全文与分类在 /notes，课程目录与全文在 /agent-course，
-   联系方式由全站 Footer 承担。 */
+/* 首页只有四块：一句话定位、全部项目、笔记、课程入口。
+   项目的完整证据行在 /projects，笔记的分类与置信度在 /notes，课程目录与全文在 /agent-course。 */
 
-const stackLine = ["Agentic RAG", "MCP 知识操作层", "Skills 分发", "评测先行"];
+const tiers = ([1, 2, 3, 4, 5, 6] as const)
+  .map((tier) => ({
+    tier,
+    label: courseTiers[tier].label,
+    count: courseLessons.filter((l) => l.tier === tier).length,
+  }))
+  .sort((a, b) => courseTiers[a.tier].order - courseTiers[b.tier].order);
 
-/* 精选行只留一个可核对的数字，完整证据行在项目列表页。
-   数字口径：grep -rho 'def test_' 得到的测试定义数；Skill 数量取 `ls skills | wc -l`。 */
-const proof: Record<string, string> = {
-  secrag: "683 个测试定义",
-  "llm-wiki-mcp": "87 个测试定义",
-  "agent-skills": "12 Skill · 118 测试定义",
-  "llamaindex-rag": "193 个测试定义",
-};
-
-/* 每行补一句它解决的工程约束——原首页三个项目区块的重复表述收敛到这里。 */
-const constraint: Record<string, string> = {
-  secrag: "权限在检索前生效，引用与数字逐条校验",
-  "llm-wiki-mcp": "写入先候选，评审通过才进正式知识",
-  "agent-skills": "单一源码，冲突时停止而非覆盖",
-  "llamaindex-rag": "每一步都能回到 PDF 原文核对",
-};
-
-/* 首页只放三篇，覆盖方法、验证与治理；完整列表在笔记页。 */
-const homeNotes = ["rag-principles", "eval-engineering", "harness-engineering"];
-
-/* 课程区块只放三篇旗舰课（多智能体已校准 / 生产架构 / 上下文管理），全目录在课程页。 */
-const homeLessons = ["multi-agent", "production-architecture", "context-window"];
-
-/* ---------- 区块头 ---------- */
-function SectionHead({
-  kicker,
-  title,
-  children,
-}: {
-  kicker: string;
-  title: string;
-  children?: ReactNode;
-}) {
+function Hero() {
   return (
-    <Reveal className="mb-8">
-      <span className="kicker accent">{kicker}</span>
-      <h2 className="mt-4 max-w-[24ch] font-display text-[2rem] leading-[1.06] font-semibold tracking-[-0.02em] text-ink sm:text-[2.25rem]">
-        {title}
-      </h2>
-      {children ? (
-        <p className="mt-4 max-w-[52ch] text-[0.86rem] leading-relaxed text-muted">
-          {children}
+    <section className="mx-auto max-w-shell px-6 pt-16 sm:pt-24">
+      <Reveal>
+        {/* 每个短语是一个不可拆的整体：宽屏三行，窄屏按短语换行，不会把「可审计」拆开 */}
+        <h1 className="font-display text-[clamp(1.75rem,5vw,4rem)] leading-[1.14] font-semibold tracking-[-0.02em] text-ink">
+          <span className="inline-block">10 年证券客户端工程，</span>
+          <span className="inline-block">现在构建可验证、可审计的</span>
+          <span className="inline-block">AI Agent 系统。</span>
+        </h1>
+      </Reveal>
+      <Reveal delay={90}>
+        <p className="mt-8 max-w-[44em] text-[1.0625rem] leading-[1.75] text-ink-soft">
+          {site.intro}
         </p>
-      ) : null}
-    </Reveal>
-  );
-}
-
-/* ---------- Masthead ---------- */
-function Masthead() {
-  return (
-    <section className="border-b border-line">
-      <div className="mx-auto max-w-[1180px] px-6 pt-9 pb-10">
-        <Reveal>
-          <div className="flex flex-col gap-2 border-b border-line pb-4 sm:flex-row sm:items-center sm:justify-between">
-            <span className="kicker">PORTFOLIO — AI AGENT ENGINEERING</span>
-            <span className="font-mono text-[0.62rem] font-medium tracking-[0.12em] text-faint uppercase">
-              {site.issue}
-            </span>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <h1 className="mt-6 font-display text-[clamp(3.2rem,9vw,5.6rem)] leading-[0.95] font-semibold tracking-[-0.02em] text-ink">
-            {site.name}
-          </h1>
-        </Reveal>
-
-        <Reveal>
-          <p className="mt-6 max-w-[46ch] font-sans text-[clamp(1.35rem,3vw,1.7rem)] leading-[1.32] font-medium text-ink">
-            10 年证券客户端工程，
-            <br />
-            现在构建<em className="font-semibold text-accent not-italic">可验证、可审计</em>
-            的 AI Agent 系统。
-          </p>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-6 grid grid-cols-1 items-end gap-6 border-t border-line pt-5 md:grid-cols-[1.1fr_0.9fr]">
-            <p className="max-w-[52ch] text-[0.86rem] leading-relaxed text-muted">
-              {site.intro}
-            </p>
-            <div className="flex flex-wrap gap-3 md:justify-self-end">
-              <Link
-                to="/projects"
-                className="group inline-flex items-center gap-2 rounded-full border border-ink bg-ink px-5 py-2.5 font-mono text-[0.72rem] font-semibold text-paper transition-colors hover:border-accent hover:bg-accent hover:text-paper"
-              >
-                查看项目
-                <span className="transition-transform group-hover:translate-x-0.5">↗</span>
-              </Link>
-              <Link
-                to="/about"
-                className="group inline-flex items-center gap-2 rounded-full border border-line-strong bg-transparent px-5 py-2.5 font-mono text-[0.72rem] font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
-              >
-                了解经历
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-6 flex flex-col gap-2 border-t border-line pt-4 font-mono text-[0.64rem] tracking-[0.08em] text-faint uppercase sm:flex-row sm:items-center sm:justify-between">
-            <span>{stackLine.join("  /  ")}</span>
-            <span>全职 · 深圳或远程 · 可立即入职</span>
-          </div>
-        </Reveal>
-      </div>
+      </Reveal>
+      <Reveal delay={180}>
+        <p className="mt-6 max-w-[44em] text-[0.9375rem] leading-[1.75] text-muted">
+          {site.availability}
+        </p>
+        <a
+          href={`mailto:${site.email}`}
+          className="mt-2 inline-block text-[0.9375rem] text-accent underline underline-offset-4 transition-colors hover:text-ink"
+        >
+          {site.email}
+        </a>
+      </Reveal>
     </section>
   );
 }
 
-/* ---------- Selected Work ---------- */
-function SelectedWork() {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
-
+function ProjectIndex() {
   return (
-    <section className="border-b border-line">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        {/* 标题不带术语：四个项目共同的通俗表述是「给 AI 立规矩」。
-            「四个」与下方 featured 数量同步，增删精选项目时需一并改。 */}
-        <SectionHead kicker="SELECTED WORK / 01" title="四个项目，都在给 AI 立规矩">
-          不该看的看不到，要改的先过审，说出口的能翻回原文。
-        </SectionHead>
-        <Reveal>
-          <div className="border-t border-line">
-            {featured.map((p, i) => (
-              <Link
-                key={p.slug}
-                to={`/projects/${p.slug}`}
-                className="hover-row group grid grid-cols-[2rem_1fr] items-start gap-x-4 gap-y-1 border-b border-line py-5 text-ink no-underline sm:grid-cols-[3rem_1fr_auto] sm:gap-x-7"
-              >
-                <span className="font-mono text-[0.72rem] font-semibold text-faint sm:pt-1">
-                  P{i + 1}
-                </span>
-                <span className="min-w-0">
-                  <span className="block font-display text-[1.3rem] font-semibold leading-snug tracking-[-0.01em] transition-colors group-hover:text-accent">
-                    {p.name}
-                  </span>
-                  <span className="mt-1 block text-[0.82rem] leading-relaxed text-ink-soft">
-                    {p.q}
-                  </span>
-                  <span className="mt-1.5 block font-mono text-[0.66rem] tracking-[0.04em] text-muted">
-                    {constraint[p.slug]}
-                  </span>
-                </span>
-                <span className="col-start-2 hidden font-mono text-[0.66rem] text-faint sm:col-start-3 sm:block sm:pt-1.5">
-                  {proof[p.slug]}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal>
-          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+    <section className="mx-auto max-w-shell px-6 pt-16">
+      <SectionTitle title="项目" meta={`${projects.length} 个`} to="/projects" />
+      <p className="mt-2 max-w-[42em] text-[0.9375rem] leading-[1.75] text-muted">
+        不该看的看不到，要改的先过审，说出口的能翻回原文。
+      </p>
+      <ul className="mt-4 border-t border-line">
+        {projects.map((p) => (
+          <li key={p.slug} className="border-b border-line">
             <Link
-              to="/projects"
-              className="group inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
+              to={`/projects/${p.slug}`}
+              className="row-link grid grid-cols-1 gap-y-1.5 py-5 sm:grid-cols-[minmax(0,1fr)_max-content] sm:items-baseline sm:gap-x-12"
             >
-              全部 {projects.length} 个项目
-              <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
+              <span className="min-w-0">
+                <span className="row-title block font-display text-[1.25rem] leading-snug font-semibold text-ink">
+                  {p.name}
+                </span>
+                <span className="mt-1 block max-w-[42em] text-[0.9375rem] leading-[1.65] text-ink-soft">
+                  {p.q}
+                </span>
+              </span>
+              <span className="text-[0.875rem] whitespace-nowrap text-muted sm:text-right">
+                {p.proof}
+              </span>
             </Link>
-            <span className="font-mono text-[0.66rem] text-faint">
-              另有 {rest.map((p) => p.name).join("、")}
-            </span>
-          </div>
-        </Reveal>
-      </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-/* ---------- Field Notes ---------- */
-function FieldNotes() {
-  const picked = homeNotes.flatMap((slug) => notes.filter((n) => n.slug === slug));
-
+function NoteIndex() {
   return (
-    <section className="border-b border-line bg-paper-2">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="FIELD NOTES / 02" title="把学习编译成可复用的工程判断">
-          只列三篇直接支撑项目设计的笔记：检索链路怎么验证、质量怎么回归、Agent 运行环境要哪些约束。
-        </SectionHead>
-        <Reveal>
-          <div className="border-t border-line">
-            {picked.map((n) => (
-              <Link
-                key={n.slug}
-                to={`/notes/${n.slug}`}
-                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-4 text-ink no-underline"
-              >
-                <span className="min-w-0">
-                  <span className="block font-display text-[1.12rem] font-semibold text-ink">
-                    {n.title}
-                  </span>
-                  <span className="mt-0.5 block truncate text-[0.76rem] text-muted">
-                    {n.description}
-                  </span>
-                </span>
-                <span className="font-mono text-[0.6rem] tracking-[0.08em] text-faint">
-                  {n.confidence}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal>
-          <Link
-            to="/notes"
-            className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
-          >
-            全部 {notes.length} 篇工程笔记
-            <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-        </Reveal>
-      </div>
+    <section className="mx-auto max-w-shell px-6 pt-16">
+      <SectionTitle title="工程笔记" meta={`${notes.length} 篇`} to="/notes" />
+      <p className="mt-2 max-w-[42em] text-[0.9375rem] leading-[1.75] text-muted">
+        直接支撑项目设计的约束、取舍与验证方法。
+      </p>
+      <ul className="mt-4 grid grid-cols-1 border-t border-line sm:grid-cols-2 sm:gap-x-12">
+        {notes.map((n) => (
+          <li key={n.slug} className="border-b border-line">
+            <Link to={`/notes/${n.slug}`} className="row-link block py-4">
+              <span className="row-title block font-display text-[1.0625rem] leading-snug font-semibold text-ink">
+                {n.title}
+              </span>
+              <span className="mt-0.5 block text-[0.875rem] leading-relaxed text-muted">
+                {n.description}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-/* ---------- Agent Curriculum ---------- */
-function Curriculum() {
-  const picked = homeLessons.flatMap((slug) => courseLessons.filter((l) => l.slug === slug));
-
+function CourseIndex() {
   return (
-    <section className="border-b border-line">
-      <div className="mx-auto max-w-[1180px] px-6 py-14">
-        <SectionHead kicker="AGENT CURRICULUM / 03" title={`${courseManifest.total} 课，把 Agent 知识装订成体系`}>
-          从消息协议到生产治理的六层课程，收录精校全文，逐课标注资料来源与校准状态。
-        </SectionHead>
-        <Reveal>
-          <div className="border-t border-line">
-            {picked.map((l) => (
-              <Link
-                key={l.slug}
-                to={`/agent-course/${l.slug}`}
-                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-4 text-ink no-underline"
-              >
-                <span className="min-w-0">
-                  <span className="block font-display text-[1.12rem] font-semibold text-ink">
-                    <span className="mr-2 font-mono text-[0.72rem] font-semibold text-faint">
-                      L{String(l.num).padStart(2, "0")}
-                    </span>
-                    {l.title}
-                  </span>
-                  <span className="mt-0.5 block truncate text-[0.76rem] text-muted">
-                    {l.oneLine}
-                  </span>
-                </span>
-                <span className="font-mono text-[0.6rem] tracking-[0.08em] text-faint">
-                  {l.calibrated ? "CALIBRATED" : "CALIBRATING"}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal>
-          <Link
-            to="/agent-course"
-            className="group mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] font-semibold text-ink no-underline"
-          >
-            全部 {courseManifest.total} 课目录
-            <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-        </Reveal>
-      </div>
+    <section className="mx-auto max-w-shell px-6 pt-16">
+      <SectionTitle title="知识体系" meta={`${courseManifest.total} 课`} to="/agent-course" />
+      <p className="mt-2 max-w-[42em] text-[0.9375rem] leading-[1.75] text-muted">
+        系统学习笔记，AI 协助整理，来源已逐条核验；本站收录 {courseManifest.published} 篇全文。
+      </p>
+      {/* 六层各链到目录页对应小节（#tier-N） */}
+      <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2 border-t border-line pt-4">
+        {tiers.map((t) => (
+          <li key={t.tier}>
+            <Link
+              to={`/agent-course#tier-${t.tier}`}
+              className="row-link inline-flex items-baseline gap-x-1.5 text-[0.9375rem]"
+            >
+              <span className="row-title text-ink">{t.label}</span>
+              <span className="text-[0.8125rem] text-muted">{t.count} 课</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
 export function Home() {
-  useDocumentMeta(
-    "Jaron Lu · AI Agent Engineer",
-    "Jaron Lu 的工程作品集：可信 RAG、知识操作层、Agent Skills 与 RAG 分阶段实现。把金融客户端的工程约束，编译成可信的 AI Agent 系统。"
-  );
+  useDocumentMeta(`${site.name} · ${site.role}`, site.homeDescription);
 
   return (
     <>
-      <Masthead />
-      <SelectedWork />
-      <FieldNotes />
-      <Curriculum />
+      <Hero />
+      <ProjectIndex />
+      <NoteIndex />
+      <CourseIndex />
     </>
   );
 }

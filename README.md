@@ -2,7 +2,7 @@
 
 Jaron Lu 的个人求职作品集站，基于 **Vite + React + TypeScript + Tailwind CSS** 构建，托管于 GitHub Pages（https://jaronlu.github.io）。
 
-设计语言沿用原站的 Editorial / Magazine 风格：纸墨双色 + 单一编辑红强调色，Fraunces（标题）· Inter（正文）· JetBrains Mono（元信息）三层字体，深浅色模式自适应。
+设计语言：纸墨双色 + 单一红色强调色，Fraunces（标题）· Inter（正文）· JetBrains Mono（仅代码）三层字体，单栏左对齐、不加装饰性标签，深浅色模式自适应。
 
 ## 本地运行
 
@@ -42,7 +42,7 @@ src/
 ├── content/
 │   ├── projects/        # 项目详情页正文组件
 │   └── notes/           # 笔记详情页正文组件
-├── components/          # 布局与通用组件（Nav / Footer / Reveal / PageHead…）
+├── components/          # 布局与通用组件（Nav / Footer / PageHead / SectionTitle / Reveal…）
 ├── pages/               # 路由页面（Home / Projects / Notes / About / 404…）
 └── assets/images/       # 本地图片资源
 ```
@@ -51,7 +51,7 @@ src/
 
 数据驱动，加内容不必改页面代码：
 
-- **新增项目**：在 `src/data/projects.ts` 的 `projects` 数组加一条 → 新建 `src/content/projects/<slug>.tsx` 写正文 → 在 `src/pages/ProjectDetail.tsx` 的 `contentMap` 注册。列表页、首页精选会自动出现。
+- **新增项目**：在 `src/data/projects.ts` 的 `projects` 数组加一条 → 新建 `src/content/projects/<slug>.tsx` 写正文 → 在 `src/pages/ProjectDetail.tsx` 的 `contentMap` 注册。列表页和首页会自动出现。
 - **新增笔记**：在 `src/data/notes.ts` 的 `notes` 数组加一条 → 新建 `src/content/notes/<slug>.tsx` 写正文 → 在 `src/pages/NoteDetail.tsx` 的 `contentMap` 注册。
 - **社交 / 联系方式**：改 `src/data/site.ts`。
 

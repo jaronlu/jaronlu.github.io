@@ -5,20 +5,18 @@ export function NotFound() {
   useDocumentMeta("页面不存在 · Jaron Lu");
 
   return (
-    <div className="mx-auto flex max-w-[820px] flex-col items-start px-6 pt-20 pb-16">
-      <span className="kicker accent">404 / NOT FOUND</span>
-      <h1 className="mt-5 font-display text-[2.4rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink">
+    <div className="mx-auto max-w-shell px-6 pt-20 pb-16">
+      <h1 className="font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.75rem]">
         这一页不在检索范围里。
       </h1>
-      <p className="mt-4 max-w-[48ch] text-[0.88rem] leading-relaxed text-muted">
-        你访问的地址不存在，或已被移动。回到首页，从工程作品集继续浏览。
+      <p className="mt-5 max-w-[42em] text-[1.0625rem] leading-[1.75] text-ink-soft">
+        地址不存在，或已被移动。
       </p>
       <Link
         to="/"
-        className="group mt-8 inline-flex items-center gap-2 rounded-full border border-line-strong bg-transparent px-6 py-3 font-mono text-[0.74rem] font-semibold text-ink no-underline transition-colors hover:bg-ink hover:text-paper"
+        className="mt-6 inline-block text-[0.9375rem] text-accent underline underline-offset-4 transition-colors hover:text-ink"
       >
-        返回首页
-        <span className="transition-transform group-hover:translate-x-1">→</span>
+        回到首页
       </Link>
     </div>
   );

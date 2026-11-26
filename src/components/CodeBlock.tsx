@@ -16,7 +16,7 @@ export function CodeBlock({ title, lang, code }: CodeBlockProps) {
   return (
     <div className="my-5 overflow-hidden rounded-md border border-line bg-paper-2">
       {title ? (
-        <div className="border-b border-line px-4 py-2 font-mono text-[0.64rem] font-semibold tracking-[0.08em] text-faint uppercase">
+        <div className="border-b border-line px-4 py-2 text-[0.8125rem] text-muted">
           {title}
         </div>
       ) : null}

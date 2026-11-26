@@ -17,22 +17,22 @@ import { fileURLToPath } from "node:url";
 import { projects } from "../src/data/projects.ts";
 import { notes } from "../src/data/notes.ts";
 import { courseLessons } from "../src/data/course.ts";
+import { site } from "../src/data/site.ts";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
 const SITE = "https://jaronlu.github.io";
 const OG_IMAGE = `${SITE}/og-image.png`;
 
-const SITE_NAME = "Jaron Lu";
-const HOME_DESCRIPTION =
-  "Jaron Lu 的工程作品集：可信 RAG、知识编译与操作层、Agent Skills、定时自动化。把金融客户端的工程约束，编译成可信的 AI Agent 系统。";
+const SITE_NAME = site.name;
+const HOME_DESCRIPTION = site.homeDescription;
 
 /** 每条路由的 title / description / changefreq / priority。 */
 const routes = [
   {
     path: "",
     h1: SITE_NAME,
-    title: `${SITE_NAME} · AI Agent Engineer`,
+    title: `${SITE_NAME} · ${site.role}`,
     description: HOME_DESCRIPTION,
     priority: "1.0",
     changefreq: "monthly",
@@ -42,7 +42,7 @@ const routes = [
     h1: "项目",
     title: `项目 · ${SITE_NAME}`,
     description:
-      "八个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。",
+      `${projects.length} 个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。`,
     priority: "0.9",
     changefreq: "monthly",
   },
@@ -85,7 +85,7 @@ const routes = [
     h1: "Agent 知识体系",
     title: `Agent 知识体系 · ${SITE_NAME}`,
     description:
-      "39 课 AI Agent 系统课程目录：消息协议、核心机制、架构模式、工程落地、框架工具与生产治理。收录精校全文，全部标注资料来源与校准状态。",
+      `${courseLessons.length} 课 AI Agent 系统课程目录：消息协议、核心机制、架构模式、工程落地、框架工具与生产治理。收录精校全文，全部标注资料来源与校准状态。`,
     priority: "0.8",
     changefreq: "weekly",
   },
@@ -150,14 +150,14 @@ function fallbackBlock({ h1, description }) {
   const d = escapeAttr(description);
   return [
     '<div id="root"><noscript><div style="max-width:820px;margin:0 auto;padding:72px 24px 40px">',
-    '<p style="margin:0 0 18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Jaron Lu — Portfolio</p>',
+    '<p style="margin:0 0 18px;font-size:14px;color:var(--muted)">', SITE_NAME, '</p>',
     '<h1 style="margin:0 0 16px;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--ink)">',
     h,
     '</h1>',
     '<p style="margin:0 0 28px;max-width:56ch;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.7;color:var(--ink-soft)">',
     d,
     '</p>',
-    '<p style="margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:600;color:var(--muted)">',
+    '<p style="margin:0;font-size:13px;color:var(--muted)">',
     '<a style="color:var(--accent);text-decoration:none" href="/">首页</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/projects/">项目</a> · ',
     '<a style="color:var(--accent);text-decoration:none" href="/notes/">工程笔记</a> · ',

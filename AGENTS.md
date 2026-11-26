@@ -43,12 +43,13 @@ npm run build
 
 内容与页面分离，全部数据驱动：
 
-- **数据层**在 `src/data/`：`site.ts`（站点配置/社交/导航）、`projects.ts`（项目元数据）、`notes.ts`（笔记元数据）、`course.ts`（知识体系 39 课目录）。加项目/笔记/课程先改这里。
+- **数据层**在 `src/data/`：`site.ts`（站点配置/社交/导航）、`projects.ts`（项目元数据）、`notes.ts`（笔记元数据）、`course.ts`（知识体系课程目录）。加项目/笔记/课程先改这里。
 - **正文组件**在 `src/content/`：`projects/<slug>.tsx` 与 `notes/<slug>.tsx` 用 JSX 编写详情页正文；正文复用 `.prose` 排版（`src/index.css`），表格用 `<table>`、代码块用 `CodeBlock` 组件（传 `lang` 触发 highlight.js 语法高亮，架构图/流程图不传）、架构图用内联 SVG（复用 `--ink/--accent/--line-strong` 等 token）。语法高亮统一走 `src/lib/highlight.ts`（按需注册语言），色板是 index.css 里的 `--code-*` token（浅深两套都定义）；课文带语言标注的围栏由 `CourseDetail` 挂载后自动高亮，裸 ``` 围栏（ASCII 图/伪代码）刻意保持纯文本。
 - **课程正文例外（markdown 管线）**：知识体系课文是长文，不走 TSX，走 build 时 markdown 转换——清洗后的课文放 `src/content/agent-course/lessons/<slug>.md`，`scripts/build-agent-course.mjs`（devDependency：marked）在 build 最前面把它转成 `generated/<slug>.json`（`{ html }`），`CourseDetail` 用 `import.meta.glob` 按路由懒加载。generated/*.json 提交进仓库保证 dev 可用；改课文后重跑 `npm run build:course`。课文源文件在私有仓库 doubao-cron/knowledge/ai-agent/，入站前必须先清洗（删头部元信息、内部工作流行话中性化）。注入的 HTML 外层是 `.prose-body`，块间距/h4-h5/内联 code 换行在 `src/index.css` 里单独定义——`.prose > * + *` 只作用于直接子元素，够不到 marked 的 wrapper。课文图片与 md 同放：资源进 `src/content/agent-course/asserts/`，md 里写相对路径 `../asserts/<name>.svg`，构建脚本会拷到 `public/agent-course/asserts/` 并把引用改写成绝对 URL（`public/agent-course/` 是产物，已 gitignore；`npm run dev` 由 predev 自动生成）。不要写指向仓库外的图片路径——运行时按页面 URL 解析，必定 404。
 - **页面**在 `src/pages/`：路由在 `src/App.tsx`；项目/笔记详情页通过 `contentMap` 注册正文组件。
 - **视觉 token**在 `src/index.css`：`:root` 与 `.dark` 两块定义 `--paper/--ink/--muted/--line/--accent` 等，深浅色靠 `.dark` class 重定义切换——新增颜色必须两个块都定义，不要在组件里硬编码颜色。`--ink` 在深色下是浅色值，不能当“永远深色的背景”用。
-- **字体三层分工**：Fraunces（`--font-display`）只用于标题与项目名；Inter（`--font-sans`）正文；JetBrains Mono（`--font-mono`）专职 kicker/meta 元信息层。不新增字体，不新增第二强调色。
+- **字体三层分工**：Fraunces（`--font-display`）只用于标题与行标题；Inter（`--font-sans`）承担其余全部文字（含导航、数量、元信息）；JetBrains Mono（`--font-mono`）只用于代码块与行内代码。不新增字体，不新增第二强调色。
+- **版式约定**：版心用 `max-w-shell`（首页/列表页）与 `max-w-text`（详情正文）；可点击的列表行用 `.row-link` + `.row-title`（整行是链接，hover 只变色不位移）；区块标题用 `SectionTitle`（`meta` 是数量，传 `to` 时即「查看全部」入口）。不加 kicker/大写小标签、不给非序列内容加编号；红色只用于链接、当前导航项和关键约束节点；滚动动效只保留首页首屏的 `Reveal`，其余区块不做。
 - **字体全部自托管**：`public/fonts/` 只放 latin 子集的三个 woff2（`@font-face` 在 `src/index.css`），中文字形走系统字体（macOS 苹方/宋体、Windows 微软雅黑/宋体）。**不要重新引入 fonts.googleapis.com** ——该域名在大陆不可达，会让首屏白等一个 RTT。
 - **对比度基线**：`--accent`（#bf3a29）与 `--faint`（#716c5b）是按"在 paper 与 paper-2 两种底色上都 ≥4.5:1"校准过的值，改色前先核算这两种底色。
 - 新页面必须在 `src/App.tsx` 的 `Routes` 中注册。
@@ -57,6 +58,6 @@ npm run build
 
 - 项目页（`src/content/projects/*.tsx`）共用统一结构：meta 档案头（由 `ProjectDetail.tsx` 统一渲染：角色/状态/技术栈/源码）→ 项目一句话 → 为什么做 → 架构（内联 SVG 线稿）→ 可验证证据 → 技术取舍表 → 项目边界 → 页尾联系短句。新增项目页照此结构。公开仓库填 `repo`；私有仓库留空并填 `repoNote`，详情页只显示说明、不挂失效链接。
 - 架构图一律内联 SVG 线稿：1px 线、mono 标注、无阴影渐变，红色（`--accent`）只标关键约束节点。
-- 工程笔记（`src/content/notes/*.tsx`）带 `CONFIDENCE — HIGH/MEDIUM` 徽章（由 `NoteDetail.tsx` 统一渲染），标记体系在 `src/pages/Notes.tsx` 有解释，新笔记需保持。
-- 站点各处引用的数字（测试数、行数等）必须与项目仓库实际情况一致，且多处引用同一数字时保持同步（如项目列表页与详情页）。不用文件数/行数当能力证据。
+- 工程笔记带置信度标注 `HIGH/MEDIUM`（由 `NoteDetail.tsx` 统一渲染为正文前的一行说明），标记体系在 `src/pages/Notes.tsx` 有解释，新笔记需保持。
+- 站点各处引用的数字（测试数、行数等）必须与项目仓库实际情况一致，且多处引用同一数字时保持同步（如首页的 `proof` 必须是 `ev` 的子集，站点名/首页描述以 `site.ts` 为准，`prerender.mjs` 直接读它）。不用文件数/行数当能力证据。
 - 对比度约束：正文/小字需满足 WCAG AA（4.5:1），改 `--faint`/`--muted` 等低对比 token 前先核算。

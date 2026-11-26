@@ -1,6 +1,5 @@
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { Reveal } from "../components/Reveal";
 import { projectBySlug } from "../data/projects";
 import { site } from "../data/site";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -48,77 +47,58 @@ export function ProjectDetail() {
   }
 
   return (
-    <div className="mx-auto max-w-[820px] px-6 pt-10 pb-4">
-      <Reveal>
-        <Link
-          to="/projects"
-          className="group inline-flex items-center gap-2 font-mono text-[0.7rem] font-semibold text-muted no-underline transition-colors hover:text-accent"
-        >
-          <span className="transition-transform group-hover:-translate-x-1">←</span>
-          全部项目
-        </Link>
-      </Reveal>
+    <div className="mx-auto max-w-text px-6 pt-10 pb-4">
+      <Link
+        to="/projects"
+        className="text-[0.875rem] text-muted no-underline transition-colors hover:text-accent"
+      >
+        全部项目
+      </Link>
 
-      <Reveal>
-        <span className="kicker accent mt-6">PROJECT / 0{project.index}</span>
-        <h1 className="mt-4 font-display text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.7rem]">
-          {project.name}
-        </h1>
-      </Reveal>
+      <h1 className="mt-6 font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.75rem]">
+        {project.name}
+      </h1>
 
-      <Reveal>
-        <div className="meta-strip mt-8">
+      <div className="meta-strip mt-7">
+        <span>
+          <b>角色</b>
+          {project.role}
+        </span>
+        <span>
+          <b>状态</b>
+          {project.status}
+        </span>
+        <span>
+          <b>技术栈</b>
+          {project.stack}
+        </span>
+        {project.repo ? (
+          <a href={project.repo} target="_blank" rel="noreferrer">
+            <b>源码</b>
+            GitHub
+          </a>
+        ) : (
           <span>
-            <b>角色</b>
-            {project.role}
+            <b>源码</b>
+            {project.repoNote ?? "私有仓库"}
           </span>
-          <span>
-            <b>状态</b>
-            {project.status}
-          </span>
-          <span>
-            <b>技术栈</b>
-            {project.stack}
-          </span>
-          {project.repo ? (
-            <a href={project.repo} target="_blank" rel="noreferrer">
-              <b>源码</b>
-              GitHub ↗
-            </a>
-          ) : (
-            <span>
-              <b>源码</b>
-              {project.repoNote ?? "私有仓库"}
-            </span>
-          )}
-        </div>
-      </Reveal>
+        )}
+      </div>
 
-      <Reveal>
-        <blockquote className="prose mt-6 max-w-[62ch] border-l-2 border-accent pl-5 text-[0.86rem] text-muted">
-          {project.tagline}
-        </blockquote>
-      </Reveal>
-
-      <div className="prose mt-10 min-h-[60vh]">
-        <Suspense fallback={<p className="font-mono text-[0.7rem] text-muted">正在载入正文…</p>}>
+      <div className="prose mt-9">
+        <Suspense fallback={<p className="text-[0.875rem] text-muted">正在载入正文…</p>}>
           <Content />
         </Suspense>
       </div>
 
       <footer className="mt-14 border-t border-line pt-6">
-        <p className="text-[0.84rem] text-muted">
-          对这个项目的设计取舍有想法，或在招相关方向 →
-          <a href={`mailto:${site.email}`} className="ml-2 font-mono text-[0.78rem] font-semibold text-accent">
-            {site.email}
-          </a>
+        <p className="text-[0.9375rem] leading-[1.75] text-muted">
+          对这个项目的设计取舍有想法，或在招相关方向，欢迎写信：
           <a
-            href={site.github}
-            target="_blank"
-            rel="noreferrer"
-            className="ml-4 font-mono text-[0.78rem] font-semibold text-accent"
+            href={`mailto:${site.email}`}
+            className="text-accent underline underline-offset-4 transition-colors hover:text-ink"
           >
-            GitHub ↗
+            {site.email}
           </a>
         </p>
       </footer>

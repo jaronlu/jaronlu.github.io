@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { PageHead } from "../components/PageHead";
-import { Reveal } from "../components/Reveal";
+import { PageHead, SectionTitle } from "../components/PageHead";
 
 const timeline = [
   {
@@ -29,167 +27,96 @@ const timeline = [
 ];
 
 const stack = [
-  {
-    group: "AI / Agent",
-    items: "LangGraph、LangChain、RAG、MCP、ChromaDB、FastAPI",
-  },
-  {
-    group: "客户端",
-    items: "Objective-C / iOS、ArkTS / ArkUI、Flutter",
-  },
-  {
-    group: "工程化",
-    items: "Python / uv、CI/CD、自动化脚本、模块化治理、知识库工程",
-  },
-];
-
-/* 只留名字 + 一句定位标签；完整描述与证据在 /projects，避免两页各写一份。 */
-const currentProjects = [
-  { name: "SecRAG", tag: "可信问答", to: "/projects/secrag" },
-  { name: "llm-wiki", tag: "知识编译", to: "/projects/llm-wiki" },
-  { name: "llm-wiki-mcp", tag: "知识操作层", to: "/projects/llm-wiki-mcp" },
-  { name: "agent-skills", tag: "能力分发", to: "/projects/agent-skills" },
-  { name: "LlamaIndex RAG", tag: "检索链路验证", to: "/projects/llamaindex-rag" },
-  { name: "doubao-cron", tag: "定时自动化", to: "/projects/doubao-cron" },
+  { group: "AI / Agent", items: "LangGraph、LangChain、RAG、MCP、ChromaDB、FastAPI" },
+  { group: "客户端", items: "Objective-C / iOS、ArkTS / ArkUI、Flutter" },
+  { group: "工程化", items: "Python / uv、CI/CD、自动化脚本、模块化治理、知识库工程" },
 ];
 
 export function About() {
   return (
     <>
       <PageHead
-        kicker="ABOUT"
         title="关于我"
         metaDescription="10 年证券客户端工程经验，把长期处理过的状态、权限、安全、错误恢复与发布约束，迁移到可验证的 Agent 系统中。"
-      >
-        把长期处理过的状态、权限、安全、错误恢复和发布约束，迁移到可验证的 Agent 系统中。
-      </PageHead>
+      />
 
-      <div className="mx-auto max-w-[820px] px-6 py-12">
-        <Reveal>
-          <div className="prose">
-            <p>
-              我是 Jaron Lu，10 年证券客户端工程经验，目前专注 AI Agent 与 LLM 应用工程。
-            </p>
-            <p>
-              从证券交易链路到 Agent 工作流，我的工程直觉始终一致：系统可信度不来自功能多，而来自边界清、验证严、可追溯。我把金融场景的权限治理、错误恢复和发布约束迁移到 Agent 系统设计中，专注解决"模型能回答不等于回答可信"这个核心问题。
-            </p>
-          </div>
-        </Reveal>
+      <div className="mx-auto max-w-shell px-6">
+        {/* 项目清单不在此页重复，统一在 /projects */}
+        <div className="prose max-w-[46em]">
+          <p>我是 Jaron Lu，10 年证券客户端工程经验，目前专注 AI Agent 与 LLM 应用工程。</p>
+          <p>
+            交易链路不能出错，行情推送不能丢，权限边界不能越。这些约束塑造了我的工程直觉：系统可信度不来自功能多，而来自边界清、验证严、可追溯。
+          </p>
+          <p>
+            AI Agent 恰恰是最需要这种工程纪律的领域。模型能回答不等于回答可信，工具能调用不等于调用安全，Agent
+            能自主不等于结果可审计。大多数 Demo
+            停在“能跑”，但生产系统需要回答：谁能看什么？输出基于什么证据？出错了怎么追溯？
+          </p>
+          <p>
+            我把金融场景的工程约束迁移到 Agent 系统设计中，专注权限、验证和可审计性这些“不性感但决定系统能不能上线”的问题。
+          </p>
+        </div>
 
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            经历主线
-          </h2>
-          <div className="border-t border-line">
+        <section className="mt-16">
+          <SectionTitle title="经历" />
+          <dl className="mt-2 border-t border-line">
             {timeline.map((t) => (
               <div
                 key={t.span}
-                className="grid grid-cols-[6.5rem_1fr] gap-x-5 gap-y-1 border-b border-line py-4 sm:grid-cols-[10rem_1fr]"
+                className="grid grid-cols-1 gap-y-1 border-b border-line py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-x-8"
               >
-                <span className="font-mono text-[0.72rem] font-semibold text-faint">
-                  {t.span}
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[0.9rem] font-medium text-ink">{t.practice}</p>
-                  <p className="mt-0.5 text-[0.8rem] text-muted">{t.takeaway}</p>
-                </div>
+                <dt className="text-[0.875rem] leading-relaxed text-muted sm:pt-0.5">{t.span}</dt>
+                <dd>
+                  <p className="text-[1rem] leading-relaxed font-medium text-ink">{t.practice}</p>
+                  <p className="mt-1 max-w-[46em] text-[0.9375rem] leading-[1.75] text-muted">
+                    {t.takeaway}
+                  </p>
+                </dd>
               </div>
             ))}
-          </div>
-        </Reveal>
+          </dl>
+        </section>
 
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            为什么转到 AI Agent
-          </h2>
-          <div className="prose border-l-2 border-accent pl-5">
-            <p>
-              10 年证券客户端工程让我习惯了一个判断：交易链路不能出错，行情推送不能丢，权限边界不能越。这些约束塑造了我的工程直觉——系统的可信度不来自功能多，而来自边界清、验证严、可追溯。
-            </p>
-            <p>
-              AI Agent 恰恰是最需要这种工程纪律的领域。模型能回答不等于回答可信，工具能调用不等于调用安全，Agent 能自主不等于结果可审计。大多数 Demo 停在"能跑"，但生产系统需要回答：谁能看什么？输出基于什么证据？出错了怎么追溯？
-            </p>
-            <p>
-              我把金融场景的工程约束迁移到 Agent 系统设计中，专注解决权限、验证和可审计性这些"不性感但决定系统能不能上线"的问题。
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            当前项目
-          </h2>
-          <div className="border-t border-line">
-            {currentProjects.map((p) => (
-              <Link
-                key={p.name}
-                to={p.to}
-                className="hover-row group grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line py-3 no-underline"
+        <section className="mt-16">
+          <SectionTitle title="技术栈" />
+          <dl className="mt-2 border-t border-line">
+            {stack.map((s) => (
+              <div
+                key={s.group}
+                className="grid grid-cols-1 gap-y-0.5 border-b border-line py-3.5 sm:grid-cols-[8.5rem_1fr] sm:gap-x-8"
               >
-                <span className="text-[0.9rem] font-semibold text-ink transition-colors group-hover:text-accent">
-                  {p.name}
-                </span>
-                <span className="font-mono text-[0.64rem] tracking-[0.06em] text-faint">
-                  {p.tag}
-                </span>
-              </Link>
+                <dt className="text-[0.875rem] leading-relaxed text-muted sm:pt-0.5">{s.group}</dt>
+                <dd className="max-w-[46em] text-[0.9375rem] leading-[1.75] text-ink-soft">{s.items}</dd>
+              </div>
             ))}
-          </div>
-          <p className="mt-3 max-w-[62ch] text-[0.8rem] leading-relaxed text-muted">
-            八个项目的证据、取舍与边界统一在
-            <Link to="/projects" className="ml-1 text-accent">
-              项目页
-            </Link>
-            ，这里只保留正在推进的部分。
-          </p>
-        </Reveal>
+          </dl>
+        </section>
 
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            怎么学
-          </h2>
-          <p className="max-w-[64ch] text-[0.86rem] leading-relaxed text-muted">
+        <section className="mt-16">
+          <SectionTitle title="怎么学" />
+          <div className="prose mt-3 max-w-[46em]">
+          <p>
             转向 Agent 之后，我把学习也当成工程：概念、边界、实现分开验证，不把某个框架的写法当成 Agent
             的本质。
           </p>
-          <ul className="mt-4 max-w-[64ch] list-disc space-y-2.5 pl-5 text-[0.84rem] leading-relaxed text-muted [&::marker]:text-accent">
+          <ul>
             <li>
-              <strong className="text-ink">ag2_agents</strong>
+              <strong>ag2_agents</strong>
               ：一份心智模型文档先回答六个问题——谁决定下一步、模型看到了什么、工具如何被校验和执行、
               结果如何回到上下文、运行因何停止、行为如何验证；再用 4 个可运行的 AG2 示例对照差异，
               示例只代表“一种实现”，不是标准答案。
             </li>
             <li>
-              <strong className="text-ink">ai-engineering-hub</strong>
+              <strong>ai-engineering-hub</strong>
               ：文档按上游源码校准，<code>learning/</code> 只推进一个知识点，教学记录不算验收证据。
             </li>
             <li>
-              <strong className="text-ink">doubao-cron</strong>
+              <strong>doubao-cron</strong>
               ：每天跑的任务同样受规则约束，结论必须带可点击的溯源链接，产物按日期归档。
             </li>
           </ul>
-        </Reveal>
-
-        <Reveal>
-          <h2 className="mt-12 mb-4 font-display text-[1.55rem] font-semibold tracking-[-0.01em] text-ink">
-            技术栈
-          </h2>
-          <div className="border-t border-line">
-            {stack.map((s) => (
-              <div
-                key={s.group}
-                className="grid grid-cols-[6rem_1fr] gap-x-5 border-b border-line py-3.5"
-              >
-                <span className="font-mono text-[0.66rem] font-semibold tracking-[0.06em] text-accent uppercase">
-                  {s.group}
-                </span>
-                <span className="text-[0.84rem] text-ink-soft">{s.items}</span>
-              </div>
-            ))}
           </div>
-        </Reveal>
-
-        {/* 联系方式不在此页重复：全站 Footer 已有邮箱、GitHub 与 LinkedIn */}
+        </section>
       </div>
     </>
   );

@@ -1,8 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { Reveal } from "../components/Reveal";
 import { highlightCodeBlocks } from "../lib/highlight";
-import { courseBySlug } from "../data/course";
+import { courseBySlug, courseTiers } from "../data/course";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 /**
@@ -48,32 +47,29 @@ export function CourseDetail() {
   }
 
   return (
-    <div className="mx-auto max-w-[820px] px-6 pt-10 pb-4">
-      <Reveal>
-        <Link
-          to="/agent-course"
-          className="group inline-flex items-center gap-2 font-mono text-[0.7rem] font-semibold text-muted no-underline transition-colors hover:text-accent"
-        >
-          <span className="transition-transform group-hover:-translate-x-1">←</span>
-          全部课程
-        </Link>
-      </Reveal>
+    <div className="mx-auto max-w-text px-6 pt-10 pb-4">
+      <Link
+        to="/agent-course"
+        className="text-[0.875rem] text-muted no-underline transition-colors hover:text-accent"
+      >
+        全部课程
+      </Link>
 
-      <Reveal>
-        <span className="kicker accent mt-6">AGENT CURRICULUM / L{String(lesson.num).padStart(2, "0")}</span>
-        <h1 className="mt-4 font-display text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.5rem]">
-          {lesson.title}
-        </h1>
-        <p className="mt-3 max-w-[56ch] text-[0.86rem] text-muted">{lesson.oneLine}</p>
-      </Reveal>
+      <h1 className="mt-6 font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.5rem]">
+        {lesson.title}
+      </h1>
+      <p className="mt-4 max-w-[42em] text-[1.0625rem] leading-[1.75] text-ink-soft">{lesson.oneLine}</p>
+      <p className="mt-2 text-[0.875rem] text-muted">
+        第 {lesson.num} 课，{courseTiers[lesson.tier].label}
+      </p>
 
-      <div className="prose mt-10 min-h-[60vh]">
+      <div className="prose mt-9">
         <span className="note-confidence">
           {lesson.calibrated
-            ? "CALIBRATED — 来源已逐条核验（链接可访问、论文标题对齐 arXiv）；结论以官方文档为准"
-            : "学习笔记 — AI 协助整理，持续校准中；与官方文档不一致时以官方为准"}
+            ? "来源已逐条核验（链接可访问、论文标题对齐 arXiv）；结论以官方文档为准"
+            : "AI 协助整理的学习笔记，持续校准中；与官方文档不一致时以官方为准"}
         </span>
-        <Suspense fallback={<p className="font-mono text-[0.7rem] text-muted">正在载入课文…</p>}>
+        <Suspense fallback={<p className="text-[0.875rem] text-muted">正在载入课文…</p>}>
           <Content />
         </Suspense>
       </div>

@@ -1,6 +1,5 @@
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { Reveal } from "../components/Reveal";
 import { noteBySlug } from "../data/notes";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 /** 笔记正文同样按路由懒加载，避免首页一次性加载全部笔记。 */
@@ -46,28 +45,25 @@ export function NoteDetail() {
   }
 
   return (
-    <div className="mx-auto max-w-[820px] px-6 pt-10 pb-4">
-      <Reveal>
-        <Link
-          to="/notes"
-          className="group inline-flex items-center gap-2 font-mono text-[0.7rem] font-semibold text-muted no-underline transition-colors hover:text-accent"
-        >
-          <span className="transition-transform group-hover:-translate-x-1">←</span>
-          全部笔记
-        </Link>
-      </Reveal>
+    <div className="mx-auto max-w-text px-6 pt-10 pb-4">
+      <Link
+        to="/notes"
+        className="text-[0.875rem] text-muted no-underline transition-colors hover:text-accent"
+      >
+        全部笔记
+      </Link>
 
-      <Reveal>
-        <span className="kicker accent mt-6">FIELD NOTE / 0{note.index}</span>
-        <h1 className="mt-4 font-display text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.5rem]">
-          {note.title}
-        </h1>
-        <p className="mt-3 max-w-[56ch] text-[0.86rem] text-muted">{note.description}</p>
-      </Reveal>
+      <h1 className="mt-6 font-display text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.02em] text-ink sm:text-[2.5rem]">
+        {note.title}
+      </h1>
+      <p className="mt-4 max-w-[42em] text-[1.0625rem] leading-[1.75] text-ink-soft">{note.description}</p>
 
-      <div className="prose mt-10 min-h-[60vh]">
-        <span className="note-confidence">CONFIDENCE — {note.confidence}</span>
-        <Suspense fallback={<p className="font-mono text-[0.7rem] text-muted">正在载入正文…</p>}>
+      <div className="prose mt-10">
+        <span className="note-confidence">
+          置信度 {note.confidence}：
+          {note.confidence === "HIGH" ? "结论已对照官方文档或项目代码核对" : "基于实践经验，尚未完整验证"}
+        </span>
+        <Suspense fallback={<p className="text-[0.875rem] text-muted">正在载入正文…</p>}>
           <Content />
         </Suspense>
       </div>
