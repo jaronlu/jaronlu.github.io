@@ -2,7 +2,7 @@
  * Agent 知识体系课程目录（38 课）。
  *
  * 数据来源：私有仓库 doubao-cron/knowledge/ai-agent/ 的系统学习笔记。
- * 已发布 37 篇课文全文（slug 非空的条目）；第 37 课源稿缺失，仅展示目录。
+ * 已发布 37 篇课文全文（slug 非空的条目）；第 36 课源稿缺失，仅展示目录。
  * 全文已于 2026-11-25 完成来源核验（外链逐一可访问、论文标题对齐 arXiv），详情页标注 CALIBRATED。
  */
 
@@ -19,7 +19,7 @@ export const courseTiers = {
 export type CourseTier = keyof typeof courseTiers;
 
 export interface CourseLesson {
-  /** 课号 01–39，与私有仓库编号一致 */
+  /** 课号连续编排（1–38）；Coze 一课已从公开目录移除，编号与私有仓库原稿不再一一对应 */
   num: number;
   title: string;
   /** 目录页一句话简介 */
@@ -67,15 +67,15 @@ export const courseLessons: CourseLesson[] = [
   { num: 28, title: "AutoGen", tier: 5, slug: "autogen", calibrated: true, oneLine: "微软系多智能体会话框架的设计取舍" },
   { num: 29, title: "CrewAI", tier: 5, slug: "crewai", calibrated: true, oneLine: "角色驱动的多智能体团队编排" },
   { num: 30, title: "Dify", tier: 5, slug: "dify", calibrated: true, oneLine: "低代码 LLMOps 平台的能力与边界" },
-  { num: 32, title: "Semantic Kernel", tier: 5, slug: "semantic-kernel", calibrated: true, oneLine: "微软 .NET 系 Agent 框架的设计思路" },
-  { num: 33, title: "MCP 协议", tier: 5, slug: "mcp-protocol", calibrated: true, oneLine: "工具接入的标准化协议：Host / Client / Server" },
+  { num: 31, title: "Semantic Kernel", tier: 5, slug: "semantic-kernel", calibrated: true, oneLine: "微软 .NET 系 Agent 框架的设计思路" },
+  { num: 32, title: "MCP 协议", tier: 5, slug: "mcp-protocol", calibrated: true, oneLine: "工具接入的标准化协议：Host / Client / Server" },
   // ── ⑥ 评估与生产 ──
-  { num: 34, title: "Agent 评估指标", tier: 6, slug: "agent-eval-metrics", calibrated: true, oneLine: "任务完成率之外，还要度量什么" },
-  { num: 35, title: "评测基准与数据集", tier: 6, slug: "eval-benchmarks", calibrated: true, oneLine: "主流基准的适用边界与读数姿势" },
-  { num: 36, title: "多模态 Agent", tier: 6, slug: "multimodal-agents", calibrated: true, oneLine: "视觉输入与 GUI 操作带来的新问题域" },
-  { num: 37, title: "Agent 浏览器与 RPA", tier: 6, oneLine: "浏览器自动化与传统 RPA 的分界线" },
-  { num: 38, title: "生产级 Agent 架构设计", tier: 6, slug: "production-architecture", calibrated: true, oneLine: "从 demo 到生产的距离：权限、审计、降级与回归" },
-  { num: 39, title: "成本与性能权衡", tier: 6, slug: "cost-performance", calibrated: true, oneLine: "延迟、质量、成本三角的取舍方法" },
+  { num: 33, title: "Agent 评估指标", tier: 6, slug: "agent-eval-metrics", calibrated: true, oneLine: "任务完成率之外，还要度量什么" },
+  { num: 34, title: "评测基准与数据集", tier: 6, slug: "eval-benchmarks", calibrated: true, oneLine: "主流基准的适用边界与读数姿势" },
+  { num: 35, title: "多模态 Agent", tier: 6, slug: "multimodal-agents", calibrated: true, oneLine: "视觉输入与 GUI 操作带来的新问题域" },
+  { num: 36, title: "Agent 浏览器与 RPA", tier: 6, oneLine: "浏览器自动化与传统 RPA 的分界线" },
+  { num: 37, title: "生产级 Agent 架构设计", tier: 6, slug: "production-architecture", calibrated: true, oneLine: "从 demo 到生产的距离：权限、审计、降级与回归" },
+  { num: 38, title: "成本与性能权衡", tier: 6, slug: "cost-performance", calibrated: true, oneLine: "延迟、质量、成本三角的取舍方法" },
 ];
 
 /** 索引页顶部声明。 */
