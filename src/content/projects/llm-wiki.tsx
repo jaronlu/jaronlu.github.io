@@ -110,7 +110,7 @@ export function LlmWikiContent() {
           <text className="lw2-a" x="322" y="140">补证 → 重新编译</text>
         </svg>
         <figcaption>
-          编译是唯一的生产环节：raw 不直接对外，结论只从正式页出。审计台账记录“哪块知识还缺、缺哪份证据”，
+          编译是唯一的产出环节：raw 不直接对外，结论只从正式页出。审计台账记录“哪块知识还缺、缺哪份证据”，
           下一轮按它补，而不是凭印象加页。
         </figcaption>
       </figure>

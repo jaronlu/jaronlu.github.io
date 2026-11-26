@@ -129,7 +129,7 @@ export function SecRAGContent() {
           </tr>
           <tr>
             <td>容器化部署</td>
-            <td>多阶段构建 Dockerfile + docker-compose.yml，精简生产镜像</td>
+            <td>多阶段构建 Dockerfile + docker-compose.yml，精简运行时镜像</td>
           </tr>
           <tr>
             <td>评估体系</td>

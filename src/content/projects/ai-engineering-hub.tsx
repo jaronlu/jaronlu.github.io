@@ -158,7 +158,7 @@ export function AiEngineeringHubContent() {
         </li>
         <li>
           <strong>文档分流</strong>：教程、memo、面试资料各有格式自由与事实标注要求，
-          冲突时以 <code>AGENTS.md</code> 为准，旧生产流程不再强制。
+          冲突时以 <code>AGENTS.md</code> 为准，旧的产出流程不再强制。
         </li>
       </ul>
       <p>
