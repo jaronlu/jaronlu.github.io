@@ -14,7 +14,7 @@ const timeline = [
   },
   {
     span: "2024—2026",
-    practice: "HarmonyOS 证券项目",
+    practice: "HarmonyOS 证券项目 & iOS",
     takeaway:
       "独立负责鸿蒙端交易模块，完成从行情展示到下单反馈的完整闭环（ArkTS 状态编排）；参与公共能力层、路由体系与事件总线",
   },
