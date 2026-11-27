@@ -10,8 +10,8 @@ export function Projects() {
         title="项目"
         metaDescription={`${projects.length} 个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。`}
       >
-        公开仓库的数字取自仓库当前版本，可用 <code>git rev-list --count HEAD</code> 复算提交数、
-        <code>grep -rho 'def test_'</code> 复算测试定义数；私有仓库可面试现场演示。
+        数字取自 2026-11-27 的仓库状态，可用 <code>git rev-list --count HEAD</code> 与{" "}
+        <code>grep -rho 'def test_'</code> 复算；私有仓库可面试现场演示。
       </PageHead>
 
       <section className="mx-auto max-w-shell px-6">
