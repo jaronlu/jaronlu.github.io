@@ -14,7 +14,8 @@
     "build:course": "node scripts/build-agent-course.mjs",
     "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "verify:num": "node scripts/verify-numbers.mjs"
   },
   "dependencies": {
     "highlight.js": "^11.12.0",
