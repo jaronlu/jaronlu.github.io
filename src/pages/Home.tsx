@@ -21,18 +21,20 @@ function Hero() {
   return (
     <section className="mx-auto max-w-shell px-6 pt-16 sm:pt-24">
       <Reveal>
-        {/* 中英混排的大字用无衬线。每个短语是不可拆的整体：从 390px 手机到宽屏都是两行
-            （两行长度接近），更窄时按短语换行；行尾不带标点。 */}
+        {/* 中英混排的大字用无衬线。文案与断行单位来自 site.headline（两行、每行若干不可拆的短语）：
+            从 390px 手机到宽屏都是两行（两行长度接近），更窄时按短语换行；行尾不带标点。 */}
         <h1 className="text-[clamp(1.375rem,0.55rem+3.4vw,2.75rem)] leading-[1.3] font-semibold tracking-[-0.01em] text-ink">
-          <span className="block">
-            <span className="inline-block">10 年证券客户端工程，</span>
-            <span className="inline-block">现在构建</span>
-          </span>
-          <span className="block">
-            <span className="inline-block">可验证、</span>
-            <span className="inline-block">可审计的</span>{" "}
-            <span className="inline-block">AI Agent 系统</span>
-          </span>
+          {site.headline.map((line, lineIndex) => (
+            <span key={lineIndex} className="block">
+              {line.map((phrase, phraseIndex) => (
+                <span key={phraseIndex}>
+                  {/* 空格放在 inline-block 外面：块内的首尾空白会被折叠掉 */}
+                  {phrase.gap ? " " : null}
+                  <span className="inline-block">{phrase.text}</span>
+                </span>
+              ))}
+            </span>
+          ))}
         </h1>
       </Reveal>
       <Reveal delay={90}>

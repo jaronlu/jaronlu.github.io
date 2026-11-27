@@ -16,7 +16,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { projects } from "../src/data/projects.ts";
 import { courseLessons } from "../src/data/course.ts";
-import { site } from "../src/data/site.ts";
+import { headlineText, site } from "../src/data/site.ts";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
@@ -30,7 +30,8 @@ const HOME_DESCRIPTION = site.homeDescription;
 const routes = [
   {
     path: "",
-    h1: SITE_NAME,
+    // 首页 h1 由 React 渲染，不执行 JS 的抓取器只能读到这个外壳里的标题，所以取 site.headline 的纯文本
+    h1: headlineText,
     title: `${SITE_NAME} · ${site.role}`,
     description: HOME_DESCRIPTION,
     priority: "1.0",
