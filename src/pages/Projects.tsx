@@ -6,13 +6,11 @@ export function Projects() {
   const next = upcoming[0];
   return (
     <>
+      {/* 只有标题，不带导语：数字口径不在页面上解释 */}
       <PageHead
         title="项目"
         metaDescription={`${projects.length} 个项目的工程记录：可信问答、知识编译、知识操作层、能力分发、RAG 分阶段实现、跨平台客户端与定时自动化。`}
-      >
-        数字取自 2026-11-27 的仓库状态，可用 <code>git rev-list --count HEAD</code> 与{" "}
-        <code>grep -rho 'def test_'</code> 复算；私有仓库可面试现场演示。
-      </PageHead>
+      />
 
       <section className="mx-auto max-w-shell px-6">
         <ul className="border-t border-line">
