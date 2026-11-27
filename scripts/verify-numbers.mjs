@@ -1,8 +1,8 @@
 /**
- * 数字核验：src/data/projects.ts 里每个项目 ev 开头的「N commits」，是否与仓库当前值一致。
+ * 数字核验：src/data/projects.ts 里每个项目 ev 开头的「N commits」，是否与本机或 GitHub 上的仓库一致。
  *
- * /projects 页对访客的承诺是「公开仓库的数字取自仓库当前版本」。这个脚本把同一件事自动化，
- * 避免项目仓库往前走之后，站上的数字停在旧值。
+ * /projects 页标注的是数字的取值日期（当前为 2026-11-27）。项目仓库会持续往前走，
+ * 在刷新站上数字之前先跑这个脚本，它会列出哪些项目已经对不上。
  *
  *   npm run verify:num                      # 有不一致时退出码 1
  *   GITHUB_TOKEN=xxx npm run verify:num     # 带令牌，避开匿名限流（60 次/小时）
