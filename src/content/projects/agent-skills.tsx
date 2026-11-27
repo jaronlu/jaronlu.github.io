@@ -140,9 +140,9 @@ export function AgentSkillsContent() {
 
       <h2>当前证据</h2>
       <ul>
-        <li><strong>146 次 commit</strong>，持续迭代分发引擎和 Skill 内容</li>
-        <li>仓库维护 <strong>12 个自研 Skill</strong>，覆盖四类场景：提交与仓库（<code>git-commit</code>、<code>agent-gitignore</code>）、知识维护（<code>llm-wiki</code>、<code>hermes-context-review</code>）、设计与决策（<code>design-convergence-review</code>、<code>first-principles</code>、<code>five-dimension-analysis</code>）、表达与阅读（<code>communication-formulas</code>、<code>prompt-optimizer</code>、<code>human-readable-codebook</code>、<code>chinese-text-fixer</code>、<code>chrome-bookmarks</code>）</li>
-        <li><strong>2,113 行测试代码</strong>，6 个测试文件、<strong>118 个测试定义</strong>：链接管理器、Skill 验证、Skill 契约、llm-wiki 脚本、书签分类与 gitignore 规则</li>
+        <li><strong>152 次 commit</strong>，持续迭代分发引擎和 Skill 内容</li>
+        <li>仓库维护 <strong>12 个自研 Skill</strong>，覆盖四类场景：提交与仓库（<code>git-commit</code>、<code>agent-gitignore</code>）、知识维护（<code>llm-wiki</code>）、设计与决策（<code>design-convergence-review</code>、<code>first-principles</code>、<code>five-dimension-analysis</code>）、表达与阅读（<code>what-why-how</code>、<code>communication-formulas</code>、<code>prompt-optimizer</code>、<code>human-readable-codebook</code>、<code>chinese-text-fixer</code>、<code>chrome-bookmarks</code>）</li>
+        <li><strong>2,065 行测试代码</strong>，5 个测试文件、<strong>114 个测试定义</strong>：链接管理、Skill 验证、llm-wiki 脚本、书签分类与 gitignore 规则</li>
         <li>独立的 <code>validate_skills.py</code> 验证脚本，检查每个 Skill 的结构完整性和契约一致性</li>
         <li>项目文档以 <code>llm-wiki</code> 为真实来源，工程仓库通过受管链接暴露，避免文档双写；中英文双语 README</li>
       </ul>

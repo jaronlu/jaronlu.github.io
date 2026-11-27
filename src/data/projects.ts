@@ -26,7 +26,7 @@ export const projects: Project[] = [
     stack: "LangGraph · ChromaDB · FastAPI",
     repo: "https://github.com/jaronlu/SecRAG",
     q: "面向券商投研的 Agentic RAG，把权限、验证、合规和审计固化为嵌套图工作流",
-    ev: "304 commits · 16,703 行 Python（79 个文件）· 683 个测试定义 · React 前端 + Docker 部署 · 检索/回答/合规三套评估",
+    ev: "306 commits · 16,703 行 Python（79 个文件）· 683 个测试定义 · React 前端 + Docker 部署 · 检索/回答/合规三套评估",
     proof: "683 个测试",
   },
   {
@@ -48,8 +48,8 @@ export const projects: Project[] = [
     stack: "Python · TOML 配置",
     repo: "https://github.com/jaronlu/agent-skills",
     q: "跨 Agent 能力分发基座，自研 Skills 单一源码、冲突保护、幂等同步",
-    ev: "146 commits · 12 个自研 Skill · 118 个测试定义 · 配置驱动分发到共享 Skill 目录",
-    proof: "12 个 Skill，118 个测试",
+    ev: "152 commits · 12 个自研 Skill · 114 个测试定义 · 配置驱动分发到共享 Skill 目录",
+    proof: "12 个 Skill，114 个测试",
   },
   {
     slug: "clip-flow",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     stack: "cron · Python · 飞书 API",
     repoNote: "未公开，面试可现场演示",
     q: "两个每天固定时点执行的定时任务，把采集、校验、落盘、推送固化成一条可回查的流水线",
-    ev: "439 commits · 61 期日报归档（47 期 AI 早报 + 14 期股市日报）· 142 个测试定义 · 规则路由 + 链接校验 + 飞书推送",
+    ev: "445 commits · 61 期日报归档（47 期 AI 早报 + 14 期股市日报）· 142 个测试定义 · 规则路由 + 链接校验 + 飞书推送",
     proof: "61 期日报",
   },
   {

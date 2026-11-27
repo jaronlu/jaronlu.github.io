@@ -125,7 +125,7 @@ export function DoubaoCronContent() {
           </tr>
           <tr>
             <td>提交历史</td>
-            <td>439 commits，含每日逐板块提交 + 收尾归档</td>
+            <td>445 commits，含每日逐板块提交 + 收尾归档</td>
             <td>
               <code>git rev-list --count HEAD</code>
             </td>

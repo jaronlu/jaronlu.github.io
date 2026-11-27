@@ -173,7 +173,7 @@ export function SecRAGContent() {
       <h2>可验证的代码事实</h2>
       <p>这个项目的可信度建立在代码本身，不是设计文档：</p>
       <ul>
-        <li><strong>304 次独立 commit</strong>，功能按模块逐步落地（数据管道 → 基础 RAG → Agent 编排 → 检索优化 → 金融工具 → 身份权限 → 合规 → 前端 → 容器化 → 组合持仓）</li>
+        <li><strong>306 次独立 commit</strong>，功能按模块逐步落地（数据管道 → 基础 RAG → Agent 编排 → 检索优化 → 金融工具 → 身份权限 → 合规 → 前端 → 容器化 → 组合持仓）</li>
         <li>
           <code>src/</code> 共 <strong>16,703 行</strong> Python 代码（79 个文件，11 个模块 + 2 个顶层文件）：<code>agents/</code>（LangGraph 工作流）、<code>api/</code>（FastAPI 路由 + 身份绑定 + Web UI）、<code>ingestion/</code>（文档解析 + 增量入库）、<code>rag/</code>（基础 RAG 链）、<code>retrieval/</code>（多源检索 + 权限过滤）、<code>tools/</code>（Agent 工具集）、<code>jobs/</code>（定时任务）、<code>portfolio/</code>（持仓）、<code>utils/</code>（引用验证 + 合规 + 会话 + 审计）、<code>evaluation/</code>、<code>schemas/</code>
         </li>
