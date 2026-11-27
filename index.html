@@ -77,10 +77,18 @@
       }
     </script>
 
-    <!-- 自托管字体：只预加载标题字 Fraunces（首屏 LCP 文本），Inter/Mono 按需加载 -->
+    <!-- 自托管字体：预加载首屏必用的两个字族——Fraunces（左上站名、内页标题）与 Inter（正文，首页大标题也用它）；
+         JetBrains Mono 只有代码块用，按需加载 -->
     <link
       rel="preload"
       href="/fonts/fraunces-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
