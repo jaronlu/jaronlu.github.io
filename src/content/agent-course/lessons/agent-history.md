@@ -2,7 +2,7 @@
 
 1. **Agent 不是突然出现的**：从 2022 年 ChatGPT 发布到 2026 年，Agent 经历了“引擎期→框架期→标准化期→爆发期”四个阶段，每一步都有明确的技术突破驱动。
 2. **三个关键转折点**：2023 年 Function Calling（模型从“能说”变“能做”）、2024 年 MCP 协议（工具接入从“各自为战”变“开放标准”）、2025 年 Computer Use + 编程 Agent（Agent 从“实验品”变“生产力工具”）。
-3. **2025 是 Agent 元年**：Manus 爆火、Cursor/Claude Code 普及、OpenAI Operator/ChatGPT Agent 发布，Agent 从工程实验走向真实商业场景。2026 年 Meta Muse 登顶 App Store，标志 Agent 进入消费级市场。
+3. **2025 是 Agent 元年**：Manus 爆火、Cursor/Claude Code 普及、OpenAI Operator/ChatGPT Agent 发布，Agent 从工程实验走向真实商业场景。2026 年出现消费级 Agent 产品（媒体报道 Muse 登顶美国 App Store 免费榜，见时间线里的标注），Agent 开始进入大众市场。
 
 ---
 
@@ -37,7 +37,7 @@
 
 **阶段特征**：
 - 模型只能“说话”，不能“做事”
-- 单轮对话，无工具调用，无循环执行
+- 多轮对话，但无工具调用，无循环执行
 - 应用形态：聊天机器人、文案生成、代码补全
 
 **局限性**：
@@ -56,10 +56,10 @@
 | 时间 | 事件 | 意义 |
 |------|------|------|
 | 2023.01 | LangChain 发布 | 首个流行的 LLM 应用框架，提出 Chain 概念 |
+| 2023.01 | ReAct 范式开始流行（论文 2022.10 上 arXiv，ICLR 2023 发表） | Reasoning + Acting 范式：先推理下一步做什么，再调用工具，观察结果后继续推理。成为 Agent Loop 的标准范式 |
 | 2023.03 | AutoGPT 开源 | 首个自主 Agent 演示：模型自己规划、自己调工具、自己迭代。GitHub Star 破 15 万，但很快沉寂（缺乏停止条件和验证机制） |
 | 2023.06 | OpenAI 发布 Function Calling | **里程碑**：模型从“能说”变“能做”，可以结构化地声明调用外部函数 |
-| 2023.10 | ReAct 论文广泛传播 | Reasoning + Acting 范式：先推理下一步做什么，再调用工具，观察结果后继续推理。成为 Agent Loop 的标准范式 |
-| 2023.11 | 微软发布 AutoGen | 首个主流多 Agent 框架，支持多个 Agent 对话协作 |
+| 2023.09 | 微软发布 AutoGen | 首个主流多 Agent 框架，支持多个 Agent 对话协作 |
 | 2023.11 | OpenAI 发布 GPTs | 用户可自定义 ChatGPT（自定义指令+知识库+工具），Agent 概念开始大众化 |
 
 **阶段特征**：
@@ -84,10 +84,11 @@
 
 | 时间 | 事件 | 意义 |
 |------|------|------|
-| 2024.01 | CrewAI 发布 | 角色驱动的多 Agent 框架，更易上手 |
+| 2024.01 | LangGraph 发布（PyPI 首版 2024.01） | LangChain 团队推出的图编排框架，将多 Agent 编排重构为“有状态节点图”，比开放式对话循环更可控、更适合生产 |
+| 2024.01 | CrewAI 走红（PyPI 首版 2023.11） | 角色驱动的多 Agent 框架，更易上手 |
 | 2024.03 | Cognition 发布 Devin | **首个 AI 软件工程师**：能独立读代码库、写代码、调试、提交 PR。标价 $500/月，引发“程序员要失业”讨论 |
-| 2024.07 | LangGraph 发布 | LangChain 团队推出的图编排框架，将多 Agent 编排重构为“有状态节点图”，比开放式对话循环更可控、更适合生产 |
 | 2024.09 | OpenAI 发布 o1 推理模型 | 模型学会“先思考再回答”，推理能力大幅提升，为复杂任务规划奠定基础 |
+| 2024.10 | Anthropic 发布 Computer Use | 模型首次能直接操作计算机图形界面（看截图、点击、输入），为 2025 年的浏览器 Agent 铺路 |
 | 2024.11 | Anthropic 开源 MCP 协议 | **里程碑**：Model Context Protocol，为 LLM 与外部工具/数据/服务建立标准化通信协议。“AI 界的 USB-C”，一次编写 MCP Server，所有 MCP 兼容的 Agent 都能用 |
 | 2024.12 | Google 发布 Gemini 2.0 + Project Mariner | 浏览器 Agent 研究原型，能浏览网页并在浏览器中完成任务 |
 
@@ -96,6 +97,7 @@
 - LangGraph 等生产级框架成熟（图编排比自由循环更可控）
 - 垂直 Agent 出现（Devin 编程 Agent）
 - 推理模型（o1）提升复杂任务规划能力
+- Computer Use 让模型第一次能直接操作图形界面
 - Agent 开始从“实验品”向“生产工具”过渡
 
 **MCP 的意义**：
@@ -114,8 +116,8 @@
 | 时间 | 事件 | 意义 |
 |------|------|------|
 | 2025.01 | OpenAI 发布 Operator | **Computer-Using Agent**：结合 GPT-4o 视觉 + 强化学习，能直接操作电脑图形界面（点击、输入、浏览网页）。在 WebArena 基准上刷新纪录 |
-| 2025.02 | Manus 发布并爆火 | 通用智能体，能自主完成“调研→分析→生成报告”等复杂任务。引发全球 Agent 热潮，国内大厂纷纷跟进 |
 | 2025.02 | Anthropic 发布 Claude Code | 在 Claude 3.7 Sonnet 发布文中“顺带”推出，无独立博客。后来成为编程 Agent 事实标杆，改变开发者工作流 |
+| 2025.03 | Manus 发布并爆火 | 通用智能体，能自主完成“调研→分析→生成报告”等复杂任务。引发全球 Agent 热潮，国内大厂纷纷跟进 |
 | 2025 | 编程 Agent 爆发 | Cursor、Claude Code、Gemini CLI、Windsurf 等编程 Agent 普及，开发者工作流被重塑。“Agent 写代码”从 Demo 变成日常 |
 | 2025.07 | ChatGPT Agent 正式发布 | OpenAI 将 Agent 能力集成进 ChatGPT，用户可让 ChatGPT 操作自己的电脑、管理复杂任务 |
 | 2025.09 | GPT-5-Codex 对开发者开放 API | 编程 Agent 从订阅制扩展到 API 调用，开发者可在自己的产品中嵌入 Agent 编码能力 |
@@ -136,24 +138,26 @@
 | 2026.07.09 | OpenAI 发布 GPT-5.6 系列 | 三档模型：Sol（旗舰）、Terra（均衡办公）、Luna（极速低成本），Agent 场景分层定价 |
 | 2026.07.24 | Anthropic 发布 Claude Opus 5 | 接近 Fable 5 前沿智能但价格减半，编程和知识工作评测达 SOTA |
 | 2026.07.28 | MCP 最终规范添加 stateless core | MCP 协议升级，服务器无需在请求间保留会话状态，更适合云原生和 Serverless 部署 |
-| 2026.08 | Cursor 被 SpaceX 收购，Stripe 70 亿美元收购 OpenRouter | AI 开发者工具层开始剧烈整合，Agent 基础设施成为巨头争夺焦点 |
+| 2026.08 | 据媒体报道：Cursor 被 SpaceX 收购，Stripe 收购 OpenRouter | AI 开发者工具层开始剧烈整合，Agent 基础设施成为巨头争夺焦点（交易金额未核实，不在此列出） |
 | 2026.08.14 | Claude Code auto mode 成为默认 | Pro/Max/Team 计划默认开启全自动模式，编程 Agent 从“人工确认每步”进入“默认自主执行”时代 |
 | 2026.08.20 | **A2A 加入 Linux Foundation Agentic AI Foundation** | **里程碑**：Google 的 A2A 与 Anthropic 的 MCP 同处中立治理架构下，两大协议从竞争走向共存。MCP 管“Agent 调工具”，A2A 管“Agent 找 Agent” |
 | 2026.08 | EU AI Act 透明度义务生效 | Agent 领域首次有专门的监管法规要求 |
-| 2026.09 | OpenAI 发布 GPT-6 Astra | 迄今最智能模型，首个在 Preparedness Framework 下达到 Critical 级网络安全能力的模型，计算机操作/编程/科研达前沿水平 |
+| 2026.09 | OpenAI 发布 GPT-6 Astra | OpenAI 当时的旗舰模型，首个在 Preparedness Framework 下达到 Critical 级网络安全能力的模型，计算机操作/编程/科研达前沿水平。2026.11.17 又发布 GPT-6.2 Astra 与 Sol |
 | 2026.09.03 | GPT-6.1 Sol 发布 | 以接近 Astra 的能力应对高难度编程和专业工作，价格更低 |
 | 2026.09.16 | OpenAI 总裁宣布“AGI 时代来了” | Greg Brockman 称 GPT-6 Astra 已能自主干满 24 小时，AGI 不是时间点而是一段光谱 |
 | 2026.09.19 | Claude Code 支持 AGENTS.md 通用格式 | 从 CLAUDE.md 扩展到行业通用的 AGENTS.md，项目规则文件开始跨工具标准化 |
 | 2026.09.28 | **Manus 2.0 发布 + Cue 推出** | Manus 重构为 Cascade Agent 架构（项目从小开始、逐步扩展）；Cue 让每个个人 Agent 拥有独立邮箱、电话和钱包——Agent 开始拥有“数字身份” |
 | 2026.09.29-30 | OpenAI DevDay：发布 Dots | **全天候自主智能体**：由 GPT-6 Astra 驱动，不用逐步下指令、会主动接手工作。同时发布 Agents API 公测、ChatGPT Space 协作区 |
-| 2026.09 | Meta 发布 Muse | **消费级 Agent 里程碑**：登顶美国 App Store 免费榜，下载量超 250 万，移动端日活 64.2 万（是 ChatGPT 同期的近 3 倍）。标志 Agent 从开发者工具进入大众消费市场 |
-| 2026.10.05 | 白宫《超级智能协议》签署 | Anthropic、Google、Meta、英伟达、OpenAI、xAI 六巨头共同签署前沿责任联合承诺，Agent 安全治理进入国家层面 |
+| 2026.09 | Meta 发布 Muse | **消费级 Agent 里程碑**：据蓝鲸新闻报道，登顶美国 App Store 免费榜。标志 Agent 从开发者工具进入大众消费市场（下载量、日活等数字未取得一手数据，不在此列出） |
+| 2026.10.05 | 白宫《超级智能协议》签署（据央视新闻报道） | Anthropic、Google、Meta、英伟达、OpenAI、xAI 六巨头共同签署前沿责任联合承诺，Agent 安全治理进入国家层面 |
+
+> 标注“据媒体报道”的条目（Cursor / OpenRouter 收购、Muse、白宫协议）只找到媒体转述链接，没有取得公司公告等一手来源；相关数字在核实前不列出。
 
 **阶段特征**：
 - Computer Use 让 Agent 拥有“视力和四肢”，能操作任何图形界面
 - 编程 Agent 成为最成熟的 Agent 应用场景（Cursor/Claude Code/Codex 日活百万级），从“写函数”进化到“做项目”
 - 通用 Agent（Manus、ChatGPT Agent、Dots）走向大众，Dots 标志“全天候自主 Agent”时代开启
-- 消费级 Agent（Muse）出现，Agent 进入 C 端市场
+- 消费级 Agent（Muse，据媒体报道）出现，Agent 开始进入 C 端市场
 - **双协议格局形成**：MCP（Agent→工具）+ A2A（Agent→Agent），同处 Linux Foundation 中立治理
 - Agent 开始拥有“数字身份”（Manus Cue 的邮箱/电话/钱包），从工具向“数字员工”进化
 - 监管框架建立（EU AI Act、中国国家框架、白宫超级智能协议）
@@ -205,15 +209,23 @@ while True:
 
 ```python
 # 不需要为每个工具写定制代码，只需连接 MCP Server
+# 需 pip install mcp
+import asyncio
 from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client   # stdio_client 不在 mcp 顶层命名空间里
 
-# 连接一个已有的 MCP Server（如 GitHub、数据库、文件系统）
-server_params = StdioServerParameters(command="npx", args=["-y", "@modelcontextprotocol/server-github"])
-async with create_stdio_client(server_params) as (read, write):
-    async with ClientSession(read, write) as session:
-        await session.initialize()
-        tools = await session.list_tools()  # 自动获取所有工具定义
-        # Agent 可以直接调用这些工具，无需写任何胶水代码
+async def main():
+    # 连接一个已有的 MCP Server（通过命令启动，如文件系统、数据库、GitHub）
+    server_params = StdioServerParameters(command="npx", args=["-y", "<某个 MCP Server 的包名>"])
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+            tools = await session.list_tools()  # 自动获取所有工具定义
+            for t in tools.tools:
+                print(t.name, "-", t.description)
+            # 之后由 LLM 决定调用哪个工具，再 await session.call_tool(name, arguments)
+
+asyncio.run(main())  # stdio 客户端只能在 async 函数里用，不能在模块顶层直接 await
 ```
 
 ### 用 LangGraph 编排生产级 Agent（2024 年后的方式，可控）
@@ -241,9 +253,9 @@ from langgraph.graph import StateGraph, END
 | Chain（LangChain） | 2023.01 | 串联多个 LLM 调用  | 已被 Graph 取代 |
 | Agent Loop       | 2023.03 | 模型自主循环执行     | 仍是核心机制      |
 | Function Calling | 2023.06 | 模型结构化调用工具    | 所有模型标配      |
-| ReAct 范式         | 2023.10 | 推理+行动交替      | 标准推理范式      |
+| ReAct 范式         | 2022.10（论文上 arXiv） | 推理+行动交替      | 标准推理范式      |
 | MCP 协议           | 2024.11 | 工具接入标准化      | 事实标准，持续演进（2026.07 stateless core） |
-| Computer Use     | 2025.01 | Agent 操作图形界面 | 快速普及中       |
+| Computer Use     | 2024.10（Anthropic 首发）；2025.01 Operator 把它带向浏览器 | Agent 操作图形界面 | 快速普及中       |
 | Agent Skills     | 2025.10 | 可复用专业技能      | 新兴方向        |
 | A2A 协议           | 2026.03 | Agent 间通信标准化    | v1.0 生产就绪，2026.08 加入 Linux Foundation |
 | 全天候自主 Agent    | 2026.09 | Agent 主动接手工作、24h 运行 | Dots / Manus 2.0 引领，刚起步 |
@@ -293,7 +305,7 @@ from langgraph.graph import StateGraph, END
 **引导思考**：
 - 当前趋势：Agent 正在从“应用”变成“基础设施”——MCP 是工具标准、A2A 是 Agent 间通信标准、Agent Skills 是技能市场
 - “Agent OS” 的含义：Agent 不再是一个 App，而是操作系统的核心交互层——你不用打开各个 App，直接跟 Agent 说“帮我做 X”，Agent 自动调用各个 App 的能力完成
-- Meta Muse 的爆发是一个信号：用户开始接受“用自然语言驱动 Agent 完成任务”的交互方式，而不是“打开 App 点按钮”
+- 媒体报道的 Meta Muse 爆火是一个信号：用户开始接受“用自然语言驱动 Agent 完成任务”的交互方式，而不是“打开 App 点按钮”
 - 但挑战巨大：权限管理（Agent 能操作哪些 App？）、安全（Agent 做错事谁负责？）、隐私（Agent 能看到多少数据？）、标准化（所有 App 都要支持 MCP 吗？）
 - 延伸：微软的 Copilot+ PC、苹果的 Apple Intelligence、Google 的 Gemini Nano 都在往“系统级 Agent”方向走，谁能成为“Agent 时代的 Windows”？
 
@@ -313,13 +325,13 @@ from langgraph.graph import StateGraph, END
 ### 复述关（3句话讲清）
 1. Agent 从 2022 年 ChatGPT 起走过四个阶段：引擎期（只会聊）→框架期（会调工具但爱乱跑）→标准化期（MCP 统一接口、LangGraph 可控编排）→爆发期（Computer Use + 编程 Agent + 消费级产品）。
 2. 三个里程碑转折点是 2023 年 Function Calling（模型从能说变能做）、2024 年 MCP（工具接入从定制胶水变开放标准）、2025 年 Computer Use/编程 Agent（从实验品变生产力工具）。
-3. 2025 是 Agent 元年，2026 年 Meta Muse 登顶 App Store 标志它进入消费级市场；AutoGPT 当年失败不是概念错，而是模型、框架、护栏等基础设施没成熟。
+3. 2025 是 Agent 元年，2026 年出现消费级 Agent 产品（据媒体报道 Muse 登顶 App Store），Agent 开始进入大众市场；AutoGPT 当年失败不是概念错，而是模型、框架、护栏等基础设施没成熟。
 
 ### 举例关（真实场景）
 2023 年你想做个“自动订机票”Agent，得为携程、航司、支付各写一套胶水代码，模型还会在搜索和支付之间死循环；2024 年后只要接一个 MCP Server 就能调用这些工具，再用 LangGraph 画好“查票→比价→人工确认→支付”的图，加个步数上限，Agent 就能稳定跑通——这就是标准化期带来的本质变化。
 
 ### 反例关（边界条件）
-看到 Manus、Devin 的演示就误以为 2026 年 Agent 能完全替代人，把付款、删数据、发对外邮件这类高风险操作全自动交给它——这是最典型的踩坑。当前 Agent 定位是“副驾驶”不是“自动驾驶”，关键步骤必须 Human-in-the-Loop 审批，否则它会一本正经地把错做成。
+看到 Manus、Devin 的演示就误以为 2026 年 Agent 能完全替代人，把付款、删数据、发对外邮件这类高风险操作全自动交给它——这是最典型的踩坑。当前 Agent 定位是“副驾驶”不是“自动驾驶”，关键步骤必须 Human-in-the-Loop 审批，否则它会一本正经地把错事做完。
 
 ### 教学关（给小白讲）
 把 AI 想象成一个实习生的成长：2022 年刚入职只会陪聊；2023 年学会了用工具但经常乱来、不知道啥时候停；2024 年公司定了工具使用标准（就像统一充电口的 USB-C），他能稳定接各种系统了；2025 年起他会操作电脑、会写代码，成了正式员工，连普通人手机上都能用。Agent 不是一夜冒出来的，是这个实习生一年年练出来的。
@@ -349,8 +361,16 @@ from langgraph.graph import StateGraph, END
 - 技术博客: [AI/TLDR - Manus 2.0 and Cue](https://ai-tldr.dev/releases/tool/)
 - 权威媒体: [钛媒体 - Gemini 3.5 发布](https://www.tmtpost.com/7994400.html)
 - 权威媒体: [新华网 - OpenAI推出GPT-5.6系列模型](http://www.xinhuanet.com/20260710/74a4edded29942f8b0f02ac483a7a76f/c.html)
-- 官方博客: [OpenAI - GPT-6 Astra](https://openai.com/zh-Hans-CN/research/index/)
+- 官方发布: [OpenAI - GPT-6 Astra](https://openai.com/zh-Hans-CN/research/index/)（研究频道索引页，不是单篇文章）
+- 官方博客: [OpenAI - Introducing Operator（Computer-Using Agent）](https://openai.com/index/introducing-operator/)
+- 官方博客: [Anthropic - Developing a computer use model](https://www.anthropic.com/news/developing-computer-use)
+- 官方发布: [LangGraph - PyPI 发布记录（首版 2024.01）](https://pypi.org/project/langgraph/)
+- 官方发布: [AutoGen - PyPI 发布记录（首版 2023.08）](https://pypi.org/project/pyautogen/)
+- 官方发布: [CrewAI - PyPI 发布记录（首版 2023.11）](https://pypi.org/project/crewai/)
+- 论文: [Yao et al., *ReAct: Synergizing Reasoning and Acting in Language Models*, ICLR 2023](https://arxiv.org/abs/2210.03629)
 - 技术博客: [AI Beat - Cursor 3 多Agent编排](https://ai-beat.github.io/tags/agents/)
 - 权威媒体: [央视新闻 - 中美AI“拐点”·白宫超级智能协议](http://m.toutiao.com/group/7693031906124038692/)
 
 > 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。
+>
+> 2026-11-27 复核：更正 ReAct、AutoGen、CrewAI、LangGraph、Manus 的发布时间，补上 Computer Use 首发（2024.10）；Muse、Cursor / OpenRouter 收购、白宫协议三条只找到媒体转述链接，已标注“据媒体报道”并去掉未核实的数字。

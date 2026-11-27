@@ -1,6 +1,6 @@
 ## 一、结论前置
 
-**LLM 在 Agent 里不是“文本生成器”，而是“推理引擎”——它负责理解目标、拆解任务、决策下一步调用什么工具、根据反馈反思纠错、判断任务是否完成。** 2024 年底 OpenAI o1 的发布标志着行业范式从“训练时扩展”转向“推理时扩展”（Test-Time Compute Scaling）：模型不再一次前向传播就出答案，而是先生成一条长长的内部思维链，想清楚了再回答。DeepSeek-R1 以 70% 更低的成本追平 o1，证明了“让模型多花 token 思考”比“把模型参数堆得更大”更具性价比。[Zylos AI·推理时计算扩展](https://zylos.ai/en/research/2026-04-23-inference-time-compute-scaling-reasoning-budget-optimization/)
+**LLM 在 Agent 里不是“文本生成器”，而是“推理引擎”——它负责理解目标、拆解任务、决策下一步调用什么工具、根据反馈反思纠错、判断任务是否完成。** 2024 年 9 月 OpenAI 发布 o1-preview，行业范式开始从“训练时扩展”转向“推理时扩展”（Test-Time Compute Scaling）：模型不再一次前向传播就出答案，而是先生成一条长长的内部思维链，想清楚了再回答。[Zylos AI·推理时计算扩展](https://zylos.ai/en/research/2026-04-23-inference-time-compute-scaling-reasoning-budget-optimization/) DeepSeek-R1 用强化学习训练出思维链，性能追平 o1-1217，说明“让模型多花 token 思考”是一条可行的路线。[DeepSeek-R1 论文](https://arxiv.org/pdf/2501.12948)
 
 ---
 
@@ -35,7 +35,7 @@
 **推理模型的训练范式**（Microsoft Learn 官方总结）：
 > 推理模型（如 OpenAI o 系列）通过强化学习训练，学会在回答前生成思维链——把问题拆成子步骤、探索替代方案、验证自己的工作。这在数学、逻辑、编程和复杂多步任务上带来显著提升。[Microsoft Learn·LLM Fundamentals](https://learn.microsoft.com/en-us/agent-framework/journey/llm-fundamentals)
 
-**DeepSeek-R1 的关键突破**：首个在**无监督微调**（SFT）的前提下，直接对基础模型做大规模强化学习，让思维链（CoT）自然涌现。R1-Zero 展现出自我验证、反思、生成长思维链的能力，但存在可读性差和语言混合问题；R1 在此基础上加入冷启动数据和多阶段训练，性能追平 OpenAI-o1-1217，且完全开源。[DeepSeek-R1 论文](https://arxiv.org/pdf/2501.12948) / [DeepSeek 官方发布](https://www.deepseek.com/en/news/deepseek-r1/)
+**DeepSeek-R1 的关键突破**：不经过**监督微调**（SFT），直接对基础模型做大规模强化学习，让思维链（CoT）自然涌现。R1-Zero 展现出自我验证、反思、生成长思维链的能力，但存在可读性差和语言混合问题；R1 在此基础上加入冷启动数据和多阶段训练，性能追平 OpenAI-o1-1217，且完全开源。[DeepSeek-R1 论文](https://arxiv.org/pdf/2501.12948) / [DeepSeek 官方发布](https://www.deepseek.com/en/news/deepseek-r1/)
 
 ---
 
@@ -43,7 +43,7 @@
 
 ### 3.1 推理时计算扩展（Test-Time Compute Scaling）
 
-这是 2025 年以来最重要的范式转移。传统思路是“训练时把模型做大”，新思路是“推理时让模型多想一会儿”。
+这是 o1 发布以来最重要的范式转移。传统思路是“训练时把模型做大”，新思路是“推理时让模型多想一会儿”。
 
 ```
 传统模式（训练时扩展）：
@@ -98,9 +98,9 @@ Agent 的每一轮循环，LLM 作为推理引擎要做四个决策：
 ```
 
 **关键机制**：
-1. **推理 token 不可见**：o1/o3/R1 的内部思维链对用户和 API 调用方不可见（OpenAI 不返回 reasoning content；DeepSeek-R1 可通过 API 参数控制是否返回），只有最终答案可见。这意味着你无法直接“看到”模型在想什么，只能通过最终输出和行为推断。
+1. **推理 token 不可见**：o1/o3/R1 的内部思维链对用户和 API 调用方不可见（OpenAI 不返回 reasoning content；DeepSeek 在思考模式下通过响应的 `reasoning_content` 字段返回思维链，用请求参数 `thinking.type` 开关），只有最终答案可见。这意味着你无法直接“看到”模型在想什么，只能通过最终输出和行为推断。
 2. **推理预算（Reasoning Budget）**：o3 等模型支持通过 `reasoning.effort` 参数（low / medium / high）控制思考深度，本质是分配多少 token 给内部思维链。effort 越高，准确率越高但延迟和成本也越高。[OpenAI·o3 发布](https://openai.com/zh-Hans-CN/index/introducing-o3-and-o4-mini/)
-3. **工具使用内嵌于推理链**：o3/o4-mini 是首批能在思维链内部直接调用工具的推理模型——模型在“思考”过程中自主决定“这里需要搜一下”或“这里需要用 Python 算一下”，工具结果直接注入推理链，而不是作为独立的外部循环。[OpenAI·o3 System Card](https://openai.com/index/introducing-o3-and-o4-mini/)
+3. **工具使用内嵌于推理链**：o3/o4-mini 是首批能在思维链内部直接调用工具的推理模型——模型在“思考”过程中自主决定“这里需要搜一下”或“这里需要用 Python 算一下”，工具结果直接注入推理链，而不是作为独立的外部循环。[OpenAI·o3 发布博客](https://openai.com/index/introducing-o3-and-o4-mini/)
 
 ### 3.3 推理能力的三个技术阶梯
 
@@ -180,9 +180,9 @@ class MockReasoningEngine:
                     "content": "继续获取深圳常住人口"}
 
         if last["tool"] == "search" and "人口" in last["observation"]:
-            self._think("拿到人口=1779万。GDP=3.68万亿=36800亿。人均=36800亿/1779万")
-            self._think("换算：36800亿 = 3,680,000,000,000；1779万 = 17,790,000")
-            self._think("人均GDP = 36800 / 0.1779 ≈ 20.69万元")
+            self._think("拿到人口=1779万。GDP=3.68万亿=36800亿。人均=36800亿/1779万人")
+            self._think("换算：1779万人 = 0.1779亿人；人均 = 36800亿 ÷ 0.1779亿 = 206858元")
+            self._think("206858元 ≈ 20.69万元。交给计算器验证")
             return {"decision": "tool", "tool_name": "calculator",
                     "tool_args": "36800 / 0.1779",
                     "content": "用公式计算人均GDP"}
@@ -192,8 +192,8 @@ class MockReasoningEngine:
             self._think("计算结果约20.69万元。目标达成，可以输出最终答案。")
             gdp = "3.68万亿元"
             pop = "1779万"
-            per_capita = last["observation"]
-            answer = f"深圳人均GDP ≈ {float(per_capita):.2f}万元（GDP {gdp} ÷ 人口 {pop}）"
+            per_capita_yuan = float(last["observation"])  # 计算器返回的单位是 元/人
+            answer = f"深圳人均GDP ≈ {per_capita_yuan / 10000:.2f}万元（GDP {gdp} ÷ 人口 {pop}）"
             return {"decision": "finish", "content": answer,
                     "tool_name": None, "tool_args": None}
 
@@ -265,27 +265,27 @@ if __name__ == "__main__":
   👁 观察: 206857.78527262507
 
 [步骤 4] 决策类型: finish
-  🧠 推理输出: 深圳人均GDP ≈ 206857.79万元（GDP 3.68万亿元 ÷ 人口 1779万）
+  🧠 推理输出: 深圳人均GDP ≈ 20.69万元（GDP 3.68万亿元 ÷ 人口 1779万）
 
-✅ 最终答案: 深圳人均GDP ≈ 206857.79万元（GDP 3.68万亿元 ÷ 人口 1779万）
+✅ 最终答案: 深圳人均GDP ≈ 20.69万元（GDP 3.68万亿元 ÷ 人口 1779万）
 
 📝 内部思维链（模拟可见，实际o1/o3不可见）:
   1. 用户问深圳人均GDP。需要：1)查GDP总量 2)查人口 3)用公式计算
   2. 先搜GDP总量
   3. 拿到GDP=3.68万亿。还需要人口数据。
-  4. 拿到人口=1779万。GDP=3.68万亿=36800亿。人均=36800亿/1779万
-  5. 换算：36800亿 = 3,680,000,000,000；1779万 = 17,790,000
-  6. 人均GDP = 36800 / 0.1779 ≈ 20.69万元
+  4. 拿到人口=1779万。GDP=3.68万亿=36800亿。人均=36800亿/1779万人
+  5. 换算：1779万人 = 0.1779亿人；人均 = 36800亿 ÷ 0.1779亿 = 206858元
+  6. 206858元 ≈ 20.69万元。交给计算器验证
   7. 计算结果约20.69万元。目标达成，可以输出最终答案。
 ```
 
-> 注意：上面的“内部思维链”是为了教学模拟出来的。真实使用 o1/o3 时，这些推理 token 不会返回给你——你只能看到最终答案和工具调用行为。DeepSeek-R1 可以通过 API 参数 `reasoning_content` 控制是否返回思维链。
+> 注意：上面的“内部思维链”是为了教学模拟出来的。真实使用 o1/o3 时，这些推理 token 不会返回给你——你只能看到最终答案和工具调用行为。DeepSeek 在思考模式下会把思维链放在响应的 `reasoning_content` 字段里返回，开关是请求参数 `thinking.type`（见 4.2）。
 
-### 4.2 真实 API 调用：DeepSeek-R1 推理模型
+### 4.2 真实 API 调用：DeepSeek 思考模式
 
 ```python
 """
-调用 DeepSeek-R1 推理模型，观察思维链行为
+调用 DeepSeek 思考模式，观察思维链行为
 需 pip install openai
 """
 import os
@@ -294,28 +294,29 @@ from openai import OpenAI
 # 用自己的 provider 跑通本示例（任何 OpenAI 兼容接口均可）。以 DeepSeek 为例：
 #   export OPENAI_API_KEY=sk-xxx             # DeepSeek 开放平台的 key
 #   export OPENAI_BASE_URL=https://api.deepseek.com
-#   export LLM_MODEL=deepseek-reasoner       # DeepSeek 官方的 R1 模型名
+#   export LLM_MODEL=deepseek-flash          # 思考模式默认开启
 # 用 openai 官方时 OPENAI_BASE_URL 可省略，LLM_MODEL 换成对应推理模型
 client = OpenAI()  # 自动读取 OPENAI_API_KEY / OPENAI_BASE_URL
 MODEL = os.environ["LLM_MODEL"]
 
 response = client.chat.completions.create(
-    model=MODEL,                      # R1 推理模型
+    model=MODEL,                      # 带思考模式的模型
     messages=[
         {"role": "user", "content": "有一个水池，进水管6小时放满，出水管8小时放完。同时开，几小时放满？"}
     ],
     max_tokens=4000,
-    # DeepSeek-R1 支持返回推理内容
-    # 注意：实际返回中 reasoning_content 字段包含思维链
+    # 思考模式默认开启。想显式控制时，开关要放进 extra_body：
+    #   extra_body={"thinking": {"type": "enabled"}}    # "disabled" 关闭思考
+    #   extra_body={"reasoning_effort": "low"}          # 可选：思考强度 low / high / max
 )
 
 answer = response.choices[0].message
 print("【最终答案】", answer.content)
-# 如果 API 版本支持，可通过以下方式查看思维链（部分场景返回）
-# print("【思维链】", answer.reasoning_content)
+# 思维链在响应的 reasoning_content 字段里（它是响应字段，不是请求参数）
+print("【思维链】", answer.reasoning_content)
 ```
 
-**R1 的典型推理过程（简化版）：**
+**思考模式的典型推理过程（示意，非真实输出）：**
 ```
 <think>
 这是工程问题。设水池容量为1。
@@ -385,7 +386,7 @@ OpenAI 官方也强调：o3 在等延迟和等成本下比 o1 性能更高，但
 | Reflector（反思器） | 推理模型（o3/R1） | 错误分析和策略调整需要推理 |
 | Router（路由器） | 小模型（GPT-4o-mini） | 分类决策不需要大模型 |
 
-o3 的 System Card 明确提到：模型被训练为“推理何时以及如何使用工具”，这意味着 o3 本身就适合做 Agent 的核心决策引擎，但简单的工具执行步骤可以用更便宜的模型。[OpenAI·o3 System Card](https://openai.com/index/introducing-o3-and-o4-mini/)
+o3 的 System Card 明确提到：模型被训练为“推理何时以及如何使用工具”，这意味着 o3 本身就适合做 Agent 的核心决策引擎，但简单的工具执行步骤可以用更便宜的模型。[OpenAI·o3 发布博客](https://openai.com/index/introducing-o3-and-o4-mini/)
 
 ---
 
@@ -401,7 +402,7 @@ o3 的 System Card 明确提到：模型被训练为“推理何时以及如何�
 
 ### 复述关（3句话讲清）
 1. LLM 在 Agent 里不是文本生成器，而是每轮循环都要做四件决策的推理引擎：拆任务、选工具填参数、看结果反思、判断何时收尾。
-2. 2025 年起的范式转移是“推理时扩展”——不靠把模型做大，而靠让模型在内部多花 token 想清楚（o1/o3/R1），思维链对调用方不可见。
+2. 2024 年 o1 发布后的范式转移是“推理时扩展”——不靠把模型做大，而靠让模型在内部多花 token 想清楚（o1/o3/R1），思维链对调用方不可见。
 3. 工程上要按任务复杂度分层选型：简单生成用普通模型、数学编程用推理模型、Agent 内部还可给 Planner/Worker/Router 配不同档次的模型控成本。
 
 ### 举例关（真实场景）
@@ -422,10 +423,11 @@ o3 的 System Card 明确提到：模型被训练为“推理何时以及如何�
 - 论文: [Agentic Reasoning: Reasoning LLMs with Tools for the Deep Research, arXiv 2025](https://arxiv.org/pdf/2502.04644)
 - 论文: [Revisiting the Test-Time Scaling of o1-like Models, arXiv 2025](https://arxiv.org/pdf/2502.12215v2.pdf)
 - 论文: [Advancing LLM Reasoning Techniques Survey, TechRxiv 2025](https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176131150.00355935/v1)
-- 官方发布: [OpenAI o3 and o4-mini 发布博客](https://openai.com/zh-Hans-CN/index/introducing-o3-and-o4-mini/)
-- 官方文档: [OpenAI o3 and o4-mini System Card](https://openai.com/index/introducing-o3-and-o4-mini/)
+- 官方发布: [OpenAI o3 and o4-mini 发布博客](https://openai.com/zh-Hans-CN/index/introducing-o3-and-o4-mini/)（英文版：openai.com/index/introducing-o3-and-o4-mini/）
 - 官方发布: [DeepSeek-R1 Release](https://www.deepseek.com/en/news/deepseek-r1/)
 - 官方文档: [DeepSeek-R1 更新说明（思考更深，推理更强）](https://api-docs.deepseek.com/zh-cn/news/news250528/)
+- 官方文档: [DeepSeek API Docs·思考模式（开关与 reasoning_content）](https://api-docs.deepseek.com/zh-cn/guides/thinking_mode/)
+- 官方文档: [DeepSeek API Docs·更新日志（deepseek-reasoner 于 2026-07-24 停用）](https://api-docs.deepseek.com/zh-cn/updates)
 - 官方文档: [Microsoft Learn - LLM Fundamentals（推理三阶段）](https://learn.microsoft.com/en-us/agent-framework/journey/llm-fundamentals)
 - 行业分析: [Zylos AI - Inference-Time Compute Scaling](https://zylos.ai/en/research/2026-04-23-inference-time-compute-scaling-reasoning-budget-optimization/)
 - 行业分析: [Future AGI - LLM Reasoning in 2026](https://futureagi.com/blog/llm-reasoning-2025/)
@@ -434,3 +436,5 @@ o3 的 System Card 明确提到：模型被训练为“推理何时以及如何�
 - 百科: [AI Wiki - Test-time compute](https://aiwiki.ai/wiki/test_time_compute)
 
 > 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。
+>
+> 2026-11-27 复核：o1 发布时间按 o1-preview（2024.09）更正；删除只出自二手博客的“R1 成本低 70%”；4.2 的 DeepSeek 示例按现行模型名与思考模式文档重写。

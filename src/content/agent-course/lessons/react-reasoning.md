@@ -226,15 +226,24 @@ print(answer)
 
 ```python
 # ChatOpenAI 自动读取 OPENAI_API_KEY / OPENAI_BASE_URL（沿用上节 env 三件套）
+# 需 pip install langgraph langchain-openai
 import os
 from langgraph.graph import StateGraph, END
+from langgraph.graph.message import add_messages
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
+from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
-from typing import TypedDict, List
+from typing import Annotated, TypedDict, List
 from langchain_core.messages import BaseMessage
 
 class AgentState(TypedDict):
-    messages: List[BaseMessage]
+    # add_messages 是 reducer：节点返回的 messages 追加进状态，而不是整体覆盖
+    messages: Annotated[List[BaseMessage], add_messages]
+
+@tool
+def search_tool(query: str) -> str:
+    """搜索网络信息"""
+    return f"搜索结果：{query} 的相关信息..."
 
 llm = ChatOpenAI(model=os.environ["LLM_MODEL"]).bind_tools([search_tool])
 
@@ -252,9 +261,10 @@ def should_continue(state):
 def tool_node(state):
     """ReAct 的 Observation 步骤：执行工具，返回结果"""
     outputs = []
+    # 注意：LangGraph 的 tool_calls 是 dict，取值用 tool_call["args"] / tool_call["id"]
     for tool_call in state["messages"][-1].tool_calls:
-        result = search_tool.invoke(tool_call)
-        outputs.append(ToolMessage(content=str(result), tool_call_id=tool_call.id))
+        result = search_tool.invoke(tool_call["args"])
+        outputs.append(ToolMessage(content=str(result), tool_call_id=tool_call["id"]))
     return {"messages": outputs}
 
 # 构建 ReAct 图

@@ -177,18 +177,26 @@ while True:
 ### 用 LangGraph 实现（生产级）
 
 ```python
-# ChatOpenAI 自动读取 OPENAI_API_KEY / OPENAI_BASE_URL（沿用上节 env 三件套）
+# 沿用上节 env 三件套：ChatOpenAI 自动读取 OPENAI_API_KEY / OPENAI_BASE_URL
+# 需 pip install langgraph langchain-openai
 import os
+from typing import Annotated, TypedDict, List
 from langgraph.graph import StateGraph, END
+from langgraph.graph.message import add_messages
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage
-from typing import TypedDict, List
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, HumanMessage, ToolMessage
+from langchain_core.tools import tool
 
 class AgentState(TypedDict):
-    messages: List[BaseMessage]
+    # add_messages 是 reducer：节点返回的 messages 追加进状态，而不是整体覆盖
+    messages: Annotated[List[BaseMessage], add_messages]
 
-llm = ChatOpenAI(model=os.environ["LLM_MODEL"]).bind_tools([get_weather_tool])
+@tool
+def get_weather(city: str) -> str:
+    """查询指定城市的实时天气"""
+    return f"{city}今天晴，25°C，微风"
+
+llm = ChatOpenAI(model=os.environ["LLM_MODEL"]).bind_tools([get_weather])
 
 def agent_node(state):
     response = llm.invoke(state["messages"])
@@ -199,11 +207,12 @@ def should_continue(state):
     return "tools" if last_message.tool_calls else END
 
 def tool_node(state):
-    # 执行所有 tool_calls 并回填
+    # 执行所有 tool_calls 并回填。
+    # 注意：LangGraph 的 tool_calls 是 dict，不是 OpenAI SDK 的对象（没有 .function / .id 属性）
     outputs = []
     for tool_call in state["messages"][-1].tool_calls:
-        result = get_weather(**json.loads(tool_call.function.arguments))
-        outputs.append(ToolMessage(content=result, tool_call_id=tool_call.id))
+        result = get_weather.invoke(tool_call["args"])
+        outputs.append(ToolMessage(content=result, tool_call_id=tool_call["id"]))
     return {"messages": outputs}
 
 graph = StateGraph(AgentState)

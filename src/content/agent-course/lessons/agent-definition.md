@@ -265,14 +265,13 @@ result = app.invoke({"messages": [("user", "帮我查深圳天气并算两个人
 print(result["messages"][-1].content)
 ```
 
-**关键变化说明（对比骨架版）：**
+**关键点说明（对照 4.1 的手写循环）：**
 
-| 骨架版（教学） | 生产级（@tool + ToolNode） |
+| 4.1 的手写做法 | 这里的 @tool + ToolNode |
 |---|---|
-| 工具用普通函数 + 字典映射 | 工具用 `@tool` 装饰器，自动生成 schema |
-| `bind_tools([...])` 留空占位 | `bind_tools(tools)` 直接传 `@tool` 列表 |
-| 手写 `tools_node` 遍历 `tool_calls` | 用内置 `ToolNode(tools)`，自动执行+回填结果 |
-| 节点名 “tools” 映射手写函数 | 节点名 “tools” 映射 `ToolNode` 实例 |
+| 工具用普通函数 + `TOOLS` 字典映射 | `@tool` 装饰器从函数签名和 docstring 自动生成 name / description / 参数 schema |
+| 循环里自己判断 LLM 要调哪个工具 | `bind_tools(tools)` 把 schema 交给模型，由 function calling 返回 `tool_calls` |
+| 手写执行工具、拼接 Observation | 内置 `ToolNode(tools)` 自动执行 `tool_calls`，并把结果作为 ToolMessage 回填 |
 
 > `graph.add_edge("tools", "agent")` 中的 “tools” 是 `add_node("tools", ToolNode(tools))` 注册的节点 ID，不是字符串字面量。LangGraph 官方文档明确说明：Agent 的核心就是 `call_model → tools → call_model` 的循环，直到 LLM 不再输出 tool_calls。[LangGraph·Workflows vs Agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 
@@ -345,7 +344,7 @@ print(result["messages"][-1].content)
 - 行业报告: [Cloud Security Alliance, *Agentic Universe: April 2026*](https://labs.cloudsecurityalliance.org/agentic/agentic-universe-april-2026-v1/)
 - 框架文档: [LangGraph 官方文档：Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
 - 框架文档: [LangGraph 官方文档：Workflows and Agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
-- 框架文档: [LangGraph 官方文档：Use Graph API（recursion_limit）](https://docs.langchain.com/oss/javascript/langgraph/use-graph-api)
+- 框架文档: [LangGraph 官方文档：Use Graph API（recursion_limit）](https://docs.langchain.com/oss/python/langgraph/use-graph-api)
 - 权威媒体: [新华网，《智能体：把能力转化为生产力》, 2026-04](http://www.xinhuanet.com/globe/20260402/2e094094cb7c4a5ea9267e3ac55dd5ae/c.html)
 
 > 来源核验 2026-11-25：全部外链逐一联网核验可访问，论文标题按 arXiv 原文校准；存疑数字保留原文标注。技术结论与官方文档不一致时以官方为准。

@@ -274,15 +274,15 @@ def calculator(expression: str) -> str:
         return "计算错误"
 
 TOOLS = {
-    "search": {"func": search, "description": "搜索网络信息"},
-    "calculator": {"func": calculator, "description": "数学计算"},
+    "search": {"func": search, "description": "搜索网络信息", "arg": "query"},
+    "calculator": {"func": calculator, "description": "数学计算", "arg": "expression"},
 }
 
-# 工具 Schema（传给 LLM）
+# 工具 Schema（传给 LLM）。参数名必须和函数签名一致，否则回填参数时调用会报错
 tools_schema = [
     {"type": "function", "function": {
         "name": name, "description": info["description"],
-        "parameters": {"type": "object", "properties": {"input": {"type": "string"}}, "required": ["input"]}
+        "parameters": {"type": "object", "properties": {info["arg"]: {"type": "string"}}, "required": [info["arg"]]}
     }} for name, info in TOOLS.items()
 ]
 
@@ -393,15 +393,32 @@ print(answer)
 
 ```python
 # ChatOpenAI 自动读取 OPENAI_API_KEY / OPENAI_BASE_URL（沿用上节 env 三件套）
+# 需 pip install langgraph langchain-openai
 import os
 from langgraph.graph import StateGraph, END
+from langgraph.graph.message import add_messages
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
+from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
-from typing import TypedDict, List
+from typing import Annotated, TypedDict, List
 from langchain_core.messages import BaseMessage
 
 class AgentState(TypedDict):
-    messages: List[BaseMessage]
+    # add_messages 是 reducer：节点返回的 messages 追加进状态，而不是整体覆盖
+    messages: Annotated[List[BaseMessage], add_messages]
+
+@tool
+def search_tool(query: str) -> str:
+    """搜索网络信息"""
+    return f"搜索结果：{query} 的相关信息..."
+
+@tool
+def calculator_tool(expression: str) -> str:
+    """数学计算"""
+    try:
+        return str(eval(expression))
+    except Exception:
+        return "计算错误"
 
 llm = ChatOpenAI(model=os.environ["LLM_MODEL"]).bind_tools([search_tool, calculator_tool])
 
@@ -418,10 +435,11 @@ def should_continue(state):
 def tool_node(state):
     """行动节点：执行工具"""
     outputs = []
+    # 注意：LangGraph 的 tool_calls 是 dict，取值用 tool_call["name"] / tool_call["args"] / tool_call["id"]
     for tool_call in state["messages"][-1].tool_calls:
-        tool = next(t for t in [search_tool, calculator_tool] if t.name == tool_call.name)
-        result = tool.invoke(tool_call)
-        outputs.append(ToolMessage(content=str(result), tool_call_id=tool_call.id))
+        tool = next(t for t in [search_tool, calculator_tool] if t.name == tool_call["name"])
+        result = tool.invoke(tool_call["args"])
+        outputs.append(ToolMessage(content=str(result), tool_call_id=tool_call["id"]))
     return {"messages": outputs}
 
 # 构建 ReAct 图（单智能体的标准架构）
