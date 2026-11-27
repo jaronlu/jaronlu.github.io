@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { ChunkErrorBoundary } from "../components/ChunkErrorBoundary";
 import { highlightCodeBlocks } from "../lib/highlight";
 import { courseBySlug, courseTiers } from "../data/course";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -70,7 +71,10 @@ export function CourseDetail() {
             : "AI 协助整理的学习笔记，持续校准中；与官方文档不一致时以官方为准"}
         </span>
         <Suspense fallback={<p className="text-[0.875rem] text-muted">正在载入课文…</p>}>
-          <Content />
+          {/* 发版后旧 chunk 失效时给出重新加载入口；换课即换 key，boundary 复位 */}
+          <ChunkErrorBoundary key={slug}>
+            <Content />
+          </ChunkErrorBoundary>
         </Suspense>
       </div>
     </div>

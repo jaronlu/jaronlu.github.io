@@ -1,5 +1,6 @@
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { ChunkErrorBoundary } from "../components/ChunkErrorBoundary";
 import { projectBySlug } from "../data/projects";
 import { PrivateTag } from "../components/PageHead";
 import { site } from "../data/site";
@@ -89,7 +90,10 @@ export function ProjectDetail() {
 
       <div className="prose mt-9">
         <Suspense fallback={<p className="text-[0.875rem] text-muted">正在载入正文…</p>}>
-          <Content />
+          {/* 发版后旧 chunk 失效时给出重新加载入口；换路由即换 key，boundary 复位 */}
+          <ChunkErrorBoundary key={slug}>
+            <Content />
+          </ChunkErrorBoundary>
         </Suspense>
       </div>
 
